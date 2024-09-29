@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Yamato"
 include(":app")
+include(":core")
+include(":core:data")

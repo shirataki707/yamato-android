@@ -57,6 +57,9 @@ secrets = "2.0.1"
 truth = "1.4.2"
 turbine = "1.1.0"
 material3Android = "1.3.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+material = "1.12.0"
 
 [bundles]
 androidx-compose-ui-test = ["androidx-compose-ui-test", "androidx-compose-ui-testManifest"]
@@ -159,6 +162,9 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -210,3 +216,4 @@ yamato-android-room = { id = "yamato.android.room", version = "unspecified" }
 yamato-android-test = { id = "yamato.android.test", version = "unspecified" }
 yamato-hilt = { id = "yamato.hilt", version = "unspecified" }
 yamato-jvm-library = { id = "yamato.jvm.library", version = "unspecified" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
