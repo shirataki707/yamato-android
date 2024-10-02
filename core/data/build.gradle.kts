@@ -5,3 +5,8 @@ plugins {
 android {
     namespace = "jp.shirataki707.core.data"
 }
+
+dependencies {
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+}

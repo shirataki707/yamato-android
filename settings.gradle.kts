@@ -18,3 +18,6 @@ rootProject.name = "Yamato"
 include(":app")
 include(":core")
 include(":core:data")
+include(":feature")
+include(":feature:mountain")
+include(":benchmark")

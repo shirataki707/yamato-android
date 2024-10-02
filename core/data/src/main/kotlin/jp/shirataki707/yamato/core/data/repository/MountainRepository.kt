@@ -1,6 +1,6 @@
 package jp.shirataki707.yamato.core.data.repository
 
-import jp.shirataki707.data.R
+import jp.shirataki707.core.data.R
 import jp.shirataki707.yamato.core.data.model.Mountain
 
 object MountainRepository {
