@@ -13,8 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import jp.shirataki707.yamato.YamatoBuildType
-import jp.shirataki707.yamato.configureFlavors
 
 plugins {
     alias(libs.plugins.yamato.android.application)
@@ -38,26 +36,12 @@ android {
     }
 
     buildTypes {
-        debug {
-            applicationIdSuffix = YamatoBuildType.DEBUG.applicationIdSuffix
-        }
-//        create("benchmark") {
-//            initWith(buildTypes.getByName("release"))
-//            signingConfig = signingConfigs.getByName("debug")
-//            matchingFallbacks += listOf("release")
-//            isDebuggable = false
-//        }
         release {
-            isMinifyEnabled = true
-            applicationIdSuffix = YamatoBuildType.RELEASE.applicationIdSuffix
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-
-            // To publish on the Play store a private signing key is required, but to allow anyone
-            // who clones the code to sign and run the release variant, use the debug signing key.
-            // TODO: Abstract the signing configuration to a separate file to avoid hardcoding this.
-            signingConfig = signingConfigs.named("debug").get()
-            // Ensure Baseline Profile is fresh for release builds.
-            baselineProfile.automaticGenerationDuringBuild = true
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
         }
     }
 
@@ -76,7 +60,7 @@ android {
 
 dependencies {
     // Add other module dependencies here
-    debugImplementation(project(path = ":feature:mountain", configuration = "demoDebugRuntimeElements"))
+    implementation(projects.feature.mountain)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3.adaptive)

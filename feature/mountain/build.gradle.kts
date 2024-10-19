@@ -8,7 +8,7 @@ android {
 }
 
 dependencies {
-    debugImplementation(project(path = ":core:data", configuration = "demoDebugRuntimeElements"))
+    implementation(projects.core.data)
 
     implementation(libs.androidx.compose.material3)
 }

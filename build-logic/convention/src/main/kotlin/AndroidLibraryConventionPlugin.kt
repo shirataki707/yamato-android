@@ -1,9 +1,6 @@
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import jp.shirataki707.yamato.configureFlavors
-import jp.shirataki707.yamato.configureGradleManagedDevices
 import jp.shirataki707.yamato.configureKotlinAndroid
-import jp.shirataki707.yamato.configurePrintApksTask
 import jp.shirataki707.yamato.disableUnnecessaryAndroidTests
 import jp.shirataki707.yamato.libs
 import org.gradle.api.Plugin
@@ -26,14 +23,16 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 defaultConfig.targetSdk = 34
                 defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 testOptions.animationsDisabled = true
-                configureFlavors(this)
-                configureGradleManagedDevices(this)
+//                configureFlavors(this)
+//                configureGradleManagedDevices(this)
                 // The resource prefix is derived from the module name,
                 // so resources inside ":core:module1" must be prefixed with "core_module1_"
-                resourcePrefix = path.split("""\W""".toRegex()).drop(1).distinct().joinToString(separator = "_").lowercase() + "_"
+                resourcePrefix =
+                    path.split("""\W""".toRegex()).drop(1).distinct().joinToString(separator = "_")
+                        .lowercase() + "_"
             }
             extensions.configure<LibraryAndroidComponentsExtension> {
-                configurePrintApksTask(this)
+//                configurePrintApksTask(this)
                 disableUnnecessaryAndroidTests(target)
             }
             dependencies {

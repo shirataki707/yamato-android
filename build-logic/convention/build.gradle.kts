@@ -49,10 +49,10 @@ gradlePlugin {
             id = "yamato.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
-        register("androidApplicationJacoco") {
-            id = "yamato.android.application.jacoco"
-            implementationClass = "AndroidApplicationJacocoConventionPlugin"
-        }
+//        register("androidApplicationJacoco") {
+//            id = "yamato.android.application.jacoco"
+//            implementationClass = "AndroidApplicationJacocoConventionPlugin"
+//        }
         register("androidLibraryCompose") {
             id = "yamato.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
@@ -65,10 +65,10 @@ gradlePlugin {
             id = "yamato.android.feature"
             implementationClass = "AndroidFeatureConventionPlugin"
         }
-        register("androidLibraryJacoco") {
-            id = "yamato.android.library.jacoco"
-            implementationClass = "AndroidLibraryJacocoConventionPlugin"
-        }
+//        register("androidLibraryJacoco") {
+//            id = "yamato.android.library.jacoco"
+//            implementationClass = "AndroidLibraryJacocoConventionPlugin"
+//        }
         register("androidTest") {
             id = "yamato.android.test"
             implementationClass = "AndroidTestConventionPlugin"
@@ -81,14 +81,14 @@ gradlePlugin {
             id = "yamato.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
-        register("androidFirebase") {
-            id = "yamato.android.application.firebase"
-            implementationClass = "AndroidApplicationFirebaseConventionPlugin"
-        }
-        register("androidFlavors") {
-            id = "yamato.android.application.flavors"
-            implementationClass = "AndroidApplicationFlavorsConventionPlugin"
-        }
+//        register("androidFirebase") {
+//            id = "yamato.android.application.firebase"
+//            implementationClass = "AndroidApplicationFirebaseConventionPlugin"
+//        }
+//        register("androidFlavors") {
+//            id = "yamato.android.application.flavors"
+//            implementationClass = "AndroidApplicationFlavorsConventionPlugin"
+//        }
         register("androidLint") {
             id = "yamato.android.lint"
             implementationClass = "AndroidLintConventionPlugin"
