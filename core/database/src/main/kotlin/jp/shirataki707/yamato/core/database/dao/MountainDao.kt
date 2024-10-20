@@ -1,6 +1,7 @@
 package jp.shirataki707.yamato.core.database.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 import jp.shirataki707.yamato.core.database.model.MountainEntity
 import kotlinx.coroutines.flow.Flow
@@ -20,4 +21,7 @@ interface MountainDao {
 
     @Query("SELECT * FROM mountains")
     fun getMountainEntities(): Flow<List<MountainEntity>>
+
+    @Insert
+    suspend fun insertMountainEntity(mountainEntity: MountainEntity)
 }

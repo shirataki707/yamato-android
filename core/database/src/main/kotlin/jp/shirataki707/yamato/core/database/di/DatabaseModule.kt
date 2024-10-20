@@ -21,5 +21,5 @@ internal object DatabaseModule {
         context,
         YamatoDatabase::class.java,
         "yamato-database",
-    ).build()
+    ).createFromAsset("database/japan_100_mountains.db").build()
 }
