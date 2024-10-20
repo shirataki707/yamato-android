@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
             YamatoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MountainScreen(
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding),
                     )
                 }
             }
