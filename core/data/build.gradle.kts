@@ -1,12 +1,12 @@
 plugins {
     alias(libs.plugins.yamato.android.library)
+    alias(libs.plugins.yamato.hilt)
 }
 
 android {
-    namespace = "jp.shirataki707.core.data"
+    namespace = "jp.shirataki707.yamayo.core.data"
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
+    api(projects.core.database)
 }
