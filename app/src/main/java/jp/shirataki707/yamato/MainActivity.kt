@@ -27,9 +27,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import jp.shirataki707.feature.mountain.MountainScreen
+import dagger.hilt.android.AndroidEntryPoint
+import jp.shirataki707.yamato.feature.mountain.MountainScreen
 import jp.shirataki707.yamato.ui.theme.YamatoTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
