@@ -17,7 +17,7 @@ interface MountainDao {
         WHERE id = :mountainId
     """,
     )
-    fun getMountainEntity(mountainId: String): Flow<MountainEntity>
+    fun getMountainEntity(mountainId: Int): Flow<MountainEntity>
 
     @Query("SELECT * FROM mountains")
     fun getMountainEntities(): Flow<List<MountainEntity>>

@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.core.model
+package jp.shirataki707.yamato.core.model.data
 
 data class Mountain(
     val id: Int,

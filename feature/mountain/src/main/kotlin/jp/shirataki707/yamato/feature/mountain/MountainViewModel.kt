@@ -18,7 +18,7 @@ class MountainViewModel @Inject constructor(
         fetchData()
     }
 
-    fun fetchData() {
+    private fun fetchData() {
         viewModelScope.launch {
             mountainRepository.getMountains().collect { data ->
                 Log.d("MountainViewModel", "Fetched data: $data")
