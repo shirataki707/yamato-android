@@ -1,4 +1,4 @@
-package jp.shirataki707.feature.mountain
+package jp.shirataki707.yamato.feature.mountain
 
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text

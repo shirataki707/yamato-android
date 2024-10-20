@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "jp.shirataki707.core.data"
+    namespace = "jp.shirataki707.yamayo.core.data"
 }
 
 dependencies {
