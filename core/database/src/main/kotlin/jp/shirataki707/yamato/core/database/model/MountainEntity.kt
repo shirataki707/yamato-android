@@ -9,12 +9,15 @@ data class MountainEntity(
     @PrimaryKey
     val id: Int,
     val name: String,
+    @ColumnInfo(name = "image_filename")
     val imageName: String,
+    @ColumnInfo(name = "short_description")
     val shortDescription: String,
+    @ColumnInfo(name = "long_description")
     val longDescription: String,
     val elevation: Int,
     val latitude: Double,
     val longitude: Double,
-    @ColumnInfo(defaultValue = "false")
+    @ColumnInfo(name = "is_climbed")
     val isClimbed: Boolean,
 )

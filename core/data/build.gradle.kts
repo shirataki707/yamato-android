@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.yamato.android.library)
+    alias(libs.plugins.yamato.hilt)
 }
 
 android {
@@ -7,6 +8,5 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
+    api(projects.core.database)
 }
