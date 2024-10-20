@@ -1,42 +1,47 @@
-import jp.shirataki707.yamato.YamatoBuildType
+/*
+ * Copyright 2024 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 plugins {
     alias(libs.plugins.yamato.android.application)
     alias(libs.plugins.yamato.android.application.compose)
     alias(libs.plugins.yamato.hilt)
-//    alias(libs.plugins.baselineprofile)
+    alias(libs.plugins.baselineprofile)
     alias(libs.plugins.kotlin.serialization)
 }
 
 android {
     defaultConfig {
         applicationId = "jp.shirataki707.yamato"
-        minSdk = 26
         versionCode = 1
-        versionName = "0.1.2" // X.Y.Z; X = Major, Y = minor, Z = Patch level
+        versionName = "1.0.0" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
         // Custom test runner to set up Hilt dependency graph
-//        testInstrumentationRunner = "jp.shirataki707.yamato.core.testing.NiaTestRunner"
+        testInstrumentationRunner = "jp.shirataki707.yamato.core.testing.YamatoTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
     buildTypes {
-        debug {
-            applicationIdSuffix = YamatoBuildType.DEBUG.applicationIdSuffix
-        }
         release {
-            isMinifyEnabled = true
-            applicationIdSuffix = YamatoBuildType.RELEASE.applicationIdSuffix
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-
-            // To publish on the Play store a private signing key is required, but to allow anyone
-            // who clones the code to sign and run the release variant, use the debug signing key.
-            // TODO: Abstract the signing configuration to a separate file to avoid hardcoding this.
-//            signingConfig = signingConfigs.named("debug").get()
-            // Ensure Baseline Profile is fresh for release builds.
-//            baselineProfile.automaticGenerationDuringBuild = true
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
         }
     }
 
@@ -55,6 +60,7 @@ android {
 
 dependencies {
     // Add other module dependencies here
+    implementation(projects.feature.mountain)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3.adaptive)
@@ -92,15 +98,26 @@ dependencies {
 
 }
 
-//baselineProfile {
-//    // Don't build on every iteration of a full assemble.
-//    // Instead enable generation directly for the release build variant.
-//    automaticGenerationDuringBuild = false
-//
-//    // Make use of Dex Layout Optimizations via Startup Profiles
-//    dexLayoutOptimization = true
-//}
+baselineProfile {
+    // Don't build on every iteration of a full assemble.
+    // Instead enable generation directly for the release build variant.
+    automaticGenerationDuringBuild = false
+
+    // Make use of Dex Layout Optimizations via Startup Profiles
+    dexLayoutOptimization = true
+}
 
 dependencyGuard {
+//    configuration("debugAndroidTestCompileClasspath")
+//    configuration("debugAndroidTestRuntimeClasspath")
+//    configuration("debugCompileClasspath")
+//    configuration("debugRuntimeClasspath")
+//    configuration("debugUnitTestCompileClasspath")
+//    configuration("debugUnitTestRuntimeClasspath")
+//    configuration("releaseCompileClasspath")
+//    configuration("releaseRuntimeClasspath")
+//    configuration("releaseUnitTestCompileClasspath")
+//    configuration("releaseUnitTestRuntimeClasspath")
+
     configuration("prodReleaseRuntimeClasspath")
 }

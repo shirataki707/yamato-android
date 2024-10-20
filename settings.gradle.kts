@@ -15,4 +15,12 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Yamato"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
+include(":core")
+include(":core:data")
+include(":feature")
+include(":feature:mountain")
+include(":core:ui")
+include(":core:designsystem")

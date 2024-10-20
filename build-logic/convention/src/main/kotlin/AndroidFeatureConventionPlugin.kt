@@ -1,5 +1,4 @@
 import com.android.build.gradle.LibraryExtension
-import jp.shirataki707.yamato.configureGradleManagedDevices
 import jp.shirataki707.yamato.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -16,7 +15,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             }
             extensions.configure<LibraryExtension> {
                 testOptions.animationsDisabled = true
-                configureGradleManagedDevices(this)
             }
 
             dependencies {
@@ -31,7 +29,10 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("kotlinx.serialization.json").get())
 
                 add("testImplementation", libs.findLibrary("androidx.navigation.testing").get())
-                add("androidTestImplementation", libs.findLibrary("androidx.lifecycle.runtimeTesting").get())
+                add(
+                    "androidTestImplementation",
+                    libs.findLibrary("androidx.lifecycle.runtimeTesting").get(),
+                )
             }
         }
     }

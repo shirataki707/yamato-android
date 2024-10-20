@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mountain_name_001_rishiri">利尻岳</string>
+    <string name="mountain_name_002_rausu">羅臼岳</string>
+    <string name="mountain_name_003_shari">斜里岳</string>
+    <string name="mountain_name_004_akan">阿寒岳</string>
+    <string name="mountain_name_005_taisetsu">大雪山(旭岳)</string>
+    <string name="mountain_name_006_tomuraushi">トムラウシ山</string>
+    <string name="mountain_name_007_tokachi">十勝岳</string>
+    <string name="mountain_name_008_poroshiri">幌尻岳</string>
+    <string name="mountain_name_009_yotei">後方羊蹄山(羊蹄山)</string>
+
+    <string name="mountain_description_001_rishiri">利尻岳（りしりだけ）は、北海道利尻礼文国立公園にある標高1,721mの山。利尻富士（りしりふじ）とも呼ばれる。利尻富士は、利尻島の最高峰であり、利尻富士の名は、山容が富士山に似ていることに由来する。</string>
+    <string name="mountain_description_002_rausu">羅臼岳（らうすだけ）は、北海道羅臼町にある標高1,660mの山。羅臼岳は、知床半島の最高峰であり、知床半島の名峰として知られる。</string>
+    <string name="mountain_description_003_shari">斜里岳（しゃりだけ）は、北海道斜里町にある標高1,547mの山。斜里岳は、知床半島の主稜線上に位置し、知床半島の名峰として知られる。</string>
+    <string name="mountain_description_004_akan">阿寒岳（あかんだけ）は、北海道釧路市にある標高1,491mの山。阿寒岳は、阿寒湖の南に位置し、阿寒湖の名峰として知られる。</string>
+    <string name="mountain_description_005_taisetsu">大雪山（たいせつざん）は、北海道上川町にある標高2,291mの山。大雪山は、北海道の最高峰であり、北海道の名峰として知られる。</string>
+    <string name="mountain_description_006_tomuraushi">トムラウシ山（とむらうしやま）は、北海道上川町にある標高2,141mの山。トムラウシ山は、大雪山系の主稜線上に位置し、大雪山系の名峰として知られる。</string>
+    <string name="mountain_description_007_tokachi">十勝岳（とかちだけ）は、北海道十勝岳連峰にある標高2,077mの山。十勝岳は、十勝岳連峰の最高峰であり、十勝岳連峰の名峰として知られる。</string>
+    <string name="mountain_description_008_poroshiri">幌尻岳（ぽろしりだけ）は、北海道上川町にある標高2,052mの山。幌尻岳は、大雪山系の主稜線上に位置し、大雪山系の名峰として知られる。</string>
+    <string name="mountain_description_009_yotei">後方羊蹄山（ごほうようていざん）は、北海道虻田郡倶知安町にある標高1,898mの山。後方羊蹄山は、羊蹄山の裾野に位置し、羊蹄山の名峰として知られる。</string>
+
+</resources>
