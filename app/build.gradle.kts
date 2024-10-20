@@ -26,7 +26,7 @@ android {
     defaultConfig {
         applicationId = "jp.shirataki707.yamato"
         versionCode = 1
-        versionName = "0.1.2" // X.Y.Z; X = Major, Y = minor, Z = Patch level
+        versionName = "1.0.0" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
         // Custom test runner to set up Hilt dependency graph
         testInstrumentationRunner = "jp.shirataki707.yamato.core.testing.YamatoTestRunner"

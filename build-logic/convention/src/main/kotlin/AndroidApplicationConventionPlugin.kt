@@ -19,12 +19,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 defaultConfig.targetSdk = 34
                 @Suppress("UnstableApiUsage")
                 testOptions.animationsDisabled = true
-//                configureGradleManagedDevices(this)
             }
-//            extensions.configure<ApplicationAndroidComponentsExtension> {
-//                configurePrintApksTask(this)
-//                configureBadgingTasks(extensions.getByType<BaseExtension>(), this)
-//            }
         }
     }
 }
