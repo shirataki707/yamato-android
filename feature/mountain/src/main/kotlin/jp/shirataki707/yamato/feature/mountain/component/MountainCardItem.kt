@@ -6,16 +6,12 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -35,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import jp.shirataki707.feature.mountain.R
 import jp.shirataki707.yamato.core.common.ResourceUtils
+import jp.shirataki707.yamato.core.designsystem.icon.YamatoIcons
 import jp.shirataki707.yamato.core.model.data.Mountain
 
 @Composable
@@ -50,8 +47,8 @@ fun MountainCardItem(
 
     var expanded by remember { mutableStateOf(false) }
     val color by animateColorAsState(
-        targetValue = if (expanded) MaterialTheme.colorScheme.tertiaryContainer
-        else MaterialTheme.colorScheme.primaryContainer
+        targetValue = if (expanded) MaterialTheme.colorScheme.primaryContainer
+        else MaterialTheme.colorScheme.secondaryContainer,
     )
 
     Card(modifier = modifier) {
@@ -60,31 +57,33 @@ fun MountainCardItem(
                 .animateContentSize(
                     animationSpec = spring(
                         dampingRatio = Spring.DampingRatioLowBouncy,
-                        stiffness = Spring.StiffnessLow
-                    )
+                        stiffness = Spring.StiffnessLow,
+                    ),
                 )
-                .background(color = color)
+                .background(color = color),
         ) {
             Image(
                 painter = painterResource(id = mountainImageResId),
                 contentDescription = mountain.name,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth().height(200.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
             )
             Column(modifier = Modifier.padding(8.dp)) {
                 Row {
                     Text(
                         text = mountain.name,
-                        fontSize = 24.sp
+                        fontSize = 24.sp,
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     IconButton(
                         onClick = { expanded = !expanded },
                     ) {
                         Icon(
-                            imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                            imageVector = if (expanded) YamatoIcons.ExpandLess else YamatoIcons.ExpandMore,
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.secondary
+                            tint = MaterialTheme.colorScheme.secondary,
                         )
                     }
                 }
