@@ -28,8 +28,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
+import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
 import jp.shirataki707.yamato.feature.mountain.MountainScreen
-import jp.shirataki707.yamato.ui.theme.YamatoTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            YamatoTheme {
+            YamatoTheme(androidTheme = true) {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MountainScreen(
                         modifier = Modifier.padding(innerPadding),
