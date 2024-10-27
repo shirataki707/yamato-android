@@ -61,6 +61,7 @@ android {
 dependencies {
     // Add other module dependencies here
     implementation(projects.feature.mountain)
+    implementation(projects.core.designsystem)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3.adaptive)
