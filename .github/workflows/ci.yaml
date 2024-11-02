@@ -70,7 +70,7 @@ jobs:
         run: ./gradlew test --stacktrace
 
       - name: Upload test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
           name: results
@@ -98,7 +98,7 @@ jobs:
           xml_path: '**/build/reports/lint-results-*.xml'
 
       - name: Upload results Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
           name: results
@@ -129,7 +129,7 @@ jobs:
             tool_name: spotless
 
         - name: Upload results Artifact
-          uses: actions/upload-artifact@v2
+          uses: actions/upload-artifact@v4
           if: failure()
           with:
             name: results
