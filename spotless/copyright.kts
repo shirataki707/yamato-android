@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Android Open Source Project
+ * Copyright $YEAR The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    versionCatalogs {
-        create("libs") {
-            from(files("../gradle/libs.versions.toml"))
-        }
-    }
-}
-
-rootProject.name = "build-logic"
-include(":convention")
-
-gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:testClasses"))
