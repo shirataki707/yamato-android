@@ -11,7 +11,7 @@ import jp.shirataki707.yamato.core.database.dao.MountainDao
 @InstallIn(SingletonComponent::class)
 internal object DaosModule {
     @Provides
-    fun ProvidesMountainDao(
+    fun providesMountainDao(
         database: YamatoDatabase,
     ): MountainDao = database.mountainDao()
 }
