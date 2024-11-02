@@ -36,6 +36,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Displays the Android dependencies of the project
         run: ./gradlew androidDependencies
 
@@ -60,6 +63,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Test with Gradle
         run: ./gradlew test --stacktrace
 
@@ -79,6 +85,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
 
       - name: Run Inspection
         run: ./gradlew lint
@@ -109,6 +118,9 @@ jobs:
           with:
             distribution: 'zulu'
             java-version: '17'
+
+        - name: Make gradlew executable
+          run: chmod +x ./gradlew
 
         - run: ./gradlew --init-script gradle/init.gradle.kts spotlessApply
         - uses: reviewdog/action-suggester@v1
