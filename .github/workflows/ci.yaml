@@ -69,18 +69,6 @@ jobs:
       - name: Test with Gradle
         run: ./gradlew test --stacktrace
 
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        if: success() || failure()
-        with:
-          name: results
-          path: |
-            **/build/reports/tests/**/*
-            **/build/reports/test-results/**/*
-          if-no-files-found: warn
-          retention-days: 14
-
-
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -96,17 +84,6 @@ jobs:
         uses: yutailang0119/action-android-lint@v1
         with:
           xml_path: '**/build/reports/lint-results-*.xml'
-
-      - name: Upload results Artifact
-        uses: actions/upload-artifact@v4
-        if: success() || failure()
-        with:
-          name: results
-          path: |
-            **/build/reports/lint-results-*.html
-            **/build/reports/lint-results-*.xml
-          if-no-files-found: error
-          retention-days: 14
 
   ktlint:
     runs-on: ubuntu-latest
@@ -127,13 +104,3 @@ jobs:
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             tool_name: spotless
-
-        - name: Upload results Artifact
-          uses: actions/upload-artifact@v4
-          if: failure()
-          with:
-            name: results
-            path: |
-              **/build/ktlint-report.xml
-            if-no-files-found: error
-            retention-days: 14
