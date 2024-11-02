@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.shirataki707.yamato.core.data.repository.MountainRepository
-import jp.shirataki707.yamato.core.database.model.MountainEntity
 import jp.shirataki707.yamato.core.model.data.Mountain
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MountainViewModel @Inject constructor(
-    private val mountainRepository: MountainRepository
+    private val mountainRepository: MountainRepository,
 ) : ViewModel() {
 
     private val _mountains = MutableStateFlow<List<Mountain>>(emptyList())

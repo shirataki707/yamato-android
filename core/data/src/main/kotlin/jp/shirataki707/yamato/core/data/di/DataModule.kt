@@ -13,6 +13,6 @@ abstract class DataModule {
 
     @Binds
     internal abstract fun bindMountainRepository(
-        mountainRepository: MountainRepositoryImpl
+        mountainRepository: MountainRepositoryImpl,
     ): MountainRepository
 }
