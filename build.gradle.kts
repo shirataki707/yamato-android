@@ -35,3 +35,11 @@ plugins {
     alias(libs.plugins.module.graph) apply true
     alias(libs.plugins.kotlin.android) apply false // Plugin applied to allow module graph generation
 }
+
+/*
+    * Build error happens when rebuild project
+    *   - Unable to make progress running work. There are items queued for execution but none of them can be started
+    * This issue is caused by calling testClasses task in the build-logic:convention module
+    *   - https://stackoverflow.com/questions/77279080/unable-to-make-progress-running-work-android-studio
+ */
+gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:convention:testClasses"))

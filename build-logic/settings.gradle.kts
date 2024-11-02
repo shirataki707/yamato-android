@@ -28,5 +28,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "build-logic"
 include(":convention")
-
-gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:testClasses"))
