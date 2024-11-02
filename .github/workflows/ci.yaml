@@ -86,11 +86,6 @@ jobs:
       - name: Run Inspection
         run: ./gradlew lint
 
-      - name: Show results on GitHub
-        uses: yutailang0179/action-android-lint@v4
-        with:
-          xml_path: '**/build/reports/lint-results-*.xml'
-
   ktlint:
     runs-on: ubuntu-latest
     steps:
