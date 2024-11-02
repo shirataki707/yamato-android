@@ -1,6 +1,5 @@
 package jp.shirataki707.yamato.core.designsystem.theme
 
-import android.hardware.lights.Light
 import android.os.Build
 import androidx.annotation.ChecksSdkIntAtLeast
 import androidx.annotation.VisibleForTesting
@@ -153,7 +152,6 @@ val LightAndroidBackgroundTheme = BackgroundTheme(color = inversePrimaryDark)
  */
 val DarkAndroidBackgroundTheme = BackgroundTheme(color = Color.Black)
 
-
 /**
  * Yamato theme.
  *
@@ -170,7 +168,6 @@ fun YamatoTheme(
     disableDynamicTheming: Boolean = true,
     content: @Composable () -> Unit,
 ) {
-
     val colorScheme = when {
         androidTheme -> if (darkTheme) DarkAndroidColorScheme else LightAndroidColorScheme
         !disableDynamicTheming && supportsDynamicTheming() -> {
