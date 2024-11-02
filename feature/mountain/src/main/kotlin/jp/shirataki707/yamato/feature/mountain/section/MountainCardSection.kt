@@ -18,7 +18,7 @@ fun MountainCardSection(
         items(mountains) { mountain ->
             MountainCardItem(
                 mountain = mountain,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
             )
         }
     }
