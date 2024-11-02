@@ -42,6 +42,7 @@ class MainActivity : ComponentActivity() {
                     MountainScreen(
                         modifier = Modifier.padding(innerPadding),
                     )
+                     val Ci_test = "test"
                 }
             }
         }
