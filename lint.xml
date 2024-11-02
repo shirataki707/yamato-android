@@ -1,0 +1,5 @@
+<lint>
+    <issue id="ResourceName">
+        <ignore path="**/res/drawable/**" />
+    </issue>
+</lint>
