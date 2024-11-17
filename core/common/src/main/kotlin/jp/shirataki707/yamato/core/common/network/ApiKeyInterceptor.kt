@@ -1,9 +1,9 @@
-package jp.shirataki707.yamato.core.network.youtube.retorofit
+package jp.shirataki707.yamato.core.common.network
 
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class YoutubeApiKeyInterceptor(private val apiKey: String) : Interceptor {
+class ApiKeyInterceptor(private val apiKey: String) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
         val urlWithApiKey = originalRequest.url.newBuilder()

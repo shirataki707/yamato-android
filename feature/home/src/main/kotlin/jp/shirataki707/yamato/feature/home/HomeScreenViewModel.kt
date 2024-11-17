@@ -19,7 +19,7 @@ class HomeScreenViewModel @Inject constructor(
 
     private fun fetchData() {
         viewModelScope.launch {
-            val data = youtubeVideoRepository.searchVideosByKeyword("八ヶ岳　登山")
+            val data = youtubeVideoRepository.searchVideosByKeyword("富士山　登山")
             Log.d("HomeScreenViewModel", "Fetched data: $data")
         }
     }

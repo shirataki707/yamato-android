@@ -1,14 +1,15 @@
 package jp.shirataki707.yamato.core.network.youtube.di
 
+import android.content.Context
 import androidx.tracing.trace
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import jp.shirataki707.yamato.core.common.network.ApiKeyInterceptor
 import jp.shirataki707.yamato.core.network.BuildConfig
-import jp.shirataki707.yamato.core.network.youtube.YoutubeDataSource
-import jp.shirataki707.yamato.core.network.youtube.retorofit.YoutubeApiClient
-import jp.shirataki707.yamato.core.network.youtube.retorofit.YoutubeApiKeyInterceptor
+import jp.shirataki707.yamato.core.network.youtube.demo.DemoAssetManager
 import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.OkHttpClient
@@ -27,9 +28,15 @@ internal object YoutubeModule {
 
     @Provides
     @Singleton
+    fun providesDemoAssetManager(
+        @ApplicationContext context: Context,
+    ): DemoAssetManager = DemoAssetManager(context.assets::open)
+
+    @Provides
+    @Singleton
     fun okHttpCallFactory(): Call.Factory = trace("YoutubeOkHttpClient") {
         OkHttpClient.Builder()
-            .addInterceptor(YoutubeApiKeyInterceptor(BuildConfig.YoutubeApiKey))
+            .addInterceptor(ApiKeyInterceptor(BuildConfig.YoutubeApiKey))
             .addInterceptor(
                 HttpLoggingInterceptor().apply {
                     if (BuildConfig.DEBUG) {
@@ -39,11 +46,4 @@ internal object YoutubeModule {
             )
             .build()
     }
-
-    @Provides
-    @Singleton
-    fun provideYoutubeDataSource(
-        networkJson: Json,
-        okhttpCallFactory: dagger.Lazy<Call.Factory>
-    ): YoutubeDataSource = YoutubeApiClient(networkJson, okhttpCallFactory)
 }
