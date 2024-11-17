@@ -1,0 +1,54 @@
+package jp.shirataki707.yamato.core.ui.youtube.component
+
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import jp.shirataki707.yamato.core.designsystem.component.YamatoButton
+import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
+
+@Composable
+fun VideoCarouselBlockHeader(
+    headerTitle: String,
+    buttonText: String,
+    onButtonClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier,
+    ) {
+        Text(
+            text = headerTitle,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier
+                .weight(1f)
+                .padding(8.dp),
+        )
+        YamatoButton(
+            onClick = onButtonClick,
+            content = {
+                Text(text = buttonText)
+            },
+            modifier = Modifier.padding(8.dp),
+        )
+    }
+}
+
+@Preview
+@Composable
+fun VideoCarouselBlockHeaderPreview() {
+    YamatoTheme {
+        VideoCarouselBlockHeader(
+            headerTitle = "富士山登山に興味があるあなたへおすすめの動画",
+            buttonText = "もっと見る",
+            onButtonClick = { },
+        )
+    }
+}
