@@ -1,6 +1,5 @@
 package jp.shirataki707.yamato.core.ui.youtube
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,7 +31,7 @@ fun VideoCarouselBlock(
             onButtonClick = onMoreButtonClick,
         )
         LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             items(youtubeVideoResources) { youtubeVideoResource ->
                 VideoCarouselBlockItem(
@@ -80,7 +79,7 @@ private fun VideoCarouselBlockPreview() {
             ),
             onVideoClick = { },
             onMoreButtonClick = { },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }

@@ -14,7 +14,6 @@ fun HomePageHost(
     homePageViewModel: HomePageViewModel = viewModel(),
     modifier: Modifier = Modifier,
 ) {
-
     val homePageState = rememberHomePageState(
         homePageViewModel = homePageViewModel,
     )
@@ -27,7 +26,6 @@ fun HomePageHost(
         homePageState = homePageState,
         modifier = modifier,
     )
-
 }
 
 @Composable
@@ -41,7 +39,7 @@ private fun HomePage(
             youtubeVideoResources = homePageState.youtubeVideoResources,
             onVideoClick = {},
             onMoreButtonClick = {},
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         )
     }
 }

@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import jp.shirataki707.yamato.core.model.data.YoutubeVideoResource
 
-
 internal class HomePageState(
     val youtubeVideoResources: List<YoutubeVideoResource>,
     val onVideoClick: (videoId: String) -> Unit,
@@ -15,7 +14,6 @@ internal class HomePageState(
 internal fun rememberHomePageState(
     homePageViewModel: HomePageViewModel,
 ): HomePageState {
-
     val isLoading = homePageViewModel.isLoading
     val youtubeVideoResources = homePageViewModel.youtubeVideoResources
 
@@ -43,4 +41,3 @@ internal fun rememberHomePageState(
         )
     }
 }
-
