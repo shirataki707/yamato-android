@@ -23,6 +23,7 @@ data class YoutubeSearchApiRequest(
      */
     @SerialName("channelId")
     val channelId: String? = null,
+
     /**
      *  The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      *  Acceptable values are 0 to 50, inclusive.
@@ -31,6 +32,7 @@ data class YoutubeSearchApiRequest(
      */
     @SerialName("maxResults")
     val maxResults: Int? = null,
+
     /**
      *  The order parameter specifies the method that will be used to order resources in the API response.
      *  Acceptable values are:
@@ -45,6 +47,7 @@ data class YoutubeSearchApiRequest(
      */
     @SerialName("order")
     val order: String? = null,
+
     /**
      *  The q parameter specifies the query term to search for.
      *  Your request can also use the Boolean NOT (-) and OR (|) operators to exclude videos
@@ -52,6 +55,7 @@ data class YoutubeSearchApiRequest(
      */
     @SerialName("q")
     val keyword: String? = null,
+
     /**
      *  The type parameter restricts a search query to only retrieve a particular type of resource.
      *  Acceptable values are:
