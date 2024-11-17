@@ -1,6 +1,7 @@
 package jp.shirataki707.yamato.core.ui.youtube.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -13,7 +14,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import jp.shirataki707.core.ui.R
 import jp.shirataki707.yamato.core.designsystem.component.DynamicAsyncImage
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
 
@@ -22,6 +22,7 @@ fun VideoCarouselBlockItem(
     imageUrl: String,
     videoTitle: String,
     channelName: String,
+    onVideoClick: (videoId: String) -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     val configuration = LocalConfiguration.current
@@ -33,7 +34,9 @@ fun VideoCarouselBlockItem(
     }
 
     Column(
-        modifier = modifier.width(thumbnailWidthDp)
+        modifier = modifier
+            .width(thumbnailWidthDp)
+            .clickable { onVideoClick(videoTitle) },
     ) {
         AsyncVideoThumbnail(
             imageUrl = imageUrl,
