@@ -23,11 +23,10 @@ class DemoYoutubeDataSource @Inject constructor(
     @OptIn(ExperimentalSerializationApi::class)
     override suspend fun search(request: YoutubeSearchApiRequest): YoutubeSearchApiResponse =
         withContext(ioDispatcher) {
-            assets.open(YoutubeSearchResultsAsset).use(networkJson::decodeFromStream)
+            assets.open(YOUTUBE_SEARCH_RESULT_ASSET).use(networkJson::decodeFromStream)
         }
 
-
     companion object {
-        private const val YoutubeSearchResultsAsset = "youtubeSearchResults.json"
+        private const val YOUTUBE_SEARCH_RESULT_ASSET = "youtubeSearchResults.json"
     }
 }
