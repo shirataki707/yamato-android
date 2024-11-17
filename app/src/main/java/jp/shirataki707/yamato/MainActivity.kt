@@ -30,7 +30,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
 import jp.shirataki707.yamato.feature.home.HomeScreen
-import jp.shirataki707.yamato.feature.mountain.MountainScreen
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

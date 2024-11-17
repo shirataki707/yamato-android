@@ -6,7 +6,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import jp.shirataki707.yamato.core.network.youtube.YoutubeDataSource
 import jp.shirataki707.yamato.core.network.youtube.demo.DemoYoutubeDataSource
-import jp.shirataki707.yamato.core.network.youtube.retorofit.YoutubeApiClient
 
 @Module
 @InstallIn(SingletonComponent::class)
