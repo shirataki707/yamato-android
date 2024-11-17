@@ -1,4 +1,8 @@
 package jp.shirataki707.yamato.core.network.youtube
 
-class YoutubeDataSource {
+import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest
+import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiResponse
+
+interface YoutubeDataSource {
+    suspend fun search(request: YoutubeSearchApiRequest): YoutubeSearchApiResponse
 }
