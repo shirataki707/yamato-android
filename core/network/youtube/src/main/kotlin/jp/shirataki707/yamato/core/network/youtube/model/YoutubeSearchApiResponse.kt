@@ -28,7 +28,17 @@ data class YoutubeSearchApiResponse(
 
     @Serializable
     data class SearchResultItem(
+        @SerialName("id")
+        val resourceId: ResourceId,
         @SerialName("snippet")
         val snippet: Snippet,
-    )
+    ) {
+        @Serializable
+        data class ResourceId(
+            @SerialName("kind")
+            val kind: String,
+            @SerialName("videoId")
+            val videoId: String,
+        )
+    }
 }

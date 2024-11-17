@@ -10,4 +10,6 @@ android {
 dependencies {
     implementation(projects.core.designsystem)
     api(projects.core.model)
+
+    implementation(libs.coil.kt.compose)
 }

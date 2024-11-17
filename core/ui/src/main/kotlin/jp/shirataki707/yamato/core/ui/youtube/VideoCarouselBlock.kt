@@ -1,5 +1,6 @@
 package jp.shirataki707.yamato.core.ui.youtube
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -47,7 +48,7 @@ fun VideoCarouselBlock(
 
 @Preview
 @Composable
-fun VideoCarouselBlockPreview() {
+private fun VideoCarouselBlockPreview() {
     YamatoTheme {
         VideoCarouselBlock(
             headerTitle = "富士山登山に興味があるあなたへオススメの動画",

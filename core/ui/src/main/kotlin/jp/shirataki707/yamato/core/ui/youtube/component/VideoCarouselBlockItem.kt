@@ -14,12 +14,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import jp.shirataki707.yamato.core.designsystem.component.DynamicAsyncImage
+import coil.compose.AsyncImage
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
+import jp.shirataki707.yamato.core.designsystem.theme.YamatoTypography
 
 @Composable
-fun VideoCarouselBlockItem(
-    imageUrl: String,
+internal fun VideoCarouselBlockItem(
+    imageUrl: String?,
     videoTitle: String,
     channelName: String,
     onVideoClick: (videoId: String) -> Unit = {},
@@ -29,8 +30,9 @@ fun VideoCarouselBlockItem(
     val screenWidthDp = remember(configuration) {
         configuration.screenWidthDp.dp
     }
+    // TODO: ブロックが2.2個分表示されるように調整する
     val thumbnailWidthDp = remember(screenWidthDp) {
-        screenWidthDp / 2.2f
+        screenWidthDp / 2.4f
     }
 
     Column(
@@ -40,16 +42,18 @@ fun VideoCarouselBlockItem(
     ) {
         AsyncVideoThumbnail(
             imageUrl = imageUrl,
-            videoTitle = videoTitle,
+            contentDescription = videoTitle,
         )
         Text(
             text = videoTitle,
+            style = YamatoTypography.titleMedium,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.padding(8.dp),
         )
         Text(
             text = channelName,
+            style = YamatoTypography.titleSmall,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.padding(8.dp),
@@ -58,21 +62,21 @@ fun VideoCarouselBlockItem(
 }
 
 @Composable
-fun AsyncVideoThumbnail(
+private fun AsyncVideoThumbnail(
     imageUrl: String?,
-    videoTitle: String,
+    contentDescription: String,
     modifier: Modifier = Modifier,
 ) {
     if (imageUrl == null) {
         Image(
             painter = painterResource(id = jp.shirataki707.core.designsystem.R.drawable.core_designsystem_ic_placeholder_default),
-            contentDescription = videoTitle,
+            contentDescription = contentDescription,
             modifier = modifier,
         )
     } else {
-        DynamicAsyncImage(
-            imageUrl = imageUrl,
-            contentDescription = videoTitle,
+        AsyncImage(
+            model = imageUrl,
+            contentDescription = contentDescription,
             modifier = modifier,
         )
     }
@@ -80,10 +84,10 @@ fun AsyncVideoThumbnail(
 
 @Preview
 @Composable
-fun VideoCarouselBlockItemPreview() {
+private fun VideoCarouselBlockItemPreview() {
     YamatoTheme {
         VideoCarouselBlockItem(
-            imageUrl = "",
+            imageUrl = null,
             videoTitle = "八ヶ岳完全ガイド！登山ルートからアクセス方法まで徹底解説",
             channelName = "なるまさ山旅",
         )

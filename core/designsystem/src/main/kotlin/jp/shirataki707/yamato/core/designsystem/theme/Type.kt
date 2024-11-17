@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.sp
 /**
  * Yamato typography.
  */
-internal val YamatoTypography = Typography(
+val YamatoTypography = Typography(
     displayLarge = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 57.sp,

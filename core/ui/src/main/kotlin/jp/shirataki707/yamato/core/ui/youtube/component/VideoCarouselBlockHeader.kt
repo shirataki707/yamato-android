@@ -11,9 +11,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.shirataki707.yamato.core.designsystem.component.YamatoButton
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
+import jp.shirataki707.yamato.core.designsystem.theme.YamatoTypography
 
 @Composable
-fun VideoCarouselBlockHeader(
+internal fun VideoCarouselBlockHeader(
     headerTitle: String,
     buttonText: String,
     onButtonClick: () -> Unit,
@@ -27,6 +28,7 @@ fun VideoCarouselBlockHeader(
             text = headerTitle,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
+            style = YamatoTypography.headlineMedium,
             modifier = Modifier
                 .weight(1f)
                 .padding(8.dp),
@@ -34,7 +36,10 @@ fun VideoCarouselBlockHeader(
         YamatoButton(
             onClick = onButtonClick,
             content = {
-                Text(text = buttonText)
+                Text(
+                    text = buttonText,
+                    style = YamatoTypography.titleSmall,
+                )
             },
             modifier = Modifier.padding(8.dp),
         )
@@ -43,7 +48,7 @@ fun VideoCarouselBlockHeader(
 
 @Preview
 @Composable
-fun VideoCarouselBlockHeaderPreview() {
+private fun VideoCarouselBlockHeaderPreview() {
     YamatoTheme {
         VideoCarouselBlockHeader(
             headerTitle = "富士山登山に興味があるあなたへおすすめの動画",
