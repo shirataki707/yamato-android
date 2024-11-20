@@ -16,10 +16,11 @@ internal fun HomeLoadedSection(
     sectionState: HomeLoadedSectionState,
     paddingValues: PaddingValues,
 ) {
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .verticalScroll(rememberScrollState())
-        .padding(paddingValues)
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(paddingValues),
     ) {
         VideoCarouselBlock(
             headerTitle = "おすすめ",

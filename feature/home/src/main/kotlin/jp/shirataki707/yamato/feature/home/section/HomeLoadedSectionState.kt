@@ -3,7 +3,6 @@ package jp.shirataki707.yamato.feature.home.section
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import jp.shirataki707.yamato.core.model.data.VideoResources
-import jp.shirataki707.yamato.core.model.data.VideoSummary
 
 internal data class HomeLoadedSectionState(
     val videoResources: VideoResources,

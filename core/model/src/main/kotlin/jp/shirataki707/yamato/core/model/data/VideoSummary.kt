@@ -8,7 +8,6 @@ data class VideoResources(
     val videoSummaries: List<VideoSummary>,
 ) : Parcelable
 
-
 @Parcelize
 data class VideoSummary(
     val videoTitle: String,

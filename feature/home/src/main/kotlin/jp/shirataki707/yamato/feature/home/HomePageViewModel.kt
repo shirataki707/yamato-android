@@ -48,7 +48,7 @@ class HomePageViewModel @Inject constructor(
             videoResources = withContext(Dispatchers.IO) {
                 ParcelableResult.Success(
                     VideoResources(
-                        videoSummaries = youtubeVideoRepository.getVideoResourcesByKeyword(keyword)
+                        videoSummaries = youtubeVideoRepository.getVideoResourcesByKeyword(keyword),
                     ),
                 )
             }
