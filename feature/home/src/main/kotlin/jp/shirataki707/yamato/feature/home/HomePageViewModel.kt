@@ -1,6 +1,5 @@
 package jp.shirataki707.yamato.feature.home
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -8,7 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.shirataki707.yamato.core.data.repository.YoutubeVideoRepository
-import jp.shirataki707.yamato.core.model.data.YoutubeVideoResource
+import jp.shirataki707.yamato.core.model.data.VideoResources
+import jp.shirataki707.yamato.core.ui.common.ParcelableResult
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -22,25 +23,37 @@ class HomePageViewModel @Inject constructor(
     var isLoading by mutableStateOf(false)
         private set
 
-    var youtubeVideoResources by mutableStateOf<List<YoutubeVideoResource>>(emptyList())
+    var videoResources: ParcelableResult<VideoResources>? by mutableStateOf(null)
         private set
 
-    fun initialLoad(keyword: String) {
-        viewModelScope.launch {
-            youtubeVideoResources = withContext(Dispatchers.IO) {
-                val searchedVideos = youtubeVideoRepository.searchVideosByKeyword(keyword = keyword)
-                searchedVideos.map { searchedVideo ->
-                    YoutubeVideoResource(
-                        videoTitle = searchedVideo.videoTitle,
-                        channelName = searchedVideo.channelName,
-                        description = searchedVideo.description,
-                        thumbnailUrl = searchedVideo.thumbnailUrl,
-                        videoId = searchedVideo.videoId,
-                        publishedAt = searchedVideo.publishedAt,
-                    )
-                }
+    fun initialLoadIfNeeded() {
+        viewModelScope.launch(
+            CoroutineExceptionHandler { _, _ ->
+                isLoading = false
+                videoResources = ParcelableResult.Failure()
+            },
+        ) {
+            if (isLoading) {
+                return@launch
             }
-            Log.d("HomePageViewModel", "youtubeVideoResources: $youtubeVideoResources")
+
+            if (videoResources is ParcelableResult.Success) {
+                return@launch
+            }
+
+            isLoading = true
+
+            val keyword = "Android"
+
+            videoResources = withContext(Dispatchers.IO) {
+                ParcelableResult.Success(
+                    VideoResources(
+                        videoSummaries = youtubeVideoRepository.getVideoResourcesByKeyword(keyword)
+                    ),
+                )
+            }
+
+            isLoading = false
         }
     }
 }

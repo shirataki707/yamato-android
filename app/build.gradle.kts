@@ -23,6 +23,15 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        create("release") {
+            storeFile =
+                file("C:\\Users\\staka\\OneDrive\\デスクトップ\\stakasaki\\yamato\\keystores\\upload-keystore.jks")
+            keyAlias = "upload"
+            storePassword = "Yamshirataki10"
+            keyPassword = "Yamshirataki10"
+        }
+    }
     defaultConfig {
         applicationId = "jp.shirataki707.yamato"
         versionCode = 1
@@ -42,6 +51,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 

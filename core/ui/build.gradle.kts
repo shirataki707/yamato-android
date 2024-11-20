@@ -1,6 +1,9 @@
+import org.jetbrains.kotlin.fir.expressions.builder.buildImplicitInvokeCall
+
 plugins {
     alias(libs.plugins.yamato.android.library)
     alias(libs.plugins.yamato.android.library.compose)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {

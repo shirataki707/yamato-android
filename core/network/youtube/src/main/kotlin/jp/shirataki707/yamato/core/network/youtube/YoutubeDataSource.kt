@@ -4,5 +4,5 @@ import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest
 import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiResponse
 
 interface YoutubeDataSource {
-    suspend fun search(request: YoutubeSearchApiRequest): YoutubeSearchApiResponse
+    suspend fun getVideoResources(request: YoutubeSearchApiRequest): YoutubeSearchApiResponse
 }

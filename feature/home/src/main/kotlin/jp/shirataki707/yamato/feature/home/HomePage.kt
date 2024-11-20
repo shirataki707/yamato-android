@@ -1,13 +1,15 @@
 package jp.shirataki707.yamato.feature.home
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import jp.shirataki707.yamato.core.ui.youtube.VideoCarouselBlock
+import jp.shirataki707.yamato.feature.home.section.HomeInitialSection
+import jp.shirataki707.yamato.feature.home.section.HomeInitialSectionState
+import jp.shirataki707.yamato.feature.home.section.HomeLoadedSection
+import jp.shirataki707.yamato.feature.home.section.HomeLoadedSectionState
+import jp.shirataki707.yamato.feature.home.section.HomeLoadingSectionState
 
 @Composable
 fun HomePageHost(
@@ -19,7 +21,7 @@ fun HomePageHost(
     )
 
     LaunchedEffect(homePageViewModel) {
-        homePageViewModel.initialLoad("富士山")
+        homePageViewModel.initialLoadIfNeeded()
     }
 
     HomePage(
@@ -33,13 +35,30 @@ private fun HomePage(
     homePageState: HomePageState,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier) {
-        VideoCarouselBlock(
-            headerTitle = "おすすめ",
-            youtubeVideoResources = homePageState.youtubeVideoResources,
-            onVideoClick = {},
-            onMoreButtonClick = {},
-            modifier = Modifier.padding(16.dp),
-        )
+    Scaffold(
+        modifier = modifier,
+    ) { padding ->
+        when (val sectionState = homePageState.contentSectionState) {
+            is HomeInitialSectionState -> {
+                HomeInitialSection(
+                    sectionState = sectionState,
+                    paddingValues = padding,
+                )
+            }
+
+            is HomeLoadingSectionState -> {
+                HomeLoadingSectionState(
+                    sectionState = sectionState,
+                    paddingValues = padding,
+                )
+            }
+
+            is HomeLoadedSectionState -> {
+                HomeLoadedSection(
+                    sectionState = sectionState,
+                    paddingValues = padding,
+                )
+            }
+        }
     }
 }

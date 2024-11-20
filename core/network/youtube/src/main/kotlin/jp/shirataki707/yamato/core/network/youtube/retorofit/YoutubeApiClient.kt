@@ -20,7 +20,7 @@ import javax.inject.Singleton
  */
 private interface YoutubeApiService {
     @GET(value = "search")
-    suspend fun searchVideos(
+    suspend fun getVideoResources(
         @Query("part") part: String,
         @Query("channelId") channelId: String?,
         @Query("maxResults") maxResults: Int?,
@@ -47,8 +47,8 @@ internal class YoutubeApiClient @Inject constructor(
             .create(YoutubeApiService::class.java)
     }
 
-    override suspend fun search(request: YoutubeSearchApiRequest): YoutubeSearchApiResponse =
-        youtubeApi.searchVideos(
+    override suspend fun getVideoResources(request: YoutubeSearchApiRequest): YoutubeSearchApiResponse =
+        youtubeApi.getVideoResources(
             part = request.part,
             channelId = request.channelId,
             maxResults = request.maxResults,
