@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.feature.home.section
+package jp.shirataki707.yamato.feature.home.ui.section
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues

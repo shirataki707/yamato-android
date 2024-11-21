@@ -1,21 +1,22 @@
-package jp.shirataki707.yamato.feature.home
+package jp.shirataki707.yamato.feature.home.ui
 
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import jp.shirataki707.yamato.feature.home.section.HomeInitialSection
-import jp.shirataki707.yamato.feature.home.section.HomeInitialSectionState
-import jp.shirataki707.yamato.feature.home.section.HomeLoadedSection
-import jp.shirataki707.yamato.feature.home.section.HomeLoadedSectionState
-import jp.shirataki707.yamato.feature.home.section.HomeLoadingSection
-import jp.shirataki707.yamato.feature.home.section.HomeLoadingSectionState
+import jp.shirataki707.yamato.core.ui.common.Navigator
+import jp.shirataki707.yamato.feature.home.ui.section.HomeInitialSection
+import jp.shirataki707.yamato.feature.home.ui.section.HomeInitialSectionState
+import jp.shirataki707.yamato.feature.home.ui.section.HomeLoadedSection
+import jp.shirataki707.yamato.feature.home.ui.section.HomeLoadedSectionState
+import jp.shirataki707.yamato.feature.home.ui.section.HomeLoadingSection
+import jp.shirataki707.yamato.feature.home.ui.section.HomeLoadingSectionState
 
 @Composable
 fun HomePageHost(
     homePageViewModel: HomePageViewModel = viewModel(),
-    modifier: Modifier = Modifier,
+    navigator: Navigator,
 ) {
     val homePageState = rememberHomePageState(
         homePageViewModel = homePageViewModel,
@@ -27,7 +28,6 @@ fun HomePageHost(
 
     HomePage(
         homePageState = homePageState,
-        modifier = modifier,
     )
 }
 

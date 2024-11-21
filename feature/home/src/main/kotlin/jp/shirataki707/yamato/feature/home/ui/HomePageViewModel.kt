@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.feature.home
+package jp.shirataki707.yamato.feature.home.ui
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

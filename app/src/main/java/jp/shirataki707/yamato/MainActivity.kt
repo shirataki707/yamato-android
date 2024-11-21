@@ -26,7 +26,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
-import jp.shirataki707.yamato.feature.home.HomePageHost
+import jp.shirataki707.yamato.feature.home.ui.HomePageHost
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             YamatoTheme(androidTheme = true) {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomePageHost(modifier = Modifier.padding(innerPadding))
+//                    HomePageHost()
                 }
             }
         }
