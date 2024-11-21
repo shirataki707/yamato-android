@@ -12,23 +12,28 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 apply("yamato.android.library")
                 apply("yamato.hilt")
                 apply("org.jetbrains.kotlin.plugin.serialization")
+                apply("org.jetbrains.kotlin.plugin.parcelize")
             }
             extensions.configure<LibraryExtension> {
                 testOptions.animationsDisabled = true
+            }
+
+            pluginManager.apply("com.google.devtools.ksp")
+            dependencies {
+                add("ksp", libs.findLibrary("compose.destinations.ksp").get())
             }
 
             dependencies {
                 add("implementation", project(":core:ui"))
                 add("implementation", project(":core:designsystem"))
 
-                add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
                 add("implementation", libs.findLibrary("androidx.lifecycle.runtimeCompose").get())
                 add("implementation", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
-                add("implementation", libs.findLibrary("androidx.navigation.compose").get())
                 add("implementation", libs.findLibrary("androidx.tracing.ktx").get())
                 add("implementation", libs.findLibrary("kotlinx.serialization.json").get())
+                add("implementation", libs.findLibrary("compose.destinations").get())
+                add("implementation", libs.findLibrary("compose.destinations.bottomSheet").get())
 
-                add("testImplementation", libs.findLibrary("androidx.navigation.testing").get())
                 add(
                     "androidTestImplementation",
                     libs.findLibrary("androidx.lifecycle.runtimeTesting").get(),
