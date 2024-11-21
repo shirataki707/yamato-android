@@ -9,6 +9,7 @@ import jp.shirataki707.yamato.feature.home.section.HomeInitialSection
 import jp.shirataki707.yamato.feature.home.section.HomeInitialSectionState
 import jp.shirataki707.yamato.feature.home.section.HomeLoadedSection
 import jp.shirataki707.yamato.feature.home.section.HomeLoadedSectionState
+import jp.shirataki707.yamato.feature.home.section.HomeLoadingSection
 import jp.shirataki707.yamato.feature.home.section.HomeLoadingSectionState
 
 @Composable
@@ -47,7 +48,7 @@ private fun HomePage(
             }
 
             is HomeLoadingSectionState -> {
-                HomeLoadingSectionState(
+                HomeLoadingSection(
                     sectionState = sectionState,
                     paddingValues = padding,
                 )

@@ -14,13 +14,8 @@ android {
 }
 
 secrets {
-    val secretsFile = file("secrets.properties")
-    defaultPropertiesFileName = if (secretsFile.exists()) {
-        "secrets.properties"
-    } else {
-        "secrets.defaults.properties"
-    }
-
+    propertiesFileName = "secrets.properties"
+    defaultPropertiesFileName = "secrets.defaults.properties"
 }
 
 dependencies {
