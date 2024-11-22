@@ -1,11 +1,13 @@
 package jp.shirataki707.yamato.core.data.repository
 
+import jp.shirataki707.yamato.core.data.VideoResourceManager
 import jp.shirataki707.yamato.core.model.data.VideoSummary
 import jp.shirataki707.yamato.core.network.youtube.YoutubeDataSource
 import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest
 import javax.inject.Inject
 
 interface VideoResourceRepository {
+    suspend fun getVideoCarouselBlockTypeList(): List<VideoResourceManager.VideoCarouselBlockType>
     suspend fun getVideoResourcesByKeyword(keyword: String): List<VideoSummary>
 //    suspend fun searchVideosByChannel(channelId: String): List<String>
 }
@@ -13,6 +15,10 @@ interface VideoResourceRepository {
 internal class VideoResourceRepositoryImpl @Inject constructor(
     private val youtubeDataSource: YoutubeDataSource,
 ) : VideoResourceRepository {
+
+    override suspend fun getVideoCarouselBlockTypeList(): List<VideoResourceManager.VideoCarouselBlockType> {
+        return VideoResourceManager.getVideoCarouselBlockTypeList()
+    }
 
     override suspend fun getVideoResourcesByKeyword(keyword: String): List<VideoSummary> {
         val request = YoutubeSearchApiRequest(

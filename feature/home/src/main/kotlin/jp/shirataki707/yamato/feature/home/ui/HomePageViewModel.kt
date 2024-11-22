@@ -1,5 +1,6 @@
 package jp.shirataki707.yamato.feature.home.ui
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -17,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomePageViewModel @Inject constructor(
-    private val youtubeVideoRepository: VideoResourceRepository,
+    private val videoResourceRepository: VideoResourceRepository,
 ) : ViewModel() {
 
     var isLoading by mutableStateOf(false)
@@ -46,9 +47,13 @@ class HomePageViewModel @Inject constructor(
             val keyword = "Android"
 
             videoResources = withContext(Dispatchers.IO) {
+                val videoCarouselBlockTypes = videoResourceRepository.getVideoCarouselBlockTypeList()
+                Log.d("HomePageViewModel", "videoCarouselBlockTypes: $videoCarouselBlockTypes")
+                val videoSummaries = videoResourceRepository.getVideoResourcesByKeyword(keyword)
+                Log.d("HomePageViewModel", "videoSummaries: $videoSummaries")
                 ParcelableResult.Success(
                     VideoResources(
-                        videoSummaries = youtubeVideoRepository.getVideoResourcesByKeyword(keyword),
+                        videoSummaries = videoSummaries,
                     ),
                 )
             }
