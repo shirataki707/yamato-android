@@ -23,7 +23,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
 import dagger.hilt.android.AndroidEntryPoint
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
-import jp.shirataki707.yamato.feature.home.ui.HomePageHost
 import jp.shirataki707.yamato.ui.YamatoAppHost
 import jp.shirataki707.yamato.ui.rememberYamatoAppState
 

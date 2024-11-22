@@ -17,16 +17,16 @@ enum class TopLevelDestination(
         iconText = "Home",
         titleText = "Home",
     ),
-//    MAP(
-//        selectedIcon = YamatoIcons.Map,
-//        unselectedIcon = YamatoIcons.MapBorder,
-//        iconText = "Map",
-//        titleText = "Map",
-//    ),
-    BOOK(
+    MAP(
+        selectedIcon = YamatoIcons.Map,
+        unselectedIcon = YamatoIcons.MapBorder,
+        iconText = "Map",
+        titleText = "Map",
+    ),
+    CATALOG(
         selectedIcon = YamatoIcons.Book,
         unselectedIcon = YamatoIcons.BookBorder,
-        iconText = "Book",
-        titleText = "Book",
+        iconText = "Catalog",
+        titleText = "Catalog",
     ),
 }
