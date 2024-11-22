@@ -20,24 +20,22 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
-import jp.shirataki707.yamato.feature.home.ui.HomePageHost
+import jp.shirataki707.yamato.ui.YamatoAppHost
+import jp.shirataki707.yamato.ui.rememberYamatoAppState
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
-            YamatoTheme(androidTheme = true) {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 
-                }
+        setContent {
+            val appState = rememberYamatoAppState()
+
+            YamatoTheme(androidTheme = true) {
+                YamatoAppHost(appState)
             }
         }
     }
