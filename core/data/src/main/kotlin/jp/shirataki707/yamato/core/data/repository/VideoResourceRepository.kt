@@ -5,9 +5,14 @@ import jp.shirataki707.yamato.core.network.youtube.YoutubeDataSource
 import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest
 import javax.inject.Inject
 
-internal class YoutubeVideoRepositoryImpl @Inject constructor(
+interface VideoResourceRepository {
+    suspend fun getVideoResourcesByKeyword(keyword: String): List<VideoSummary>
+//    suspend fun searchVideosByChannel(channelId: String): List<String>
+}
+
+internal class VideoResourceRepositoryImpl @Inject constructor(
     private val youtubeDataSource: YoutubeDataSource,
-) : YoutubeVideoRepository {
+) : VideoResourceRepository {
 
     override suspend fun getVideoResourcesByKeyword(keyword: String): List<VideoSummary> {
         val request = YoutubeSearchApiRequest(

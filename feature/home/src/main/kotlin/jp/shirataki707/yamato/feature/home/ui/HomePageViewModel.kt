@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jp.shirataki707.yamato.core.data.repository.YoutubeVideoRepository
+import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
 import jp.shirataki707.yamato.core.model.data.VideoResources
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomePageViewModel @Inject constructor(
-    private val youtubeVideoRepository: YoutubeVideoRepository,
+    private val youtubeVideoRepository: VideoResourceRepository,
 ) : ViewModel() {
 
     var isLoading by mutableStateOf(false)

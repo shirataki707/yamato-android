@@ -6,8 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import jp.shirataki707.yamato.core.data.repository.MountainRepository
 import jp.shirataki707.yamato.core.data.repository.MountainRepositoryImpl
-import jp.shirataki707.yamato.core.data.repository.YoutubeVideoRepository
-import jp.shirataki707.yamato.core.data.repository.YoutubeVideoRepositoryImpl
+import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
+import jp.shirataki707.yamato.core.data.repository.VideoResourceRepositoryImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -19,7 +19,7 @@ abstract class DataModule {
     ): MountainRepository
 
     @Binds
-    internal abstract fun bindSearchVideoRepository(
-        youtubeVideoRepository: YoutubeVideoRepositoryImpl,
-    ): YoutubeVideoRepository
+    internal abstract fun bindVideoResourceRepository(
+        videoResourceRepository: VideoResourceRepositoryImpl,
+    ): VideoResourceRepository
 }
