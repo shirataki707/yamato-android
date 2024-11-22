@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import jp.shirataki707.yamato.core.ui.common.Navigator
 import jp.shirataki707.yamato.feature.home.ui.section.HomeInitialSection
 import jp.shirataki707.yamato.feature.home.ui.section.HomeInitialSectionState
 import jp.shirataki707.yamato.feature.home.ui.section.HomeLoadedSection
@@ -16,7 +15,6 @@ import jp.shirataki707.yamato.feature.home.ui.section.HomeLoadingSectionState
 @Composable
 fun HomePageHost(
     homePageViewModel: HomePageViewModel = viewModel(),
-    navigator: Navigator,
 ) {
     val homePageState = rememberHomePageState(
         homePageViewModel = homePageViewModel,

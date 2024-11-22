@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.yamato.android.library)
     alias(libs.plugins.yamato.android.library.compose)
     alias(libs.plugins.kotlin.parcelize)
-    alias(libs.plugins.ksp)
 }
 
 android {
@@ -14,7 +13,4 @@ dependencies {
     api(projects.core.model)
 
     implementation(libs.coil.kt.compose)
-    implementation(libs.bundles.compose.destinations.bundle)
-
-    ksp(libs.compose.destinations.ksp)
 }

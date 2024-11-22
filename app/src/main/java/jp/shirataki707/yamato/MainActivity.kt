@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             YamatoTheme(androidTheme = true) {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    HomePageHost()
+
                 }
             }
         }
