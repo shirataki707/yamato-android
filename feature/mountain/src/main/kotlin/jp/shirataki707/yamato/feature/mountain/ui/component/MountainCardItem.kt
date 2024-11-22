@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.feature.mountain.component
+package jp.shirataki707.yamato.feature.mountain.ui.component
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize

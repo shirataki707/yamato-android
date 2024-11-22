@@ -20,8 +20,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.CompositionLocalProvider
 import dagger.hilt.android.AndroidEntryPoint
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
+import jp.shirataki707.yamato.feature.home.ui.HomePageHost
 import jp.shirataki707.yamato.ui.YamatoAppHost
 import jp.shirataki707.yamato.ui.rememberYamatoAppState
 
@@ -34,8 +36,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             val appState = rememberYamatoAppState()
 
-            YamatoTheme(androidTheme = true) {
-                YamatoAppHost(appState)
+            CompositionLocalProvider {
+                YamatoTheme(androidTheme = true) {
+                    YamatoAppHost(appState)
+                }
             }
         }
     }

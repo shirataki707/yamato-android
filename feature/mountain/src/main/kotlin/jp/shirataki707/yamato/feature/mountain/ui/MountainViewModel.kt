@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.feature.mountain
+package jp.shirataki707.yamato.feature.mountain.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

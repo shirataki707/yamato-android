@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.feature.mountain.section
+package jp.shirataki707.yamato.feature.mountain.ui.section
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import jp.shirataki707.yamato.core.model.data.Mountain
-import jp.shirataki707.yamato.feature.mountain.component.MountainCardItem
+import jp.shirataki707.yamato.feature.mountain.ui.component.MountainCardItem
 
 @Composable
 fun MountainCardSection(
