@@ -14,13 +14,12 @@ import jp.shirataki707.yamato.core.ui.youtube.VideoCarouselBlock
 @Composable
 internal fun HomeLoadedSection(
     sectionState: HomeLoadedSectionState,
-    paddingValues: PaddingValues,
+    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(paddingValues),
     ) {
         VideoCarouselBlock(
             headerTitle = "おすすめ",

@@ -13,12 +13,10 @@ import androidx.compose.ui.Modifier
 @Composable
 internal fun HomeLoadingSection(
     sectionState: HomeLoadingSectionState,
-    paddingValues: PaddingValues,
+    modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues),
+        modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
         CircularProgressIndicator(

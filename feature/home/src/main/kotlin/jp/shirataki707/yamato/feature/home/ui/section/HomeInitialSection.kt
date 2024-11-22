@@ -11,15 +11,13 @@ import jp.shirataki707.yamato.core.ui.common.ParcelableResult
 @Composable
 internal fun HomeInitialSection(
     sectionState: HomeInitialSectionState,
-    paddingValues: PaddingValues,
+    modifier: Modifier = Modifier,
 ) {
     // TODO: Implement the initial section include blank and error
     if (sectionState.videoResources is ParcelableResult.Failure) {
         CommonErrorContent(
             onReloadButtonClick = sectionState.initialLoadIfNeeded,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
+            modifier = modifier.fillMaxSize(),
         )
     }
 }
