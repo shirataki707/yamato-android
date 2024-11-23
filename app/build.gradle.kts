@@ -61,6 +61,7 @@ android {
 dependencies {
     // Add other module dependencies here
     implementation(projects.feature.home.main)
+    implementation(projects.feature.home.detail)
     implementation(projects.feature.map)
     implementation(projects.feature.catalog)
     implementation(projects.feature.mountain)

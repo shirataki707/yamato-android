@@ -15,6 +15,7 @@ internal class HomePageState(
 @Composable
 internal fun rememberHomePageState(
     homePageViewModel: HomePageViewModel,
+    onNavigateToDetailPage: (keyword: String) -> Unit,
 ): HomePageState {
     val isInitialLoading = homePageViewModel.isLoading
     val youtubeVideoResources = homePageViewModel.videoResources
@@ -24,6 +25,7 @@ internal fun rememberHomePageState(
         youtubeVideoResources is ParcelableResult.Success -> {
             rememberHomeLoadedSectionState(
                 videoResources = youtubeVideoResources.result,
+                navigateToDetailPage = onNavigateToDetailPage,
             )
         }
 

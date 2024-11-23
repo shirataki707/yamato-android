@@ -18,6 +18,7 @@ internal data class HomeLoadedSectionState(
 @Composable
 internal fun rememberHomeLoadedSectionState(
     videoResources: VideoResources,
+    navigateToDetailPage: (keyword: String) -> Unit,
 ): HomeLoadedSectionState {
     val context = LocalContext.current
 
@@ -25,7 +26,9 @@ internal fun rememberHomeLoadedSectionState(
         openYoutubeVideo(context = context, videoId = videoId)
     }
 
-    val onMoreButtonClick: () -> Unit = {}
+    val onMoreButtonClick = {
+        navigateToDetailPage("video")
+    }
 
     return remember(
         videoResources,
