@@ -1,8 +1,13 @@
 package jp.shirataki707.yamato.feature.home.ui
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.core.content.IntentCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import jp.shirataki707.yamato.feature.home.ui.section.HomeInitialSection
 import jp.shirataki707.yamato.feature.home.ui.section.HomeInitialSectionState
@@ -53,5 +58,4 @@ private fun HomePage(
             )
         }
     }
-
 }

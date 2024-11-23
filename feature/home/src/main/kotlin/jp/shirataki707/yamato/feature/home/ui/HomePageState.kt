@@ -1,5 +1,9 @@
 package jp.shirataki707.yamato.feature.home.ui
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
@@ -19,17 +23,11 @@ internal fun rememberHomePageState(
     val isInitialLoading = homePageViewModel.isLoading
     val youtubeVideoResources = homePageViewModel.videoResources
 
-    val onVideoClick: (videoId: String) -> Unit = {}
-
-    val onMoreButtonClick: () -> Unit = {}
-
     val contentSectionState = when {
         isInitialLoading -> rememberHomeLoadingSectionState()
         youtubeVideoResources is ParcelableResult.Success -> {
             rememberHomeLoadedSectionState(
                 videoResources = youtubeVideoResources.result,
-                onVideoClick = onVideoClick,
-                onMoreButtonClick = onMoreButtonClick,
             )
         }
         else -> {
