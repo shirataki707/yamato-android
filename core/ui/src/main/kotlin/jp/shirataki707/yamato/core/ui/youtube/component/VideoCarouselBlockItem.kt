@@ -79,6 +79,7 @@ private fun AsyncVideoThumbnail(
     } else {
         AsyncImage(
             model = imageUrl,
+            placeholder = painterResource(id = jp.shirataki707.core.designsystem.R.drawable.core_designsystem_ic_placeholder_default),
             contentDescription = contentDescription,
             modifier = modifier,
         )
