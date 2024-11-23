@@ -1,16 +1,12 @@
-package jp.shirataki707.yamato.feature.home.ui
+package jp.shirataki707.yamato.feature.home.main.ui
 
-import android.content.ActivityNotFoundException
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
-import jp.shirataki707.yamato.feature.home.ui.section.HomeContentSectionState
-import jp.shirataki707.yamato.feature.home.ui.section.rememberHomeInitialSectionState
-import jp.shirataki707.yamato.feature.home.ui.section.rememberHomeLoadedSectionState
-import jp.shirataki707.yamato.feature.home.ui.section.rememberHomeLoadingSectionState
+import jp.shirataki707.yamato.feature.home.main.ui.section.HomeContentSectionState
+import jp.shirataki707.yamato.feature.home.main.ui.section.rememberHomeInitialSectionState
+import jp.shirataki707.yamato.feature.home.main.ui.section.rememberHomeLoadedSectionState
+import jp.shirataki707.yamato.feature.home.main.ui.section.rememberHomeLoadingSectionState
 
 internal class HomePageState(
     val contentSectionState: HomeContentSectionState,
@@ -30,6 +26,7 @@ internal fun rememberHomePageState(
                 videoResources = youtubeVideoResources.result,
             )
         }
+
         else -> {
             rememberHomeInitialSectionState(
                 videoResources = youtubeVideoResources,

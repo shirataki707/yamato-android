@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.feature.home.ui.section
+package jp.shirataki707.yamato.feature.home.main.ui.section
 
 import android.content.ActivityNotFoundException
 import android.content.Context

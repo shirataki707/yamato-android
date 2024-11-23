@@ -12,8 +12,8 @@ import androidx.navigation.navOptions
 import androidx.tracing.trace
 import jp.shirataki707.yamato.feature.catalog.navigation.CATALOG_ROUTE
 import jp.shirataki707.yamato.feature.catalog.navigation.navigateToCatalog
-import jp.shirataki707.yamato.feature.home.navigation.HOME_ROUTE
-import jp.shirataki707.yamato.feature.home.navigation.navigateToHome
+import jp.shirataki707.yamato.feature.home.main.navigation.HOME_ROUTE
+import jp.shirataki707.yamato.feature.home.main.navigation.navigateToHome
 import jp.shirataki707.yamato.feature.map.navigation.MAP_ROUTE
 import jp.shirataki707.yamato.feature.map.navigation.navigateToMap
 import jp.shirataki707.yamato.navigation.TopLevelDestination

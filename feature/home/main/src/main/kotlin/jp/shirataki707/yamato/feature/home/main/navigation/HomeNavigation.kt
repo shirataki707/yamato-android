@@ -1,10 +1,10 @@
-package jp.shirataki707.yamato.feature.home.navigation
+package jp.shirataki707.yamato.feature.home.main.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import jp.shirataki707.yamato.feature.home.ui.HomePageHost
+import jp.shirataki707.yamato.feature.home.main.ui.HomePageHost
 
 const val HOME_ROUTE = "Home"
 

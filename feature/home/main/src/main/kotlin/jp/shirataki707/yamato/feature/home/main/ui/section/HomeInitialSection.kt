@@ -1,8 +1,6 @@
-package jp.shirataki707.yamato.feature.home.ui.section
+package jp.shirataki707.yamato.feature.home.main.ui.section
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import jp.shirataki707.yamato.core.ui.common.CommonErrorContent

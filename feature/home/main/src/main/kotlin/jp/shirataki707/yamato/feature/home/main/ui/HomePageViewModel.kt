@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.feature.home.ui
+package jp.shirataki707.yamato.feature.home.main.ui
 
 import android.util.Log
 import androidx.compose.runtime.getValue

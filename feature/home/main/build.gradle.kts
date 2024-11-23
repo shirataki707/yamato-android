@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "jp.shirataki707.feature.home"
+    namespace = "jp.shirataki707.feature.home.main"
 }
 
 dependencies {
