@@ -48,6 +48,7 @@ class HomePageViewModel @Inject constructor(
 
             isLoading = true
 
+            // TODO: ネストが深いのと、ハードコードのテキストがあるので修正する
             videoResources = withContext(Dispatchers.IO) {
                 val videoCarouselBlockTypes =
                     videoResourceRepository.getVideoCarouselBlockTypeList()
@@ -57,12 +58,12 @@ class HomePageViewModel @Inject constructor(
                     videoCarouselBlockTypes.map { blockType ->
                         async {
                             when (blockType) {
-                                VideoResources.VideoCarouselBlockType.Recommended -> {
+                                is VideoResources.VideoCarouselBlockType.Recommended -> {
                                     // TODO: Implement recommendation logic
                                     videoResourceRepository.getVideoSummariesByKeyword(keyword = "登山")
                                 }
 
-                                VideoResources.VideoCarouselBlockType.Popular -> {
+                                is VideoResources.VideoCarouselBlockType.Popular -> {
                                     // TODO: Implement popularity logic
                                     videoResourceRepository.getVideoSummariesByKeyword(
                                         keyword = "日本百名山 登山",
@@ -70,7 +71,7 @@ class HomePageViewModel @Inject constructor(
                                     )
                                 }
 
-                                VideoResources.VideoCarouselBlockType.Latest -> {
+                                is VideoResources.VideoCarouselBlockType.Latest -> {
                                     videoResourceRepository.getVideoSummariesByKeyword(
                                         keyword = "日本百名山　登山",
                                         order = YoutubeSearchApiRequest.Order.DATE,
@@ -101,23 +102,35 @@ class HomePageViewModel @Inject constructor(
                         videoCarouselBlocks = videoCarouselBlockTypes.mapIndexed { index, blockType ->
                             VideoResources.VideoCarouselBlock(
                                 blockTitle = when (blockType) {
+                                    is VideoResources.VideoCarouselBlockType.Recommended -> {
+                                        "おすすめ"
+                                    }
+
+                                    is VideoResources.VideoCarouselBlockType.Latest -> {
+                                        "最新"
+                                    }
+
+                                    is VideoResources.VideoCarouselBlockType.Popular -> {
+                                        "人気"
+                                    }
+
                                     is VideoResources.VideoCarouselBlockType.Mountain -> {
                                         blockType.mountainName
                                     }
+
                                     is VideoResources.VideoCarouselBlockType.Channel -> {
                                         deferredCarouselBlocks[index].first().channelName
                                     }
-                                    else -> blockType.toString()
                                 },
                                 blockType = blockType,
                                 videoSummaries = deferredCarouselBlocks[index],
                             )
                         },
-                    )
+                    ),
                 )
-        }
+            }
 
-        isLoading = false
+            isLoading = false
+        }
     }
-}
 }
