@@ -67,4 +67,23 @@ data class YoutubeSearchApiRequest(
      */
     @SerialName("type")
     val type: String? = null,
-)
+) {
+    enum class Order(
+        val value: String,
+    ) {
+        DATE("date"),
+        RATING("rating"),
+        RELEVANCE("relevance"),
+        TITLE("title"),
+        VIDEO_COUNT("videoCount"),
+        VIEW_COUNT("viewCount"),
+    }
+
+    enum class ResourceType(
+        val value: String,
+    ) {
+        CHANNEL("channel"),
+        PLAYLIST("playlist"),
+        VIDEO("video"),
+    }
+}

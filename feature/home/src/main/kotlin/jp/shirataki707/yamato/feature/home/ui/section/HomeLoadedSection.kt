@@ -1,7 +1,6 @@
 package jp.shirataki707.yamato.feature.home.ui.section
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -19,14 +18,15 @@ internal fun HomeLoadedSection(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
     ) {
-        VideoCarouselBlock(
-            headerTitle = "おすすめ",
-            videoSummaries = sectionState.videoResources.videoSummaries,
-            onVideoClick = sectionState.onVideoClick,
-            onMoreButtonClick = sectionState.onMoreButtonClick,
-            modifier = Modifier.padding(16.dp),
-        )
+        sectionState.videoResources.videoCarouselBlocks.forEach { videoCarouselBlock ->
+            VideoCarouselBlock(
+                videoCarouselBlock = videoCarouselBlock,
+                onVideoClick = sectionState.onVideoClick,
+                onMoreButtonClick = sectionState.onMoreButtonClick,
+                modifier = Modifier.padding(16.dp),
+            )
+        }
     }
 }

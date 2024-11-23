@@ -12,33 +12,32 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.shirataki707.core.ui.R
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
-import jp.shirataki707.yamato.core.model.data.VideoSummary
+import jp.shirataki707.yamato.core.model.data.VideoResources
 import jp.shirataki707.yamato.core.ui.youtube.component.VideoCarouselBlockHeader
 import jp.shirataki707.yamato.core.ui.youtube.component.VideoCarouselBlockItem
 
 @Composable
 fun VideoCarouselBlock(
-    headerTitle: String,
-    videoSummaries: List<VideoSummary>,
+    videoCarouselBlock: VideoResources.VideoCarouselBlock,
     onVideoClick: (videoId: String) -> Unit,
     onMoreButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
         VideoCarouselBlockHeader(
-            headerTitle = headerTitle,
+            headerTitle = videoCarouselBlock.blockTitle,
             buttonText = stringResource(R.string.core_ui_more_show),
             onButtonClick = onMoreButtonClick,
         )
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            items(videoSummaries) { youtubeVideoResource ->
+            items(videoCarouselBlock.videoSummaries) { videoSummary ->
                 VideoCarouselBlockItem(
-                    imageUrl = youtubeVideoResource.thumbnailUrl,
-                    videoTitle = youtubeVideoResource.videoTitle,
-                    channelName = youtubeVideoResource.channelName,
-                    onVideoClick = { onVideoClick(youtubeVideoResource.videoId) },
+                    imageUrl = videoSummary.thumbnailUrl,
+                    videoTitle = videoSummary.videoTitle,
+                    channelName = videoSummary.channelName,
+                    onVideoClick = { onVideoClick(videoSummary.videoId) },
                 )
             }
         }
@@ -50,31 +49,26 @@ fun VideoCarouselBlock(
 private fun VideoCarouselBlockPreview() {
     YamatoTheme {
         VideoCarouselBlock(
-            headerTitle = "富士山登山に興味があるあなたへオススメの動画",
-            videoSummaries = listOf(
-                VideoSummary(
-                    videoTitle = "富士山登山の魅力",
-                    channelName = "山登りチャンネル",
-                    description = "富士山登山の魅力を紹介します。",
-                    thumbnailUrl = "https://example.com/thumbnail.jpg",
-                    videoId = "1234567890",
-                    publishedAt = "2022-01-01",
-                ),
-                VideoSummary(
-                    videoTitle = "富士山登山の準備",
-                    channelName = "山登りチャンネル",
-                    description = "富士山登山の準備を紹介します。",
-                    thumbnailUrl = "https://example.com/thumbnail.jpg",
-                    videoId = "1234567890",
-                    publishedAt = "2022-01-01",
-                ),
-                VideoSummary(
-                    videoTitle = "富士山登山の注意点",
-                    channelName = "山登りチャンネル",
-                    description = "富士山登山の注意点を紹介します。",
-                    thumbnailUrl = "https://example.com/thumbnail.jpg",
-                    videoId = "1234567890",
-                    publishedAt = "2022-01-01",
+            videoCarouselBlock = VideoResources.VideoCarouselBlock(
+                blockTitle = "おすすめ",
+                blockType = VideoResources.VideoCarouselBlockType.Recommended,
+                videoSummaries = listOf(
+                    VideoResources.VideoCarouselBlock.VideoSummary(
+                        videoTitle = "富士山登山やってみた",
+                        channelName = "しらたきチャンネル",
+                        description = "",
+                        thumbnailUrl = "",
+                        videoId = "",
+                        publishedAt = "",
+                    ),
+                    VideoResources.VideoCarouselBlock.VideoSummary(
+                        videoTitle = "八ヶ岳に行ってみた",
+                        channelName = "やっほーチャンネル",
+                        description = "",
+                        thumbnailUrl = "",
+                        videoId = "",
+                        publishedAt = "",
+                    ),
                 ),
             ),
             onVideoClick = { },
