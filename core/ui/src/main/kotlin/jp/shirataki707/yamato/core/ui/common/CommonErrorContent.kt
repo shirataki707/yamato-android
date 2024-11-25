@@ -47,6 +47,6 @@ fun CommonErrorContent(
 fun CommonErrorContentPreview() {
     CommonErrorContent(
         onReloadButtonClick = {},
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     )
 }

@@ -7,7 +7,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 
-
 @Composable
 fun CatalogPageHost(
     modifier: Modifier = Modifier,

@@ -2,8 +2,7 @@ package jp.shirataki707.yamato.feature.map.ui
 
 import androidx.compose.runtime.Composable
 
-internal class MapPageState(
-)
+internal class MapPageState()
 
 @Composable
 internal fun rememberMapPageState(

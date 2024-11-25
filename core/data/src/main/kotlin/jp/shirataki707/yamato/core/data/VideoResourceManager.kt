@@ -18,5 +18,4 @@ object VideoResourceManager {
             VideoCarouselBlockType.Channel("UC1Q990j5wBf8DsUAmFHHogg"),
         )
     }
-
 }
