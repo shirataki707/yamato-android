@@ -35,7 +35,6 @@ fun YamatoAppHost(
                 appState = appState,
             )
         }
-
     }
 }
 
@@ -69,7 +68,6 @@ internal fun YamatoApp(
                     modifier = Modifier.testTag("YamatoNavItem"),
                 )
             }
-
         },
     ) {
         Scaffold { innerPadding ->
@@ -80,10 +78,8 @@ internal fun YamatoApp(
             ) {
                 YamatoNavHost(appState = appState)
             }
-
         }
     }
-
 }
 
 private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination) =

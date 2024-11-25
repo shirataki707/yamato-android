@@ -9,8 +9,7 @@ internal class DetailPageState()
 internal fun rememberDetailPageState(
     detailPageViewModel: DetailPageViewModel,
 ): DetailPageState {
-    return remember() {
-        DetailPageState(
-        )
+    return remember {
+        DetailPageState()
     }
 }
