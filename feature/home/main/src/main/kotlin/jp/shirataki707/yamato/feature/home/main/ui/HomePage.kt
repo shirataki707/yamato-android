@@ -14,12 +14,13 @@ import jp.shirataki707.yamato.feature.home.main.ui.section.HomeLoadingSectionSta
 
 @Composable
 fun HomePageHost(
+    onNavigateToDetail: (String) -> Unit,
     modifier: Modifier = Modifier,
     homePageViewModel: HomePageViewModel = hiltViewModel(),
 ) {
     val homePageState = rememberHomePageState(
         homePageViewModel = homePageViewModel,
-        onNavigateToDetailPage = {},
+        onNavigateToDetailPage = onNavigateToDetail,
     )
 
     LaunchedEffect(homePageViewModel) {

@@ -4,19 +4,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import androidx.tracing.trace
-import jp.shirataki707.yamato.feature.catalog.navigation.CATALOG_ROUTE
 import jp.shirataki707.yamato.feature.catalog.navigation.navigateToCatalog
-import jp.shirataki707.yamato.feature.home.main.navigation.HOME_ROUTE
 import jp.shirataki707.yamato.feature.home.main.navigation.navigateToHome
-import jp.shirataki707.yamato.feature.map.navigation.MAP_ROUTE
 import jp.shirataki707.yamato.feature.map.navigation.navigateToMap
 import jp.shirataki707.yamato.navigation.TopLevelDestination
+import jp.shirataki707.yamato.navigation.TopLevelDestination.CATALOG
+import jp.shirataki707.yamato.navigation.TopLevelDestination.HOME
+import jp.shirataki707.yamato.navigation.TopLevelDestination.MAP
 
 @Stable
 data class YamatoAppState(
@@ -27,11 +28,10 @@ data class YamatoAppState(
             .currentBackStackEntryAsState().value?.destination
 
     val currentTopLevelDestination: TopLevelDestination?
-        @Composable get() = when (currentDestination?.route) {
-            HOME_ROUTE -> TopLevelDestination.HOME
-            MAP_ROUTE -> TopLevelDestination.MAP
-            CATALOG_ROUTE -> TopLevelDestination.CATALOG
-            else -> null
+        @Composable get() {
+            return TopLevelDestination.entries.firstOrNull { topLevelDestination ->
+                currentDestination?.hasRoute(route = topLevelDestination.route) == true
+            }
         }
 
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
@@ -53,9 +53,9 @@ data class YamatoAppState(
             }
 
             when (topLevelDestination) {
-                TopLevelDestination.HOME -> navController.navigateToHome(topLevelNavOptions)
-                TopLevelDestination.MAP -> navController.navigateToMap(topLevelNavOptions)
-                TopLevelDestination.CATALOG -> navController.navigateToCatalog(topLevelNavOptions)
+                HOME -> navController.navigateToHome(topLevelNavOptions)
+                MAP -> navController.navigateToMap(topLevelNavOptions)
+                CATALOG -> navController.navigateToCatalog(topLevelNavOptions)
             }
         }
     }

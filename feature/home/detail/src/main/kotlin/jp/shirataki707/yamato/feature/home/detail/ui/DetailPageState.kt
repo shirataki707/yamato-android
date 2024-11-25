@@ -3,18 +3,14 @@ package jp.shirataki707.yamato.feature.home.detail.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 
-internal class DetailPageState(
-    val keyword: String,
-)
+internal class DetailPageState()
 
 @Composable
 internal fun rememberDetailPageState(
     detailPageViewModel: DetailPageViewModel,
-    keyword: String,
 ): DetailPageState {
-    return remember(keyword) {
+    return remember() {
         DetailPageState(
-            keyword = keyword,
         )
     }
 }

@@ -65,6 +65,7 @@ dependencies {
     implementation(projects.feature.map)
     implementation(projects.feature.catalog)
     implementation(projects.feature.mountain)
+    implementation(projects.feature.mountain)
     implementation(projects.core.designsystem)
 
     implementation(libs.androidx.activity.compose)
@@ -77,7 +78,7 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.runtimeCompose)
-    implementation(libs.androidx.navigation.compose)
+//    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.profileinstaller)
     implementation(libs.androidx.tracing.ktx)
     implementation(libs.androidx.window.core)
@@ -97,7 +98,7 @@ dependencies {
 
     androidTestImplementation(kotlin("test"))
     androidTestImplementation(libs.androidx.test.espresso.core)
-    androidTestImplementation(libs.androidx.navigation.testing)
+//    androidTestImplementation(libs.androidx.navigation.testing)
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.hilt.android.testing)
 

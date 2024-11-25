@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import jp.shirataki707.yamato.core.model.data.VideoResources
+import java.util.UUID
 
 internal data class HomeLoadedSectionState(
     val videoResources: VideoResources,
@@ -18,7 +19,7 @@ internal data class HomeLoadedSectionState(
 @Composable
 internal fun rememberHomeLoadedSectionState(
     videoResources: VideoResources,
-    navigateToDetailPage: (keyword: String) -> Unit,
+    navigateToDetailPage: (String) -> Unit,
 ): HomeLoadedSectionState {
     val context = LocalContext.current
 
@@ -27,7 +28,7 @@ internal fun rememberHomeLoadedSectionState(
     }
 
     val onMoreButtonClick = {
-        navigateToDetailPage("video")
+        navigateToDetailPage(UUID.randomUUID().toString())
     }
 
     return remember(

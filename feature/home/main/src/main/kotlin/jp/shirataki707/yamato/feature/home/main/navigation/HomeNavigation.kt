@@ -2,20 +2,29 @@ package jp.shirataki707.yamato.feature.home.main.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import jp.shirataki707.yamato.feature.home.main.ui.HomePageHost
-import jp.shirataki707.yamato.feature.home.main.ui.HomePageState
+import kotlinx.serialization.Serializable
 
-const val HOME_ROUTE = "Home"
+@Serializable
+data object HomeRoute
+@Serializable
+data object HomeBaseRoute
 
 fun NavController.navigateToHome(navOptions: NavOptions) {
-    navigate(route = HOME_ROUTE, navOptions = navOptions)
+    navigate(route = HomeRoute, navOptions)
 }
 
-fun NavGraphBuilder.homePage() {
-    composable(route = HOME_ROUTE) {
-        HomePageHost()
+fun NavGraphBuilder.homePage(
+    onNavigateToDetail: (String) -> Unit,
+    detailDestination: NavGraphBuilder.() -> Unit,
+) {
+    navigation<HomeBaseRoute>(startDestination = HomeRoute) {
+        composable<HomeRoute> {
+            HomePageHost(onNavigateToDetail)
+        }
+        detailDestination()
     }
 }

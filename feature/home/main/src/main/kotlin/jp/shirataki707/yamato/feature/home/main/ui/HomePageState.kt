@@ -15,7 +15,7 @@ internal class HomePageState(
 @Composable
 internal fun rememberHomePageState(
     homePageViewModel: HomePageViewModel,
-    onNavigateToDetailPage: (keyword: String) -> Unit,
+    onNavigateToDetailPage: (String) -> Unit,
 ): HomePageState {
     val isInitialLoading = homePageViewModel.isLoading
     val youtubeVideoResources = homePageViewModel.videoResources

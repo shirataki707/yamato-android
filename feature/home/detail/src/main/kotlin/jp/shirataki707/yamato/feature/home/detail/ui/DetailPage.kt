@@ -9,13 +9,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun DetailPageHost(
-    keyword: String,
     modifier: Modifier = Modifier,
     detailPageViewModel: DetailPageViewModel = hiltViewModel(),
 ) {
     val detailPageState = rememberDetailPageState(
         detailPageViewModel = detailPageViewModel,
-        keyword = keyword,
     )
 
     DetailPage(
@@ -32,6 +30,6 @@ private fun DetailPage(
         modifier = modifier,
         contentAlignment = Alignment.Center,
     ) {
-        Text("[Detail Page] Keyword: ${detailPageState.keyword}")
+        Text("Detail Page")
     }
 }
