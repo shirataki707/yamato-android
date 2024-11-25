@@ -8,5 +8,6 @@ android {
 }
 
 dependencies {
+    api(projects.core.network.youtube)
     api(projects.core.database)
 }
