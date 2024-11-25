@@ -1,17 +1,22 @@
 package jp.shirataki707.yamato.core.designsystem.theme
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.Typography
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.LineHeightStyle.Alignment
 import androidx.compose.ui.text.style.LineHeightStyle.Trim
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
 /**
  * Yamato typography.
  */
-internal val YamatoTypography = Typography(
+val YamatoTypography = Typography(
     displayLarge = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 57.sp,
@@ -131,3 +136,32 @@ internal val YamatoTypography = Typography(
         ),
     ),
 )
+
+@Composable
+fun TypographyPreview() {
+    Column {
+        Text("Display Large", style = YamatoTypography.displayLarge)
+        Text("Display Medium", style = YamatoTypography.displayMedium)
+        Text("Display Small", style = YamatoTypography.displaySmall)
+        Text("Headline Large", style = YamatoTypography.headlineLarge)
+        Text("Headline Medium", style = YamatoTypography.headlineMedium)
+        Text("Headline Small", style = YamatoTypography.headlineSmall)
+        Text("Title Large", style = YamatoTypography.titleLarge)
+        Text("Title Medium", style = YamatoTypography.titleMedium)
+        Text("Title Small", style = YamatoTypography.titleSmall)
+        Text("Body Large", style = YamatoTypography.bodyLarge)
+        Text("Body Medium", style = YamatoTypography.bodyMedium)
+        Text("Body Small", style = YamatoTypography.bodySmall)
+        Text("Label Large", style = YamatoTypography.labelLarge)
+        Text("Label Medium", style = YamatoTypography.labelMedium)
+        Text("Label Small", style = YamatoTypography.labelSmall)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewTypography() {
+    MaterialTheme(typography = YamatoTypography) {
+        TypographyPreview()
+    }
+}

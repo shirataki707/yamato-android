@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.yamato.android.library)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -7,5 +8,4 @@ android {
 }
 
 dependencies {
-
 }

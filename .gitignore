@@ -17,6 +17,7 @@ generated/
 
 # Local configuration file (sdk path, etc)
 local.properties
+secrets.properties
 
 # Eclipse project files
 .classpath
@@ -47,5 +48,8 @@ captures/
 
 # Kotlin
 .kotlin
+<<<<<<< HEAD
 
 secrets.properties
+=======
+>>>>>>> f465d937b24658b99330c2880a2cdefe91822c80
