@@ -12,6 +12,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 apply("yamato.android.library")
                 apply("yamato.hilt")
                 apply("org.jetbrains.kotlin.plugin.serialization")
+                apply("org.jetbrains.kotlin.plugin.parcelize")
             }
             extensions.configure<LibraryExtension> {
                 testOptions.animationsDisabled = true
@@ -29,10 +30,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("kotlinx.serialization.json").get())
 
                 add("testImplementation", libs.findLibrary("androidx.navigation.testing").get())
-                add(
-                    "androidTestImplementation",
-                    libs.findLibrary("androidx.lifecycle.runtimeTesting").get(),
-                )
+                add("androidTestImplementation", libs.findLibrary("androidx.lifecycle.runtimeTesting").get())
             }
         }
     }
