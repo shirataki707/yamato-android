@@ -8,7 +8,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
+import jp.shirataki707.yamato.core.model.data.DetailPageConfig
 import jp.shirataki707.yamato.core.model.data.VideoResources
+import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType
+import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Channel
+import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Latest
+import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Mountain
+import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Popular
+import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Recommended
 import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -58,35 +65,37 @@ class HomePageViewModel @Inject constructor(
                     videoCarouselBlockTypes.map { blockType ->
                         async {
                             when (blockType) {
-                                is VideoResources.VideoCarouselBlockType.Recommended -> {
+                                Recommended -> {
                                     // TODO: Implement recommendation logic
-                                    videoResourceRepository.getVideoSummariesByKeyword(keyword = "登山")
+                                    videoResourceRepository.getVideoSummariesByKeyword(
+                                        keyword = getSearchKeyword(blockType),
+                                    )
                                 }
 
-                                is VideoResources.VideoCarouselBlockType.Popular -> {
+                                Popular -> {
                                     // TODO: Implement popularity logic
                                     videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = "日本百名山 登山",
-                                        order = YoutubeSearchApiRequest.Order.VIEW_COUNT,
+                                        keyword = getSearchKeyword(blockType),
+                                        order = getSearchOrder(blockType),
                                     )
                                 }
 
-                                is VideoResources.VideoCarouselBlockType.Latest -> {
+                                Latest -> {
                                     videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = "日本百名山　登山",
-                                        order = YoutubeSearchApiRequest.Order.DATE,
+                                        keyword = getSearchKeyword(blockType),
+                                        order = getSearchOrder(blockType),
                                     )
                                 }
 
-                                is VideoResources.VideoCarouselBlockType.Mountain -> {
+                                is Mountain -> {
                                     videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = "${blockType.mountainName} 登山",
+                                        keyword = getSearchKeyword(blockType),
                                     )
                                 }
 
-                                is VideoResources.VideoCarouselBlockType.Channel -> {
+                                is Channel -> {
                                     videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = "登山",
+                                        keyword = getSearchKeyword(blockType),
                                         channelId = blockType.channelId,
                                     )
                                 }
@@ -100,30 +109,38 @@ class HomePageViewModel @Inject constructor(
                 ParcelableResult.Success(
                     VideoResources(
                         videoCarouselBlocks = videoCarouselBlockTypes.mapIndexed { index, blockType ->
+                            val blockTitle = when (blockType) {
+                                Recommended -> {
+                                    "おすすめ"
+                                }
+
+                                Latest -> {
+                                    "最新"
+                                }
+
+                                Popular -> {
+                                    "人気"
+                                }
+
+                                is Mountain -> {
+                                    blockType.mountainName
+                                }
+
+                                is Channel -> {
+                                    deferredCarouselBlocks[index].first().channelName
+                                }
+                            }
                             VideoResources.VideoCarouselBlock(
-                                blockTitle = when (blockType) {
-                                    is VideoResources.VideoCarouselBlockType.Recommended -> {
-                                        "おすすめ"
-                                    }
-
-                                    is VideoResources.VideoCarouselBlockType.Latest -> {
-                                        "最新"
-                                    }
-
-                                    is VideoResources.VideoCarouselBlockType.Popular -> {
-                                        "人気"
-                                    }
-
-                                    is VideoResources.VideoCarouselBlockType.Mountain -> {
-                                        blockType.mountainName
-                                    }
-
-                                    is VideoResources.VideoCarouselBlockType.Channel -> {
-                                        deferredCarouselBlocks[index].first().channelName
-                                    }
-                                },
+                                blockTitle = blockTitle,
                                 blockType = blockType,
                                 videoSummaries = deferredCarouselBlocks[index],
+                                detailPageConfig = DetailPageConfig(
+                                    detailPageTitle = blockTitle,
+                                    carouselBlockType = blockType,
+                                    keyword = getSearchKeyword(blockType),
+                                    channelId = if (blockType is Channel) blockType.channelId else null,
+                                    order = getSearchOrder(blockType),
+                                ),
                             )
                         },
                     ),
@@ -133,4 +150,21 @@ class HomePageViewModel @Inject constructor(
             isLoading = false
         }
     }
+
+    private fun getSearchKeyword(blockType: VideoCarouselBlockType): String {
+        return when (blockType) {
+            is Channel, Recommended -> "登山"
+            Popular, Latest -> "日本百名山 登山"
+            is Mountain -> "${blockType.mountainName} 登山"
+        }
+    }
+
+    private fun getSearchOrder(blockType: VideoCarouselBlockType): YoutubeSearchApiRequest.Order? {
+        return when (blockType) {
+            Popular -> YoutubeSearchApiRequest.Order.VIEW_COUNT
+            Latest -> YoutubeSearchApiRequest.Order.DATE
+            else -> null
+        }
+    }
 }
+

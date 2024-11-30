@@ -29,15 +29,7 @@ fun VideoCarouselBlock(
             headerTitle = videoCarouselBlock.blockTitle,
             buttonText = stringResource(R.string.core_ui_more_show),
             onButtonClick = {
-                onMoreButtonClick(
-                    // TODO: 検索時にDetailConfigを生成する
-                    DetailPageConfig(
-//                    videoCarouselBlockType = videoCarouselBlock.blockType,
-                        keyword = videoCarouselBlock.blockTitle,
-                        channelId = videoCarouselBlock.videoSummaries.first().channelName,
-//                    order = null,
-                    ),
-                )
+                onMoreButtonClick(videoCarouselBlock.detailPageConfig)
             },
         )
         LazyRow(
@@ -80,6 +72,11 @@ private fun VideoCarouselBlockPreview() {
                         videoId = "",
                         publishedAt = "",
                     ),
+                ),
+                detailPageConfig = DetailPageConfig(
+                    detailPageTitle = "おすすめ",
+                    carouselBlockType = VideoResources.VideoCarouselBlockType.Recommended,
+                    keyword = "登山",
                 ),
             ),
             onVideoClick = { },
