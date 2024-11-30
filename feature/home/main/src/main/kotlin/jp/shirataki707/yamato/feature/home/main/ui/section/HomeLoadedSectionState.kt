@@ -7,19 +7,19 @@ import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import jp.shirataki707.yamato.core.model.data.DetailPageConfig
 import jp.shirataki707.yamato.core.model.data.VideoResources
-import java.util.UUID
 
 internal data class HomeLoadedSectionState(
     val videoResources: VideoResources,
     val onVideoClick: (videoId: String) -> Unit,
-    val onMoreButtonClick: () -> Unit,
+    val onMoreButtonClick: (DetailPageConfig) -> Unit,
 ) : HomeContentSectionState
 
 @Composable
 internal fun rememberHomeLoadedSectionState(
     videoResources: VideoResources,
-    navigateToDetailPage: (String) -> Unit,
+    navigateToDetailPage: (DetailPageConfig) -> Unit,
 ): HomeLoadedSectionState {
     val context = LocalContext.current
 
@@ -27,8 +27,8 @@ internal fun rememberHomeLoadedSectionState(
         openYoutubeVideo(context = context, videoId = videoId)
     }
 
-    val onMoreButtonClick = {
-        navigateToDetailPage(UUID.randomUUID().toString())
+    val onMoreButtonClick = { detailPageConfig: DetailPageConfig ->
+        navigateToDetailPage(detailPageConfig)
     }
 
     return remember(

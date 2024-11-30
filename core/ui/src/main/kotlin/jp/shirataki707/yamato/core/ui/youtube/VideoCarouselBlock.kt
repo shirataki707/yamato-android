@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.shirataki707.core.ui.R
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
+import jp.shirataki707.yamato.core.model.data.DetailPageConfig
 import jp.shirataki707.yamato.core.model.data.VideoResources
 import jp.shirataki707.yamato.core.ui.youtube.component.VideoCarouselBlockHeader
 import jp.shirataki707.yamato.core.ui.youtube.component.VideoCarouselBlockItem
@@ -20,14 +21,24 @@ import jp.shirataki707.yamato.core.ui.youtube.component.VideoCarouselBlockItem
 fun VideoCarouselBlock(
     videoCarouselBlock: VideoResources.VideoCarouselBlock,
     onVideoClick: (videoId: String) -> Unit,
-    onMoreButtonClick: () -> Unit,
+    onMoreButtonClick: (DetailPageConfig) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
         VideoCarouselBlockHeader(
             headerTitle = videoCarouselBlock.blockTitle,
             buttonText = stringResource(R.string.core_ui_more_show),
-            onButtonClick = onMoreButtonClick,
+            onButtonClick = {
+                onMoreButtonClick(
+                    // TODO: 検索時にDetailConfigを生成する
+                    DetailPageConfig(
+//                    videoCarouselBlockType = videoCarouselBlock.blockType,
+                        keyword = videoCarouselBlock.blockTitle,
+                        channelId = videoCarouselBlock.videoSummaries.first().channelName,
+//                    order = null,
+                    ),
+                )
+            },
         )
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),

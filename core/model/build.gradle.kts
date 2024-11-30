@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.yamato.android.library)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -8,4 +9,6 @@ android {
 }
 
 dependencies {
+    api(projects.core.network.youtube)
+    implementation(libs.kotlinx.serialization.json)
 }
