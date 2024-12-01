@@ -19,20 +19,20 @@ internal fun rememberHomePageState(
     onNavigateToDetailPage: (DetailPageConfig) -> Unit,
 ): HomePageState {
     val isInitialLoading = homePageViewModel.isLoading
-    val youtubeVideoResources = homePageViewModel.videoResources
+    val videoResources = homePageViewModel.videoResources
 
     val contentSectionState = when {
         isInitialLoading -> rememberHomeLoadingSectionState()
-        youtubeVideoResources is ParcelableResult.Success -> {
+        videoResources is ParcelableResult.Success -> {
             rememberHomeLoadedSectionState(
-                videoResources = youtubeVideoResources.result,
+                videoResources = videoResources.result,
                 navigateToDetailPage = onNavigateToDetailPage,
             )
         }
 
         else -> {
             rememberHomeInitialSectionState(
-                videoResources = youtubeVideoResources,
+                videoResources = videoResources,
                 initialLoadIfNeeded = homePageViewModel::initialLoadIfNeeded,
             )
         }

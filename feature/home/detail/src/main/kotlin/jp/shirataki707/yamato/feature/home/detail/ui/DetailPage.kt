@@ -9,6 +9,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import jp.shirataki707.yamato.core.model.data.DetailPageConfig
+import jp.shirataki707.yamato.feature.home.detail.ui.section.DetailInitialSection
+import jp.shirataki707.yamato.feature.home.detail.ui.section.DetailInitialSectionState
+import jp.shirataki707.yamato.feature.home.detail.ui.section.DetailLoadedSection
+import jp.shirataki707.yamato.feature.home.detail.ui.section.DetailLoadedSectionState
+import jp.shirataki707.yamato.feature.home.detail.ui.section.DetailLoadingSection
+import jp.shirataki707.yamato.feature.home.detail.ui.section.DetailLoadingSectionState
 
 @Composable
 fun DetailPageHost(
@@ -18,6 +24,7 @@ fun DetailPageHost(
 ) {
     val detailPageState = rememberDetailPageState(
         detailPageViewModel = detailPageViewModel,
+        detailPageConfig = detailPageConfig,
     )
 
     LaunchedEffect(detailPageViewModel) {
@@ -36,10 +43,23 @@ private fun DetailPage(
     detailPageState: DetailPageState,
     modifier: Modifier = Modifier,
 ) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center,
-    ) {
-        Text("Detail Page")
+    when (val sectionState = detailPageState.contentSectionState) {
+        is DetailInitialSectionState -> {
+            DetailInitialSection(
+                sectionState = sectionState,
+            )
+        }
+
+        is DetailLoadingSectionState -> {
+            DetailLoadingSection(
+                sectionState = sectionState,
+            )
+        }
+
+        is DetailLoadedSectionState -> {
+            DetailLoadedSection(
+                sectionState = sectionState,
+            )
+        }
     }
 }
