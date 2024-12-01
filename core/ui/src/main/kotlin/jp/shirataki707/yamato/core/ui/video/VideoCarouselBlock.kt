@@ -39,8 +39,9 @@ fun VideoCarouselBlock(
                 VideoCarouselBlockItem(
                     imageUrl = videoSummary.thumbnailUrl,
                     videoTitle = videoSummary.videoTitle,
+                    videoId = videoSummary.videoId,
                     channelName = videoSummary.channelName,
-                    onVideoClick = { onVideoClick(videoSummary.videoId) },
+                    onVideoClick = onVideoClick,
                 )
             }
         }

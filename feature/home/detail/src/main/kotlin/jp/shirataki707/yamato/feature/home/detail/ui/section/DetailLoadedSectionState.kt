@@ -3,7 +3,7 @@ package jp.shirataki707.yamato.feature.home.detail.ui.section
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
-import jp.shirataki707.yamato.core.common.utils.openYoutubeVideo
+import jp.shirataki707.yamato.core.common.utils.VideoUtils.openYoutubeVideo
 import jp.shirataki707.yamato.core.model.data.DetailVideoResources
 
 internal data class DetailLoadedSectionState(

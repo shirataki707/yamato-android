@@ -55,6 +55,7 @@ class DetailPageViewModel @Inject constructor(
                     Recommended -> {
                         videoResourceRepository.getVideoSummariesByKeyword(
                             keyword = detailPageConfig.keyword,
+                            maxResults = 30,
                         )
                     }
 
@@ -62,6 +63,7 @@ class DetailPageViewModel @Inject constructor(
                         videoResourceRepository.getVideoSummariesByKeyword(
                             keyword = detailPageConfig.keyword,
                             order = detailPageConfig.order,
+                            maxResults = 30,
                         )
                     }
 
@@ -69,12 +71,14 @@ class DetailPageViewModel @Inject constructor(
                         videoResourceRepository.getVideoSummariesByKeyword(
                             keyword = detailPageConfig.keyword,
                             order = detailPageConfig.order,
+                            maxResults = 30,
                         )
                     }
 
                     is Mountain -> {
                         videoResourceRepository.getVideoSummariesByKeyword(
                             keyword = detailPageConfig.keyword,
+                            maxResults = 30,
                         )
                     }
 
@@ -82,6 +86,7 @@ class DetailPageViewModel @Inject constructor(
                         videoResourceRepository.getVideoSummariesByKeyword(
                             keyword = detailPageConfig.keyword,
                             channelId = detailPageConfig.channelId,
+                            maxResults = 30,
                         )
                     }
                 }

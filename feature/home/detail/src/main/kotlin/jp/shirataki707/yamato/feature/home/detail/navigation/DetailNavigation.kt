@@ -23,13 +23,18 @@ fun NavController.navigateToDetail(
     }
 }
 
-fun NavGraphBuilder.detailPage() {
+fun NavGraphBuilder.detailPage(
+    onBackClick: () -> Unit,
+) {
     composable<DetailRoute>(
         typeMap = mapOf(
             typeOf<DetailPageConfig>() to CustomNavType.nonNullableNavType<DetailPageConfig>(),
         ),
     ) { backStackEntry ->
         val detailPageConfig = backStackEntry.toRoute<DetailRoute>().detailPageConfig
-        DetailPageHost(detailPageConfig)
+        DetailPageHost(
+            detailPageConfig = detailPageConfig,
+            onBackClick = onBackClick,
+        )
     }
 }

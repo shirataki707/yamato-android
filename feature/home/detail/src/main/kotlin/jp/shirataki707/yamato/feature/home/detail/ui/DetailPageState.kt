@@ -11,12 +11,15 @@ import jp.shirataki707.yamato.feature.home.detail.ui.section.rememberDetailLoadi
 
 internal class DetailPageState(
     val contentSectionState: DetailContentSectionState,
+    val detailPageConfig: DetailPageConfig,
+    val onBackClick: () -> Unit,
 )
 
 @Composable
 internal fun rememberDetailPageState(
     detailPageViewModel: DetailPageViewModel,
     detailPageConfig: DetailPageConfig,
+    onBackClick: () -> Unit,
 ): DetailPageState {
     val isInitialLoading = detailPageViewModel.isLoading
     val detailVideoResources = detailPageViewModel.detailVideoResources
@@ -37,9 +40,11 @@ internal fun rememberDetailPageState(
         }
     }
 
-    return remember(contentSectionState) {
+    return remember(contentSectionState, onBackClick, detailPageConfig) {
         DetailPageState(
             contentSectionState = contentSectionState,
+            detailPageConfig = detailPageConfig,
+            onBackClick = onBackClick,
         )
     }
 }
