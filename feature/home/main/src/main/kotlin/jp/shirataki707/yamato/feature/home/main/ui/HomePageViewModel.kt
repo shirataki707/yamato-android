@@ -55,116 +55,115 @@ class HomePageViewModel @Inject constructor(
 
             isLoading = true
 
-            // TODO: ネストが深いのと、ハードコードのテキストがあるので修正する
-            videoResources = withContext(Dispatchers.IO) {
-                val videoCarouselBlockTypes =
-                    videoResourceRepository.getVideoCarouselBlockTypeList()
-                Log.d("HomePageViewModel", "videoCarouselBlockTypes: $videoCarouselBlockTypes")
+            val videoCarouselBlockTypes = withContext(Dispatchers.IO) {
+                videoResourceRepository.getVideoCarouselBlockTypeList()
+            }
+            Log.d("HomePageViewModel", "videoCarouselBlockTypes: $videoCarouselBlockTypes")
 
-                val deferredCarouselBlocks = coroutineScope {
+            val deferredCarouselBlocks = withContext(Dispatchers.IO) {
+                coroutineScope {
                     videoCarouselBlockTypes.map { blockType ->
                         async {
-                            when (blockType) {
-                                Recommended -> {
-                                    // TODO: Implement recommendation logic
-                                    videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = getSearchKeyword(blockType),
-                                    )
-                                }
-
-                                Popular -> {
-                                    // TODO: Implement popularity logic
-                                    videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = getSearchKeyword(blockType),
-                                        order = getSearchOrder(blockType),
-                                    )
-                                }
-
-                                Latest -> {
-                                    videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = getSearchKeyword(blockType),
-                                        order = getSearchOrder(blockType),
-                                    )
-                                }
-
-                                is Mountain -> {
-                                    videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = getSearchKeyword(blockType),
-                                    )
-                                }
-
-                                is Channel -> {
-                                    videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = getSearchKeyword(blockType),
-                                        channelId = blockType.channelId,
-                                    )
-                                }
-                            }
+                            getVideoSummaries(blockType)
                         }
                     }.awaitAll()
                 }
-
-                Log.d("HomePageViewModel", "deferredCarouselBlocks: $deferredCarouselBlocks")
-
-                ParcelableResult.Success(
-                    VideoResources(
-                        videoCarouselBlocks = videoCarouselBlockTypes.mapIndexed { index, blockType ->
-                            val blockTitle = when (blockType) {
-                                Recommended -> {
-                                    "おすすめ"
-                                }
-
-                                Latest -> {
-                                    "最新"
-                                }
-
-                                Popular -> {
-                                    "人気"
-                                }
-
-                                is Mountain -> {
-                                    blockType.mountainName
-                                }
-
-                                is Channel -> {
-                                    deferredCarouselBlocks[index].first().channelName
-                                }
-                            }
-                            VideoResources.VideoCarouselBlock(
-                                blockTitle = blockTitle,
-                                blockType = blockType,
-                                videoSummaries = deferredCarouselBlocks[index],
-                                detailPageConfig = DetailPageConfig(
-                                    detailPageTitle = blockTitle,
-                                    carouselBlockType = blockType,
-                                    keyword = getSearchKeyword(blockType),
-                                    channelId = if (blockType is Channel) blockType.channelId else null,
-                                    order = getSearchOrder(blockType),
-                                ),
-                            )
-                        },
-                    ),
-                )
             }
+
+            videoResources = ParcelableResult.Success(
+                VideoResources(
+                    videoCarouselBlocks = videoCarouselBlockTypes.mapIndexed { index, blockType ->
+                        val blockTitle = when (blockType) {
+                            Recommended -> {
+                                "おすすめ"
+                            }
+
+                            Latest -> {
+                                "最新"
+                            }
+
+                            Popular -> {
+                                "人気"
+                            }
+
+                            is Mountain -> {
+                                blockType.mountainName
+                            }
+
+                            is Channel -> {
+                                deferredCarouselBlocks[index].first().channelName
+                            }
+                        }
+                        VideoResources.VideoCarouselBlock(
+                            blockTitle = blockTitle,
+                            blockType = blockType,
+                            videoSummaries = deferredCarouselBlocks[index],
+                            detailPageConfig = DetailPageConfig(
+                                detailPageTitle = blockTitle,
+                                carouselBlockType = blockType,
+                                keyword = getSearchKeyword(blockType),
+                                channelId = if (blockType is Channel) blockType.channelId else null,
+                                order = getSearchOrder(blockType),
+                            ),
+                        )
+                    },
+                ),
+            )
 
             isLoading = false
         }
     }
 
-    private fun getSearchKeyword(blockType: VideoCarouselBlockType): String {
-        return when (blockType) {
+    private suspend fun getVideoSummaries(blockType: VideoCarouselBlockType) =
+        when (blockType) {
+            Recommended -> {
+                // TODO: Implement recommendation logic
+                videoResourceRepository.getVideoSummariesByKeyword(
+                    keyword = getSearchKeyword(blockType),
+                )
+            }
+
+            Popular -> {
+                // TODO: Implement popularity logic
+                videoResourceRepository.getVideoSummariesByKeyword(
+                    keyword = getSearchKeyword(blockType),
+                    order = getSearchOrder(blockType),
+                )
+            }
+
+            Latest -> {
+                videoResourceRepository.getVideoSummariesByKeyword(
+                    keyword = getSearchKeyword(blockType),
+                    order = getSearchOrder(blockType),
+                )
+            }
+
+            is Mountain -> {
+                videoResourceRepository.getVideoSummariesByKeyword(
+                    keyword = getSearchKeyword(blockType),
+                )
+            }
+
+            is Channel -> {
+                videoResourceRepository.getVideoSummariesByKeyword(
+                    keyword = getSearchKeyword(blockType),
+                    channelId = blockType.channelId,
+                )
+            }
+        }
+
+    private fun getSearchKeyword(blockType: VideoCarouselBlockType): String =
+        when (blockType) {
             is Channel, Recommended -> "登山"
             Popular, Latest -> "日本百名山 登山"
             is Mountain -> "${blockType.mountainName} 登山"
         }
-    }
 
-    private fun getSearchOrder(blockType: VideoCarouselBlockType): YoutubeSearchApiRequest.Order? {
-        return when (blockType) {
+    private fun getSearchOrder(blockType: VideoCarouselBlockType): YoutubeSearchApiRequest.Order? =
+        when (blockType) {
             Popular -> YoutubeSearchApiRequest.Order.VIEW_COUNT
             Latest -> YoutubeSearchApiRequest.Order.DATE
             else -> null
         }
-    }
 }
 
