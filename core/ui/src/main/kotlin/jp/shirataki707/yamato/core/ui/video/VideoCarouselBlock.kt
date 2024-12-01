@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.core.ui.youtube
+package jp.shirataki707.yamato.core.ui.video
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,8 +14,8 @@ import jp.shirataki707.core.ui.R
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
 import jp.shirataki707.yamato.core.model.data.DetailPageConfig
 import jp.shirataki707.yamato.core.model.data.VideoResources
-import jp.shirataki707.yamato.core.ui.youtube.component.VideoCarouselBlockHeader
-import jp.shirataki707.yamato.core.ui.youtube.component.VideoCarouselBlockItem
+import jp.shirataki707.yamato.core.ui.video.component.VideoCarouselBlockHeader
+import jp.shirataki707.yamato.core.ui.video.component.VideoCarouselBlockItem
 
 @Composable
 fun VideoCarouselBlock(

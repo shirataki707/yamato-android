@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -18,6 +19,10 @@ fun DetailPageHost(
     val detailPageState = rememberDetailPageState(
         detailPageViewModel = detailPageViewModel,
     )
+
+    LaunchedEffect(detailPageViewModel) {
+        detailPageViewModel.initialLoadIfNeeded(detailPageConfig)
+    }
 
     Log.d("DetailPageHost", ": keyword=$detailPageConfig")
 

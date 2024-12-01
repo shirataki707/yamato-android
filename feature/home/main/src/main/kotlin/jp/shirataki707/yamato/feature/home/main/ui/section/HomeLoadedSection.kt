@@ -8,7 +8,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import jp.shirataki707.yamato.core.ui.youtube.VideoCarouselBlock
+import jp.shirataki707.yamato.core.ui.video.VideoCarouselBlock
 
 @Composable
 internal fun HomeLoadedSection(

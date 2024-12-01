@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.core.ui.youtube.component
+package jp.shirataki707.yamato.core.ui.video.component
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
