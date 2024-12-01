@@ -11,6 +11,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             pluginManager.apply {
                 apply("yamato.android.library")
                 apply("yamato.hilt")
+                apply("de.mannodermaus.android-junit5")
                 apply("org.jetbrains.kotlin.plugin.serialization")
                 apply("org.jetbrains.kotlin.plugin.parcelize")
             }
@@ -30,8 +31,15 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("androidx.tracing.ktx").get())
                 add("implementation", libs.findLibrary("kotlinx.serialization.json").get())
 
-                add("testImplementation", libs.findLibrary("androidx.navigation.testing").get())
-                add("androidTestImplementation", libs.findLibrary("androidx.lifecycle.runtimeTesting").get())
+                add("testImplementation", libs.findLibrary("junit.jupiter.api").get())
+                add("testImplementation", libs.findLibrary("junit.jupiter.engine").get())
+                add("testImplementation", libs.findLibrary("junit.jupiter.params").get())
+                add("testImplementation", libs.findLibrary("mockito.core").get())
+                add("testImplementation", libs.findLibrary("mockito.kotlin").get())
+                add("testImplementation", libs.findLibrary("kotlinx.coroutines.test").get())
+
+//                add("testImplementation", libs.findLibrary("androidx.navigation.testing").get())
+//                add("androidTestImplementation", libs.findLibrary("androidx.lifecycle.runtimeTesting").get())
             }
         }
     }

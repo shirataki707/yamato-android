@@ -7,6 +7,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import jp.shirataki707.yamato.core.common.network.Dispatcher
+import jp.shirataki707.yamato.core.common.network.YamatoDispatchers
 import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
 import jp.shirataki707.yamato.core.model.data.DetailPageConfig
 import jp.shirataki707.yamato.core.model.data.VideoResources
@@ -18,6 +20,7 @@ import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockT
 import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Recommended
 import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -29,6 +32,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomePageViewModel @Inject constructor(
+    @Dispatcher(YamatoDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
     private val videoResourceRepository: VideoResourceRepository,
 ) : ViewModel() {
 
@@ -55,12 +59,12 @@ class HomePageViewModel @Inject constructor(
 
             isLoading = true
 
-            val videoCarouselBlockTypes = withContext(Dispatchers.IO) {
+            val videoCarouselBlockTypes = withContext(ioDispatcher) {
                 videoResourceRepository.getVideoCarouselBlockTypeList()
             }
             Log.d("HomePageViewModel", "videoCarouselBlockTypes: $videoCarouselBlockTypes")
 
-            val deferredCarouselBlocks = withContext(Dispatchers.IO) {
+            val deferredCarouselBlocks = withContext(ioDispatcher) {
                 coroutineScope {
                     videoCarouselBlockTypes.map { blockType ->
                         async {
