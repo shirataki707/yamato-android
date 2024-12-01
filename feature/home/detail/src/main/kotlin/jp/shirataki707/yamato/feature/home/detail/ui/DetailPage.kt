@@ -2,9 +2,12 @@ package jp.shirataki707.yamato.feature.home.detail.ui
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import jp.shirataki707.yamato.core.designsystem.component.CanBackTopBar
 import jp.shirataki707.yamato.core.model.data.DetailPageConfig
@@ -44,7 +47,10 @@ private fun DetailPage(
     detailPageState: DetailPageState,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
         CanBackTopBar(
             title = detailPageState.detailPageConfig.detailPageTitle,
             onBackClick = detailPageState.onBackClick,
@@ -65,6 +71,7 @@ private fun DetailPage(
             is DetailLoadedSectionState -> {
                 DetailLoadedSection(
                     sectionState = sectionState,
+                    modifier = modifier.padding(8.dp),
                 )
             }
         }

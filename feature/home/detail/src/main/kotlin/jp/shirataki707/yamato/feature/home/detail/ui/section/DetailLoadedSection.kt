@@ -19,7 +19,7 @@ internal fun DetailLoadedSection(
     LazyVerticalGrid(
         modifier = modifier,
         columns = GridCells.Fixed(2),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.Center,
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         items(sectionState.detailVideoResources.videoSummaries) { videoSummary ->

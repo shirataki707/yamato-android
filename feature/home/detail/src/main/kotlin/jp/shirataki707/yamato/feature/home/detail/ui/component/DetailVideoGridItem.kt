@@ -1,8 +1,11 @@
 package jp.shirataki707.yamato.feature.home.detail.ui.component
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,37 +25,45 @@ internal fun DetailVideoGridItem(
     onVideoClick: (videoId: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier.clickable { onVideoClick(videoId) },
+    BoxWithConstraints(
+        modifier = modifier
+            .clickable { onVideoClick(videoId) },
     ) {
-        AsyncVideoThumbnail(
-            imageUrl = imageUrl,
-            contentDescription = videoTitle,
-        )
+        val imageWidth = maxWidth
 
-        Text(
-            text = videoTitle,
-            style = MaterialTheme.typography.titleMedium,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.padding(8.dp),
-        )
+        Column(
+            modifier = Modifier.width(imageWidth),
+        ) {
+            AsyncVideoThumbnail(
+                imageUrl = imageUrl,
+                contentDescription = videoTitle,
+                modifier = Modifier.fillMaxWidth()
+            )
 
-        Text(
-            text = publishedAt,
-            style = MaterialTheme.typography.bodyMedium,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.padding(start = 8.dp),
-        )
+            Text(
+                text = videoTitle,
+                style = MaterialTheme.typography.titleMedium,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.padding(8.dp),
+            )
 
-        Text(
-            text = channelName,
-            style = MaterialTheme.typography.titleSmall,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.padding(8.dp),
-        )
+            Text(
+                text = publishedAt,
+                style = MaterialTheme.typography.bodyMedium,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.padding(start = 8.dp),
+            )
+
+            Text(
+                text = channelName,
+                style = MaterialTheme.typography.titleSmall,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.padding(8.dp),
+            )
+        }
     }
 }
 
