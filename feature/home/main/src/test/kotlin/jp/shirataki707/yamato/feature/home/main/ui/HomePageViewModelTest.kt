@@ -12,12 +12,12 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.whenever
-import kotlin.test.assertTrue
 
 class HomePageViewModelTest {
 
@@ -181,7 +181,7 @@ class HomePageViewModelTest {
         val actual = homePageViewModel.videoResources
 
         assertTrue(actual is ParcelableResult.Success)
-        assertEquals(expected.result, actual.result)
+        assertEquals(expected.result, actual!!.result)
     }
 
     @Test
