@@ -53,19 +53,9 @@ class HomePageViewModelTest {
     @Test
     fun isLoading_afterInitialLoadSuccess_false() = runTest {
         // Arrange
-        whenever(videoResourceRepository.getVideoCarouselBlockTypeList()).thenReturn(
-            listOf(VideoResources.VideoCarouselBlockType.Recommended),
-        )
-        whenever(videoResourceRepository.getVideoSummariesByKeyword(keyword = "keyword")).thenReturn(
-            listOf(
-                VideoResources.VideoCarouselBlock.VideoSummary(
-                    videoTitle = "title",
-                    channelName = "channel",
-                    description = "description",
-                    thumbnailUrl = "thumbnailUrl",
-                    videoId = "videoId",
-                    publishedAt = "publishedAt",
-                ),
+        whenever(videoResourceRepository.getCarouselBlockVideoResources()).thenReturn(
+            VideoResources(
+                videoCarouselBlocks = emptyList(),
             ),
         )
 
@@ -81,7 +71,9 @@ class HomePageViewModelTest {
     @Test
     fun isLoading_afterInitialLoadFailure_false() = runTest {
         // Arrange
-        whenever(videoResourceRepository.getVideoCarouselBlockTypeList()).thenThrow(RuntimeException())
+        whenever(videoResourceRepository.getCarouselBlockVideoResources()).thenThrow(
+            RuntimeException(),
+        )
 
         // Act
         homePageViewModel.initialLoadIfNeeded()
@@ -102,22 +94,42 @@ class HomePageViewModelTest {
     @Test
     fun videoResources_afterInitialLoadSuccess_parcelableResultSuccess() = runTest {
         // Arrange
-        whenever(videoResourceRepository.getVideoCarouselBlockTypeList()).thenReturn(
-            listOf(
-                Recommended,
-                VideoResources.VideoCarouselBlockType.Mountain("mountain"),
-            ),
-        )
-
-        whenever(videoResourceRepository.getVideoSummariesByKeyword(keyword = "mountain")).thenReturn(
-            listOf(
-                VideoResources.VideoCarouselBlock.VideoSummary(
-                    videoTitle = "title",
-                    channelName = "channel",
-                    description = "description",
-                    thumbnailUrl = "thumbnailUrl",
-                    videoId = "videoId",
-                    publishedAt = "publishedAt",
+        whenever(videoResourceRepository.getCarouselBlockVideoResources()).thenReturn(
+            VideoResources(
+                videoCarouselBlocks = listOf(
+                    VideoResources.VideoCarouselBlock(
+                        blockTitle = "おすすめ",
+                        blockType = Recommended,
+                        videoSummaries = listOf(
+                            VideoResources.VideoCarouselBlock.VideoSummary(
+                                videoTitle = "title",
+                                channelName = "channel",
+                                description = "description",
+                                thumbnailUrl = "thumbnailUrl",
+                                videoId = "videoId",
+                                publishedAt = "publishedAt",
+                            ),
+                        ),
+                        detailPageConfig = DetailPageConfig(
+                            detailPageTitle = "おすすめ",
+                            carouselBlockType = Recommended,
+                            keyword = "keyword",
+                            channelId = null,
+                            order = null,
+                        ),
+                    ),
+                    VideoResources.VideoCarouselBlock(
+                        blockTitle = "富士山",
+                        blockType = VideoResources.VideoCarouselBlockType.Mountain("mountain"),
+                        videoSummaries = emptyList(),
+                        detailPageConfig = DetailPageConfig(
+                            detailPageTitle = "mountain",
+                            carouselBlockType = VideoResources.VideoCarouselBlockType.Mountain("mountain"),
+                            keyword = "keyword",
+                            channelId = null,
+                            order = null,
+                        ),
+                    ),
                 ),
             ),
         )
@@ -168,14 +180,16 @@ class HomePageViewModelTest {
 
         val actual = homePageViewModel.videoResources
 
-        assertTrue(actual is ParcelableResult.Failure)
+        assertTrue(actual is ParcelableResult.Success)
         assertEquals(expected.result, actual.result)
     }
 
     @Test
     fun videoResources_afterInitialLoadFailure_parcelableResultFailure() = runTest {
         // Arrange
-        whenever(videoResourceRepository.getVideoCarouselBlockTypeList()).thenThrow(RuntimeException())
+        whenever(videoResourceRepository.getCarouselBlockVideoResources()).thenThrow(
+            RuntimeException(),
+        )
 
         // Act
         homePageViewModel.initialLoadIfNeeded()
