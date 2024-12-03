@@ -6,24 +6,26 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import jp.shirataki707.yamato.core.common.network.Dispatcher
+import jp.shirataki707.yamato.core.common.network.YamatoDispatchers
 import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
 import jp.shirataki707.yamato.core.model.data.DetailPageConfig
 import jp.shirataki707.yamato.core.model.data.DetailVideoResources
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlock
 import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Channel
 import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Latest
 import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Mountain
 import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Popular
 import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Recommended
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailPageViewModel @Inject constructor(
+    @Dispatcher(YamatoDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
     private val videoResourceRepository: VideoResourceRepository,
 ) : ViewModel() {
 
@@ -50,7 +52,7 @@ class DetailPageViewModel @Inject constructor(
 
             isLoading = true
 
-            val videoSummaries = withContext(Dispatchers.IO) {
+            val videoSummaries = withContext(ioDispatcher) {
                 when (detailPageConfig.carouselBlockType) {
                     Recommended -> {
                         videoResourceRepository.getVideoSummariesByKeyword(
@@ -91,6 +93,8 @@ class DetailPageViewModel @Inject constructor(
                     }
                 }
             }
+
+            println("videoSummaries: $videoSummaries")
 
             detailVideoResources = ParcelableResult.Success(
                 DetailVideoResources(
