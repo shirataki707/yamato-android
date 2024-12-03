@@ -94,8 +94,6 @@ class DetailPageViewModel @Inject constructor(
                 }
             }
 
-            println("videoSummaries: $videoSummaries")
-
             detailVideoResources = ParcelableResult.Success(
                 DetailVideoResources(
                     detailPageTitle = detailPageConfig.detailPageTitle,

@@ -94,7 +94,12 @@ class DetailPageViewModelTest {
     @Test
     fun detailVideoResources_afterInitialLoadSuccess_parcelableResultSuccess() = runTest {
         // Arrange
-        whenever(videoResourceRepository.getVideoSummariesByKeyword("keyword")).thenReturn(
+        whenever(
+            videoResourceRepository.getVideoSummariesByKeyword(
+                keyword = "keyword",
+                maxResults = 30,
+            ),
+        ).thenReturn(
             listOf(
                 VideoResources.VideoCarouselBlock.VideoSummary(
                     videoTitle = "title1",
