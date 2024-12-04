@@ -1,6 +1,5 @@
-package jp.shirataki707.yamato.core.ui.youtube.component
+package jp.shirataki707.yamato.core.ui.video.component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -11,18 +10,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
 
 @Composable
 internal fun VideoCarouselBlockItem(
     imageUrl: String,
     videoTitle: String,
+    videoId: String,
     channelName: String,
     onVideoClick: (videoId: String) -> Unit,
     modifier: Modifier = Modifier,
@@ -39,7 +36,7 @@ internal fun VideoCarouselBlockItem(
     Column(
         modifier = modifier
             .width(thumbnailWidthDp)
-            .clickable { onVideoClick(videoTitle) },
+            .clickable { onVideoClick(videoId) },
     ) {
         AsyncVideoThumbnail(
             imageUrl = imageUrl,
@@ -62,30 +59,6 @@ internal fun VideoCarouselBlockItem(
     }
 }
 
-@Composable
-private fun AsyncVideoThumbnail(
-    imageUrl: String,
-    contentDescription: String,
-    modifier: Modifier = Modifier,
-) {
-    val isPreview = LocalInspectionMode.current
-
-    if (isPreview) {
-        Image(
-            painter = painterResource(id = jp.shirataki707.core.designsystem.R.drawable.core_designsystem_ic_placeholder_default),
-            contentDescription = contentDescription,
-            modifier = modifier,
-        )
-    } else {
-        AsyncImage(
-            model = imageUrl,
-            placeholder = painterResource(id = jp.shirataki707.core.designsystem.R.drawable.core_designsystem_ic_placeholder_default),
-            contentDescription = contentDescription,
-            modifier = modifier,
-        )
-    }
-}
-
 @Preview
 @Composable
 private fun VideoCarouselBlockItemPreview() {
@@ -93,6 +66,7 @@ private fun VideoCarouselBlockItemPreview() {
         VideoCarouselBlockItem(
             imageUrl = "https://example",
             videoTitle = "八ヶ岳完全ガイド！登山ルートからアクセス方法まで徹底解説",
+            videoId = "123456",
             channelName = "山登りチャンネル",
             onVideoClick = { },
         )

@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.core.ui.youtube
+package jp.shirataki707.yamato.core.ui.video
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,22 +12,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.shirataki707.core.ui.R
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
+import jp.shirataki707.yamato.core.model.data.DetailPageConfig
 import jp.shirataki707.yamato.core.model.data.VideoResources
-import jp.shirataki707.yamato.core.ui.youtube.component.VideoCarouselBlockHeader
-import jp.shirataki707.yamato.core.ui.youtube.component.VideoCarouselBlockItem
+import jp.shirataki707.yamato.core.ui.video.component.VideoCarouselBlockHeader
+import jp.shirataki707.yamato.core.ui.video.component.VideoCarouselBlockItem
 
 @Composable
 fun VideoCarouselBlock(
     videoCarouselBlock: VideoResources.VideoCarouselBlock,
     onVideoClick: (videoId: String) -> Unit,
-    onMoreButtonClick: () -> Unit,
+    onMoreButtonClick: (DetailPageConfig) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
         VideoCarouselBlockHeader(
             headerTitle = videoCarouselBlock.blockTitle,
             buttonText = stringResource(R.string.core_ui_more_show),
-            onButtonClick = onMoreButtonClick,
+            onButtonClick = {
+                onMoreButtonClick(videoCarouselBlock.detailPageConfig)
+            },
         )
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -36,8 +39,9 @@ fun VideoCarouselBlock(
                 VideoCarouselBlockItem(
                     imageUrl = videoSummary.thumbnailUrl,
                     videoTitle = videoSummary.videoTitle,
+                    videoId = videoSummary.videoId,
                     channelName = videoSummary.channelName,
-                    onVideoClick = { onVideoClick(videoSummary.videoId) },
+                    onVideoClick = onVideoClick,
                 )
             }
         }
@@ -69,6 +73,11 @@ private fun VideoCarouselBlockPreview() {
                         videoId = "",
                         publishedAt = "",
                     ),
+                ),
+                detailPageConfig = DetailPageConfig(
+                    detailPageTitle = "おすすめ",
+                    carouselBlockType = VideoResources.VideoCarouselBlockType.Recommended,
+                    keyword = "登山",
                 ),
             ),
             onVideoClick = { },

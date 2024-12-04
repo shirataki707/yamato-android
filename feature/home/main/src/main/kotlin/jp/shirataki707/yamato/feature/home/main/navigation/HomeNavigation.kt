@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import jp.shirataki707.yamato.core.model.data.DetailPageConfig
 import jp.shirataki707.yamato.feature.home.main.ui.HomePageHost
 import kotlinx.serialization.Serializable
 
@@ -19,7 +20,7 @@ fun NavController.navigateToHome(navOptions: NavOptions) {
 }
 
 fun NavGraphBuilder.homePage(
-    onNavigateToDetail: (String) -> Unit,
+    onNavigateToDetail: (DetailPageConfig) -> Unit,
     detailDestination: NavGraphBuilder.() -> Unit,
 ) {
     navigation<HomeBaseRoute>(startDestination = HomeRoute) {

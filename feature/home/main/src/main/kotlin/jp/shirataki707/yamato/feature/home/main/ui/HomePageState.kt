@@ -2,6 +2,7 @@ package jp.shirataki707.yamato.feature.home.main.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import jp.shirataki707.yamato.core.model.data.DetailPageConfig
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
 import jp.shirataki707.yamato.feature.home.main.ui.section.HomeContentSectionState
 import jp.shirataki707.yamato.feature.home.main.ui.section.rememberHomeInitialSectionState
@@ -15,23 +16,23 @@ internal class HomePageState(
 @Composable
 internal fun rememberHomePageState(
     homePageViewModel: HomePageViewModel,
-    onNavigateToDetailPage: (String) -> Unit,
+    onNavigateToDetailPage: (DetailPageConfig) -> Unit,
 ): HomePageState {
     val isInitialLoading = homePageViewModel.isLoading
-    val youtubeVideoResources = homePageViewModel.videoResources
+    val videoResources = homePageViewModel.videoResources
 
     val contentSectionState = when {
         isInitialLoading -> rememberHomeLoadingSectionState()
-        youtubeVideoResources is ParcelableResult.Success -> {
+        videoResources is ParcelableResult.Success -> {
             rememberHomeLoadedSectionState(
-                videoResources = youtubeVideoResources.result,
+                videoResources = videoResources.result,
                 navigateToDetailPage = onNavigateToDetailPage,
             )
         }
 
         else -> {
             rememberHomeInitialSectionState(
-                videoResources = youtubeVideoResources,
+                videoResources = videoResources,
                 initialLoadIfNeeded = homePageViewModel::initialLoadIfNeeded,
             )
         }

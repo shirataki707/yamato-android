@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.core.common
+package jp.shirataki707.yamato.core.common.utils
 
 import android.content.Context
 

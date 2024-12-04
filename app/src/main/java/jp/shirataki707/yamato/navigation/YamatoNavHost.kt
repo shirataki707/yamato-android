@@ -25,7 +25,9 @@ fun YamatoNavHost(
         homePage(
             onNavigateToDetail = navController::navigateToDetail,
         ) {
-            detailPage()
+            detailPage(
+                onBackClick = navController::popBackStack,
+            )
         }
         mapPage()
         catalogPage()

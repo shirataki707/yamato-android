@@ -1,27 +1,25 @@
 package jp.shirataki707.yamato.feature.home.main.ui
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import jp.shirataki707.yamato.core.common.network.Dispatcher
+import jp.shirataki707.yamato.core.common.network.YamatoDispatchers
 import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
 import jp.shirataki707.yamato.core.model.data.VideoResources
-import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class HomePageViewModel @Inject constructor(
+    @Dispatcher(YamatoDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
     private val videoResourceRepository: VideoResourceRepository,
 ) : ViewModel() {
 
@@ -48,89 +46,12 @@ class HomePageViewModel @Inject constructor(
 
             isLoading = true
 
-            // TODO: ネストが深いのと、ハードコードのテキストがあるので修正する
-            videoResources = withContext(Dispatchers.IO) {
-                val videoCarouselBlockTypes =
-                    videoResourceRepository.getVideoCarouselBlockTypeList()
-                Log.d("HomePageViewModel", "videoCarouselBlockTypes: $videoCarouselBlockTypes")
-
-                val deferredCarouselBlocks = coroutineScope {
-                    videoCarouselBlockTypes.map { blockType ->
-                        async {
-                            when (blockType) {
-                                is VideoResources.VideoCarouselBlockType.Recommended -> {
-                                    // TODO: Implement recommendation logic
-                                    videoResourceRepository.getVideoSummariesByKeyword(keyword = "登山")
-                                }
-
-                                is VideoResources.VideoCarouselBlockType.Popular -> {
-                                    // TODO: Implement popularity logic
-                                    videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = "日本百名山 登山",
-                                        order = YoutubeSearchApiRequest.Order.VIEW_COUNT,
-                                    )
-                                }
-
-                                is VideoResources.VideoCarouselBlockType.Latest -> {
-                                    videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = "日本百名山　登山",
-                                        order = YoutubeSearchApiRequest.Order.DATE,
-                                    )
-                                }
-
-                                is VideoResources.VideoCarouselBlockType.Mountain -> {
-                                    videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = "${blockType.mountainName} 登山",
-                                    )
-                                }
-
-                                is VideoResources.VideoCarouselBlockType.Channel -> {
-                                    videoResourceRepository.getVideoSummariesByKeyword(
-                                        keyword = "登山",
-                                        channelId = blockType.channelId,
-                                    )
-                                }
-                            }
-                        }
-                    }.awaitAll()
-                }
-
-                Log.d("HomePageViewModel", "deferredCarouselBlocks: $deferredCarouselBlocks")
-
-                ParcelableResult.Success(
-                    VideoResources(
-                        videoCarouselBlocks = videoCarouselBlockTypes.mapIndexed { index, blockType ->
-                            VideoResources.VideoCarouselBlock(
-                                blockTitle = when (blockType) {
-                                    is VideoResources.VideoCarouselBlockType.Recommended -> {
-                                        "おすすめ"
-                                    }
-
-                                    is VideoResources.VideoCarouselBlockType.Latest -> {
-                                        "最新"
-                                    }
-
-                                    is VideoResources.VideoCarouselBlockType.Popular -> {
-                                        "人気"
-                                    }
-
-                                    is VideoResources.VideoCarouselBlockType.Mountain -> {
-                                        blockType.mountainName
-                                    }
-
-                                    is VideoResources.VideoCarouselBlockType.Channel -> {
-                                        deferredCarouselBlocks[index].first().channelName
-                                    }
-                                },
-                                blockType = blockType,
-                                videoSummaries = deferredCarouselBlocks[index],
-                            )
-                        },
-                    ),
-                )
+            videoResources = withContext(ioDispatcher) {
+                ParcelableResult.Success(videoResourceRepository.getCarouselBlockVideoResources())
             }
 
             isLoading = false
         }
     }
 }
+

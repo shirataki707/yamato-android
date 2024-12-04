@@ -30,7 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import jp.shirataki707.feature.mountain.R
-import jp.shirataki707.yamato.core.common.ResourceUtils
+import jp.shirataki707.yamato.core.common.utils.ResourceUtils
 import jp.shirataki707.yamato.core.designsystem.icon.YamatoIcons
 import jp.shirataki707.yamato.core.model.data.Mountain
 
