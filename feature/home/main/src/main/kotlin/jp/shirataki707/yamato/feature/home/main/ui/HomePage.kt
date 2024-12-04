@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import jp.shirataki707.yamato.core.model.data.DetailPageConfig
+import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
 import jp.shirataki707.yamato.feature.home.main.ui.section.HomeInitialSection
 import jp.shirataki707.yamato.feature.home.main.ui.section.HomeInitialSectionState
 import jp.shirataki707.yamato.feature.home.main.ui.section.HomeLoadedSection

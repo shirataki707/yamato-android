@@ -1,14 +1,15 @@
 package jp.shirataki707.yamato.core.data.repository
 
 import jp.shirataki707.yamato.core.data.VideoResourceManager.getVideoCarouselBlockTypeList
-import jp.shirataki707.yamato.core.model.data.DetailPageConfig
-import jp.shirataki707.yamato.core.model.data.VideoResources
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Channel
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Latest
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Mountain
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Popular
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Recommended
+import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
+import jp.shirataki707.yamato.core.model.data.video.VideoResources
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlock
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Channel
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Latest
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Mountain
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Popular
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Recommended
 import jp.shirataki707.yamato.core.network.youtube.YoutubeDataSource
 import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest
 import kotlinx.coroutines.async
@@ -88,7 +89,7 @@ internal class VideoResourceRepositoryImpl @Inject constructor(
                         deferredCarouselBlocks[index].first().channelName
                     }
                 }
-                VideoResources.VideoCarouselBlock(
+                VideoCarouselBlock(
                     blockTitle = blockTitle,
                     blockType = blockType,
                     videoSummaries = deferredCarouselBlocks[index],

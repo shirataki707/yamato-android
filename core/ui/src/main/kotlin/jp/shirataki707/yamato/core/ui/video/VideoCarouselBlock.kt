@@ -12,8 +12,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.shirataki707.core.ui.R
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
-import jp.shirataki707.yamato.core.model.data.DetailPageConfig
-import jp.shirataki707.yamato.core.model.data.VideoResources
+import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
+import jp.shirataki707.yamato.core.model.data.video.VideoResources
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Recommended
 import jp.shirataki707.yamato.core.ui.video.component.VideoCarouselBlockHeader
 import jp.shirataki707.yamato.core.ui.video.component.VideoCarouselBlockItem
 
@@ -76,7 +77,7 @@ private fun VideoCarouselBlockPreview() {
                 ),
                 detailPageConfig = DetailPageConfig(
                     detailPageTitle = "おすすめ",
-                    carouselBlockType = VideoResources.VideoCarouselBlockType.Recommended,
+                    carouselBlockType = Recommended,
                     keyword = "登山",
                 ),
             ),

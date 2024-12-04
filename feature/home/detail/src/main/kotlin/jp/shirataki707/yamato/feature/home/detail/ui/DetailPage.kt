@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import jp.shirataki707.yamato.core.designsystem.component.CanBackTopBar
-import jp.shirataki707.yamato.core.model.data.DetailPageConfig
+import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
 import jp.shirataki707.yamato.feature.home.detail.ui.section.DetailInitialSection
 import jp.shirataki707.yamato.feature.home.detail.ui.section.DetailInitialSectionState
 import jp.shirataki707.yamato.feature.home.detail.ui.section.DetailLoadedSection

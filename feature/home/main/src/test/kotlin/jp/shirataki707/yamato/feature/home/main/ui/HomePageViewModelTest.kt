@@ -1,9 +1,12 @@
 package jp.shirataki707.yamato.feature.home.main.ui
 
 import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
-import jp.shirataki707.yamato.core.model.data.DetailPageConfig
-import jp.shirataki707.yamato.core.model.data.VideoResources
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Recommended
+import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
+import jp.shirataki707.yamato.core.model.data.video.VideoResources
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlock
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlock.VideoSummary
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Mountain
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Recommended
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -97,11 +100,11 @@ class HomePageViewModelTest {
         whenever(videoResourceRepository.getCarouselBlockVideoResources()).thenReturn(
             VideoResources(
                 videoCarouselBlocks = listOf(
-                    VideoResources.VideoCarouselBlock(
+                    VideoCarouselBlock(
                         blockTitle = "おすすめ",
                         blockType = Recommended,
                         videoSummaries = listOf(
-                            VideoResources.VideoCarouselBlock.VideoSummary(
+                            VideoSummary(
                                 videoTitle = "title",
                                 channelName = "channel",
                                 description = "description",
@@ -118,13 +121,13 @@ class HomePageViewModelTest {
                             order = null,
                         ),
                     ),
-                    VideoResources.VideoCarouselBlock(
+                    VideoCarouselBlock(
                         blockTitle = "富士山",
-                        blockType = VideoResources.VideoCarouselBlockType.Mountain("mountain"),
+                        blockType = Mountain("mountain"),
                         videoSummaries = emptyList(),
                         detailPageConfig = DetailPageConfig(
                             detailPageTitle = "mountain",
-                            carouselBlockType = VideoResources.VideoCarouselBlockType.Mountain("mountain"),
+                            carouselBlockType = Mountain("mountain"),
                             keyword = "keyword",
                             channelId = null,
                             order = null,
@@ -141,11 +144,11 @@ class HomePageViewModelTest {
         val expected = ParcelableResult.Success(
             VideoResources(
                 videoCarouselBlocks = listOf(
-                    VideoResources.VideoCarouselBlock(
+                    VideoCarouselBlock(
                         blockTitle = "おすすめ",
                         blockType = Recommended,
                         videoSummaries = listOf(
-                            VideoResources.VideoCarouselBlock.VideoSummary(
+                            VideoSummary(
                                 videoTitle = "title",
                                 channelName = "channel",
                                 description = "description",
@@ -162,13 +165,13 @@ class HomePageViewModelTest {
                             order = null,
                         ),
                     ),
-                    VideoResources.VideoCarouselBlock(
+                    VideoCarouselBlock(
                         blockTitle = "富士山",
-                        blockType = VideoResources.VideoCarouselBlockType.Mountain("mountain"),
+                        blockType = Mountain("mountain"),
                         videoSummaries = emptyList(),
                         detailPageConfig = DetailPageConfig(
                             detailPageTitle = "mountain",
-                            carouselBlockType = VideoResources.VideoCarouselBlockType.Mountain("mountain"),
+                            carouselBlockType = Mountain("mountain"),
                             keyword = "keyword",
                             channelId = null,
                             order = null,

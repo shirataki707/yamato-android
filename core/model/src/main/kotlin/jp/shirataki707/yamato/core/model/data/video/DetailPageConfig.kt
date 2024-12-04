@@ -1,7 +1,7 @@
-package jp.shirataki707.yamato.core.model.data
+package jp.shirataki707.yamato.core.model.data.video
 
 import android.os.Parcelable
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType
 import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest.Order
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable

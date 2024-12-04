@@ -2,7 +2,7 @@ package jp.shirataki707.yamato.feature.home.detail.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import jp.shirataki707.yamato.core.model.data.DetailPageConfig
+import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
 import jp.shirataki707.yamato.feature.home.detail.ui.section.DetailContentSectionState
 import jp.shirataki707.yamato.feature.home.detail.ui.section.rememberDetailInitialSectionState

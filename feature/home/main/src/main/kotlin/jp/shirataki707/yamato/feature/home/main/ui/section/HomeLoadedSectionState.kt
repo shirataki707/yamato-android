@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import jp.shirataki707.yamato.core.common.utils.VideoUtils.openYoutubeVideo
-import jp.shirataki707.yamato.core.model.data.DetailPageConfig
-import jp.shirataki707.yamato.core.model.data.VideoResources
+import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
+import jp.shirataki707.yamato.core.model.data.video.VideoResources
 
 internal data class HomeLoadedSectionState(
     val videoResources: VideoResources,

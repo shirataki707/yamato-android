@@ -6,7 +6,7 @@ import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import jp.shirataki707.yamato.core.common.navigation.CustomNavType
-import jp.shirataki707.yamato.core.model.data.DetailPageConfig
+import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
 import jp.shirataki707.yamato.feature.home.detail.ui.DetailPageHost
 import kotlinx.serialization.Serializable
 import kotlin.reflect.typeOf

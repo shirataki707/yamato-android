@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.core.model.data
+package jp.shirataki707.yamato.core.model.data.video
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

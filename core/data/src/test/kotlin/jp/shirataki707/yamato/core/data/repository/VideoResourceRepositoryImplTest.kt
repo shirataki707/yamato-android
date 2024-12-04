@@ -1,6 +1,6 @@
 package jp.shirataki707.yamato.core.data.repository
 
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlock.VideoSummary
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlock.VideoSummary
 import jp.shirataki707.yamato.core.network.youtube.YoutubeDataSource
 import jp.shirataki707.yamato.core.network.youtube.model.Snippet
 import jp.shirataki707.yamato.core.network.youtube.model.Snippet.Thumbnails

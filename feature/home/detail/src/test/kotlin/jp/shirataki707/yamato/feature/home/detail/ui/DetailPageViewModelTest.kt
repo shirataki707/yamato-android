@@ -1,9 +1,11 @@
 package jp.shirataki707.yamato.feature.home.detail.ui
 
 import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
-import jp.shirataki707.yamato.core.model.data.DetailPageConfig
-import jp.shirataki707.yamato.core.model.data.DetailVideoResources
-import jp.shirataki707.yamato.core.model.data.VideoResources
+import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
+import jp.shirataki707.yamato.core.model.data.video.DetailVideoResources
+import jp.shirataki707.yamato.core.model.data.video.VideoResources
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlock.VideoSummary
+import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Recommended
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -128,7 +130,7 @@ class DetailPageViewModelTest {
             DetailVideoResources(
                 detailPageTitle = "おすすめ",
                 videoSummaries = listOf(
-                    VideoResources.VideoCarouselBlock.VideoSummary(
+                    VideoSummary(
                         videoTitle = "title1",
                         channelName = "channel1",
                         description = "description1",
@@ -136,7 +138,7 @@ class DetailPageViewModelTest {
                         videoId = "videoId1",
                         publishedAt = "publishedAt1",
                     ),
-                    VideoResources.VideoCarouselBlock.VideoSummary(
+                    VideoSummary(
                         videoTitle = "title2",
                         channelName = "channel2",
                         description = "description2",
@@ -172,7 +174,7 @@ class DetailPageViewModelTest {
 
     private val detailPageConfig = DetailPageConfig(
         detailPageTitle = "おすすめ",
-        carouselBlockType = VideoResources.VideoCarouselBlockType.Recommended,
+        carouselBlockType = Recommended,
         keyword = "keyword",
     )
 }

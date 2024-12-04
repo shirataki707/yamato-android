@@ -9,7 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.shirataki707.yamato.core.common.network.Dispatcher
 import jp.shirataki707.yamato.core.common.network.YamatoDispatchers
 import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
-import jp.shirataki707.yamato.core.model.data.VideoResources
+import jp.shirataki707.yamato.core.model.data.video.VideoResources
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
