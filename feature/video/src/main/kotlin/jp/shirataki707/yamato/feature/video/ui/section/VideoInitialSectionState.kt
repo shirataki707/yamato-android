@@ -1,25 +1,25 @@
-package jp.shirataki707.yamato.feature.home.ui.section
+package jp.shirataki707.yamato.feature.video.ui.section
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
-import jp.shirataki707.yamato.feature.home.model.VideoResources
+import jp.shirataki707.yamato.feature.video.model.VideoResources
 
-internal data class HomeInitialSectionState(
+internal data class VideoInitialSectionState(
     val videoResources: ParcelableResult<VideoResources>?,
     val initialLoadIfNeeded: () -> Unit,
-) : HomeContentSectionState
+) : VideoContentSectionState
 
 @Composable
-internal fun rememberHomeInitialSectionState(
+internal fun rememberVideoInitialSectionState(
     videoResources: ParcelableResult<VideoResources>?,
     initialLoadIfNeeded: () -> Unit,
-): HomeInitialSectionState {
+): VideoInitialSectionState {
     return remember(
         videoResources,
         initialLoadIfNeeded,
     ) {
-        HomeInitialSectionState(
+        VideoInitialSectionState(
             videoResources = videoResources,
             initialLoadIfNeeded = initialLoadIfNeeded,
         )

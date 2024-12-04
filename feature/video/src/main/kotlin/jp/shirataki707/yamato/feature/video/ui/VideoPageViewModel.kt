@@ -9,14 +9,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.shirataki707.yamato.core.common.network.Dispatcher
 import jp.shirataki707.yamato.core.common.network.YamatoDispatchers
 import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
-import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
-import jp.shirataki707.yamato.core.model.data.video.DetailVideoResources
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Channel
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Latest
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Mountain
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Popular
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Recommended
+import jp.shirataki707.yamato.core.model.data.Video.VideoBlockInfo
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Channel
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Latest
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Mountain
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Popular
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Recommended
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
+import jp.shirataki707.yamato.feature.video.model.VideoResources
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
@@ -24,7 +24,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailPageViewModel @Inject constructor(
+internal class VideoPageViewModel @Inject constructor(
     @Dispatcher(YamatoDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
     private val videoResourceRepository: VideoResourceRepository,
 ) : ViewModel() {
@@ -32,71 +32,71 @@ class DetailPageViewModel @Inject constructor(
     var isLoading by mutableStateOf(false)
         private set
 
-    var detailVideoResources: ParcelableResult<DetailVideoResources>? by mutableStateOf(null)
+    var videoResources: ParcelableResult<VideoResources>? by mutableStateOf(null)
         private set
 
-    fun initialLoadIfNeeded(detailPageConfig: DetailPageConfig) {
+    fun initialLoadIfNeeded(videoBlockInfo: VideoBlockInfo) {
         viewModelScope.launch(
             CoroutineExceptionHandler { _, _ ->
                 isLoading = false
-                detailVideoResources = ParcelableResult.Failure()
+                videoResources = ParcelableResult.Failure()
             },
         ) {
             if (isLoading) {
                 return@launch
             }
 
-            if (detailVideoResources is ParcelableResult.Success) {
+            if (videoResources is ParcelableResult.Success) {
                 return@launch
             }
 
             isLoading = true
 
             val videoSummaries = withContext(ioDispatcher) {
-                when (detailPageConfig.carouselBlockType) {
+                when (videoBlockInfo.videoCarouselBlockType) {
                     Recommended -> {
                         videoResourceRepository.getVideoSummariesByKeyword(
-                            keyword = detailPageConfig.keyword,
+                            keyword = videoBlockInfo.searchKeyword,
                             maxResults = 30,
                         )
                     }
 
                     Popular -> {
                         videoResourceRepository.getVideoSummariesByKeyword(
-                            keyword = detailPageConfig.keyword,
-                            order = detailPageConfig.order,
+                            keyword = videoBlockInfo.searchKeyword,
+                            order = videoBlockInfo.searchOrder,
                             maxResults = 30,
                         )
                     }
 
                     Latest -> {
                         videoResourceRepository.getVideoSummariesByKeyword(
-                            keyword = detailPageConfig.keyword,
-                            order = detailPageConfig.order,
+                            keyword = videoBlockInfo.searchKeyword,
+                            order = videoBlockInfo.searchOrder,
                             maxResults = 30,
                         )
                     }
 
                     is Mountain -> {
                         videoResourceRepository.getVideoSummariesByKeyword(
-                            keyword = detailPageConfig.keyword,
+                            keyword = videoBlockInfo.searchKeyword,
                             maxResults = 30,
                         )
                     }
 
                     is Channel -> {
                         videoResourceRepository.getVideoSummariesByKeyword(
-                            keyword = detailPageConfig.keyword,
-                            channelId = detailPageConfig.channelId,
+                            keyword = videoBlockInfo.searchKeyword,
+                            channelId = videoBlockInfo.searchChannelId,
                             maxResults = 30,
                         )
                     }
                 }
             }
 
-            detailVideoResources = ParcelableResult.Success(
-                DetailVideoResources(
-                    detailPageTitle = detailPageConfig.detailPageTitle,
+            videoResources = ParcelableResult.Success(
+                VideoResources(
+                    videoPageTitle = videoBlockInfo.videoBlockTitle,
                     videoSummaries = videoSummaries,
                 ),
             )

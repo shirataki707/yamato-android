@@ -1,13 +1,14 @@
-package jp.shirataki707.yamato.feature.home.main.ui
+package jp.shirataki707.yamato.feature.home
 
 import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
-import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
-import jp.shirataki707.yamato.core.model.data.video.VideoResources
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlock
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlock.VideoSummary
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Mountain
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Recommended
+import jp.shirataki707.yamato.core.model.data.Video
+import jp.shirataki707.yamato.core.model.data.Video.VideoBlockInfo
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Mountain
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Recommended
+import jp.shirataki707.yamato.core.model.data.Video.VideoSummary
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
+import jp.shirataki707.yamato.feature.home.model.VideoResources
+import jp.shirataki707.yamato.feature.home.ui.HomePageViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -57,8 +58,36 @@ class HomePageViewModelTest {
     fun isLoading_afterInitialLoadSuccess_false() = runTest {
         // Arrange
         whenever(videoResourceRepository.getCarouselBlockVideoResources()).thenReturn(
-            VideoResources(
-                videoCarouselBlocks = emptyList(),
+            listOf(
+                Video(
+                    videoSummaries = listOf(
+                        VideoSummary(
+                            videoTitle = "title",
+                            channelName = "channel",
+                            description = "description",
+                            thumbnailUrl = "thumbnailUrl",
+                            videoId = "videoId",
+                            publishedAt = "publishedAt",
+                        ),
+                    ),
+                    videoBlockInfo = VideoBlockInfo(
+                        videoBlockTitle = "おすすめ",
+                        videoCarouselBlockType = Recommended,
+                        searchKeyword = "searchKeyword",
+                        searchChannelId = null,
+                        searchOrder = null,
+                    ),
+                ),
+                Video(
+                    videoSummaries = emptyList(),
+                    videoBlockInfo = VideoBlockInfo(
+                        videoBlockTitle = "mountain",
+                        videoCarouselBlockType = Mountain("mountain"),
+                        searchKeyword = "searchKeyword",
+                        searchChannelId = null,
+                        searchOrder = null,
+                    ),
+                ),
             ),
         )
 
@@ -98,40 +127,34 @@ class HomePageViewModelTest {
     fun videoResources_afterInitialLoadSuccess_parcelableResultSuccess() = runTest {
         // Arrange
         whenever(videoResourceRepository.getCarouselBlockVideoResources()).thenReturn(
-            VideoResources(
-                videoCarouselBlocks = listOf(
-                    VideoCarouselBlock(
-                        blockTitle = "おすすめ",
-                        blockType = Recommended,
-                        videoSummaries = listOf(
-                            VideoSummary(
-                                videoTitle = "title",
-                                channelName = "channel",
-                                description = "description",
-                                thumbnailUrl = "thumbnailUrl",
-                                videoId = "videoId",
-                                publishedAt = "publishedAt",
-                            ),
-                        ),
-                        detailPageConfig = DetailPageConfig(
-                            detailPageTitle = "おすすめ",
-                            carouselBlockType = Recommended,
-                            keyword = "keyword",
-                            channelId = null,
-                            order = null,
+            listOf(
+                Video(
+                    videoSummaries = listOf(
+                        VideoSummary(
+                            videoTitle = "title",
+                            channelName = "channel",
+                            description = "description",
+                            thumbnailUrl = "thumbnailUrl",
+                            videoId = "videoId",
+                            publishedAt = "publishedAt",
                         ),
                     ),
-                    VideoCarouselBlock(
-                        blockTitle = "富士山",
-                        blockType = Mountain("mountain"),
-                        videoSummaries = emptyList(),
-                        detailPageConfig = DetailPageConfig(
-                            detailPageTitle = "mountain",
-                            carouselBlockType = Mountain("mountain"),
-                            keyword = "keyword",
-                            channelId = null,
-                            order = null,
-                        ),
+                    videoBlockInfo = VideoBlockInfo(
+                        videoBlockTitle = "おすすめ",
+                        videoCarouselBlockType = Recommended,
+                        searchKeyword = "searchKeyword",
+                        searchChannelId = null,
+                        searchOrder = null,
+                    ),
+                ),
+                Video(
+                    videoSummaries = emptyList(),
+                    videoBlockInfo = VideoBlockInfo(
+                        videoBlockTitle = "mountain",
+                        videoCarouselBlockType = Mountain("mountain"),
+                        searchKeyword = "searchKeyword",
+                        searchChannelId = null,
+                        searchOrder = null,
                     ),
                 ),
             ),
@@ -143,10 +166,8 @@ class HomePageViewModelTest {
         // Assert
         val expected = ParcelableResult.Success(
             VideoResources(
-                videoCarouselBlocks = listOf(
-                    VideoCarouselBlock(
-                        blockTitle = "おすすめ",
-                        blockType = Recommended,
+                videos = listOf(
+                    Video(
                         videoSummaries = listOf(
                             VideoSummary(
                                 videoTitle = "title",
@@ -157,24 +178,22 @@ class HomePageViewModelTest {
                                 publishedAt = "publishedAt",
                             ),
                         ),
-                        detailPageConfig = DetailPageConfig(
-                            detailPageTitle = "おすすめ",
-                            carouselBlockType = Recommended,
-                            keyword = "keyword",
-                            channelId = null,
-                            order = null,
+                        videoBlockInfo = VideoBlockInfo(
+                            videoBlockTitle = "おすすめ",
+                            videoCarouselBlockType = Recommended,
+                            searchKeyword = "searchKeyword",
+                            searchChannelId = null,
+                            searchOrder = null,
                         ),
                     ),
-                    VideoCarouselBlock(
-                        blockTitle = "富士山",
-                        blockType = Mountain("mountain"),
+                    Video(
                         videoSummaries = emptyList(),
-                        detailPageConfig = DetailPageConfig(
-                            detailPageTitle = "mountain",
-                            carouselBlockType = Mountain("mountain"),
-                            keyword = "keyword",
-                            channelId = null,
-                            order = null,
+                        videoBlockInfo = VideoBlockInfo(
+                            videoBlockTitle = "mountain",
+                            videoCarouselBlockType = Mountain("mountain"),
+                            searchKeyword = "searchKeyword",
+                            searchChannelId = null,
+                            searchOrder = null,
                         ),
                     ),
                 ),

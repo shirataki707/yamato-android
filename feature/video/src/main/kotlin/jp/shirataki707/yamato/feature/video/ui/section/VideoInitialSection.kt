@@ -7,11 +7,11 @@ import jp.shirataki707.yamato.core.ui.common.CommonErrorContent
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
 
 @Composable
-internal fun DetailInitialSection(
-    sectionState: DetailInitialSectionState,
+internal fun VideoInitialSection(
+    sectionState: VideoInitialSectionState,
     modifier: Modifier = Modifier,
 ) {
-    if (sectionState.detailVideoResources is ParcelableResult.Failure) {
+    if (sectionState.videoResources is ParcelableResult.Failure) {
         CommonErrorContent(
             onReloadButtonClick = sectionState.initialLoadIfNeeded,
             modifier = modifier.fillMaxSize(),

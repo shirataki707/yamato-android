@@ -9,8 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-internal fun DetailLoadingSection(
-    sectionState: DetailLoadingSectionState,
+internal fun VideoLoadingSection(
+    sectionState: VideoLoadingSectionState,
     modifier: Modifier = Modifier,
 ) {
     Box(

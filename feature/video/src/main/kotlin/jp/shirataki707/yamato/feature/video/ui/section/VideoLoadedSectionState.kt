@@ -4,17 +4,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import jp.shirataki707.yamato.core.common.utils.VideoUtils.openYoutubeVideo
-import jp.shirataki707.yamato.core.model.data.video.DetailVideoResources
+import jp.shirataki707.yamato.feature.video.model.VideoResources
 
-internal data class DetailLoadedSectionState(
-    val detailVideoResources: DetailVideoResources,
+internal data class VideoLoadedSectionState(
+    val videoResources: VideoResources,
     val onVideoClick: (videoId: String) -> Unit,
-) : DetailContentSectionState
+) : VideoContentSectionState
 
 @Composable
-internal fun rememberDetailLoadedSectionState(
-    detailVideoResources: DetailVideoResources,
-): DetailLoadedSectionState {
+internal fun rememberVideoLoadedSectionState(
+    videoResources: VideoResources,
+): VideoLoadedSectionState {
     val context = LocalContext.current
 
     val onVideoClick = { videoId: String ->
@@ -22,10 +22,10 @@ internal fun rememberDetailLoadedSectionState(
     }
 
     return remember(
-        detailVideoResources,
+        videoResources,
     ) {
-        DetailLoadedSectionState(
-            detailVideoResources = detailVideoResources,
+        VideoLoadedSectionState(
+            videoResources = videoResources,
             onVideoClick = onVideoClick,
         )
     }

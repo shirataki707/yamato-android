@@ -1,6 +1,6 @@
 package jp.shirataki707.yamato.core.data.repository
 
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlock.VideoSummary
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlock.VideoSummary
 import jp.shirataki707.yamato.core.network.youtube.YoutubeDataSource
 import jp.shirataki707.yamato.core.network.youtube.model.Snippet
 import jp.shirataki707.yamato.core.network.youtube.model.Snippet.Thumbnails
@@ -43,7 +43,7 @@ class VideoResourceRepositoryImplTest {
                         ),
                         snippet = Snippet(
                             publishedAt = "2021-01-01T00:00:00Z",
-                            channelId = "channelId",
+                            channelId = "searchChannelId",
                             title = "登山やってみた",
                             description = "富士山に登りました",
                             thumbnails = Thumbnails(
@@ -71,7 +71,7 @@ class VideoResourceRepositoryImplTest {
         )
 
         // Act
-        val response = videoResourceRepository.getVideoSummariesByKeyword("keyword")
+        val response = videoResourceRepository.getVideoSummariesByKeyword("searchKeyword")
 
         // Assert
         val expected = VideoSummary(
@@ -92,7 +92,4 @@ class VideoResourceRepositoryImplTest {
     @Test
     fun getCarouselBlockVideoResources_returnVideoResources() = runTest {
     }
-
 }
-
-

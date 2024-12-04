@@ -1,12 +1,14 @@
-package jp.shirataki707.yamato.feature.home.detail.ui
+package jp.shirataki707.yamato.feature.video
 
 import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
-import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
-import jp.shirataki707.yamato.core.model.data.video.DetailVideoResources
-import jp.shirataki707.yamato.core.model.data.video.VideoResources
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlock.VideoSummary
-import jp.shirataki707.yamato.core.model.data.video.VideoResources.VideoCarouselBlockType.Recommended
+import jp.shirataki707.yamato.core.model.data.Video
+import jp.shirataki707.yamato.core.model.data.Video.VideoBlockInfo
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Mountain
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Recommended
+import jp.shirataki707.yamato.core.model.data.Video.VideoSummary
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
+import jp.shirataki707.yamato.feature.video.model.VideoResources
+import jp.shirataki707.yamato.feature.video.ui.VideoPageViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -21,12 +23,12 @@ import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.whenever
 
-class DetailPageViewModelTest {
+internal class VideoPageViewModelTest {
 
     @Mock
     private lateinit var videoResourceRepository: VideoResourceRepository
 
-    private lateinit var detailPageViewModel: jp.shirataki707.yamato.feature.video.ui.DetailPageViewModel
+    private lateinit var videoPageViewModel: VideoPageViewModel
 
     private val testDispatcher = UnconfinedTestDispatcher()
 
@@ -34,7 +36,7 @@ class DetailPageViewModelTest {
     fun setUp() {
         MockitoAnnotations.openMocks(this)
         Dispatchers.setMain(testDispatcher)
-        detailPageViewModel = jp.shirataki707.yamato.feature.video.ui.DetailPageViewModel(
+        videoPageViewModel = VideoPageViewModel(
             ioDispatcher = testDispatcher,
             videoResourceRepository = videoResourceRepository,
         )
@@ -48,7 +50,7 @@ class DetailPageViewModelTest {
     @Test
     fun isLoading_initialValue_false() {
         val expected = false
-        val actual = detailPageViewModel.isLoading
+        val actual = videoPageViewModel.isLoading
         assertEquals(expected, actual)
     }
 
@@ -56,17 +58,45 @@ class DetailPageViewModelTest {
     fun isLoading_afterInitialLoadSuccess_false() = runTest {
         // Arrange
         whenever(videoResourceRepository.getCarouselBlockVideoResources()).thenReturn(
-            VideoResources(
-                videoCarouselBlocks = emptyList(),
+            listOf(
+                Video(
+                    videoSummaries = listOf(
+                        VideoSummary(
+                            videoTitle = "title",
+                            channelName = "channel",
+                            description = "description",
+                            thumbnailUrl = "thumbnailUrl",
+                            videoId = "videoId",
+                            publishedAt = "publishedAt",
+                        ),
+                    ),
+                    videoBlockInfo = VideoBlockInfo(
+                        videoBlockTitle = "おすすめ",
+                        videoCarouselBlockType = Recommended,
+                        searchKeyword = "searchKeyword",
+                        searchChannelId = null,
+                        searchOrder = null,
+                    ),
+                ),
+                Video(
+                    videoSummaries = emptyList(),
+                    videoBlockInfo = VideoBlockInfo(
+                        videoBlockTitle = "mountain",
+                        videoCarouselBlockType = Mountain("mountain"),
+                        searchKeyword = "searchKeyword",
+                        searchChannelId = null,
+                        searchOrder = null,
+                    ),
+                ),
             ),
         )
 
         // Act
-        detailPageViewModel.initialLoadIfNeeded(detailPageConfig)
+        videoPageViewModel.initialLoadIfNeeded(videoBlockInfo)
 
         // Assert
         val expected = false
-        val actual = detailPageViewModel.isLoading
+        val actual = videoPageViewModel.isLoading
         assertEquals(expected, actual)
     }
 
@@ -78,18 +108,18 @@ class DetailPageViewModelTest {
         )
 
         // Act
-        detailPageViewModel.initialLoadIfNeeded(detailPageConfig)
+        videoPageViewModel.initialLoadIfNeeded(videoBlockInfo)
 
         // Assert
         val expected = false
-        val actual = detailPageViewModel.isLoading
+        val actual = videoPageViewModel.isLoading
         assertEquals(expected, actual)
     }
 
     @Test
     fun detailVideoResources_initialValue_null() {
         val expected = null
-        val actual = detailPageViewModel.detailVideoResources
+        val actual = videoPageViewModel.videoResources
         assertEquals(expected, actual)
     }
 
@@ -98,12 +128,12 @@ class DetailPageViewModelTest {
         // Arrange
         whenever(
             videoResourceRepository.getVideoSummariesByKeyword(
-                keyword = "keyword",
+                keyword = "searchKeyword",
                 maxResults = 30,
             ),
         ).thenReturn(
             listOf(
-                VideoResources.VideoCarouselBlock.VideoSummary(
+                VideoSummary(
                     videoTitle = "title1",
                     channelName = "channel1",
                     description = "description1",
@@ -111,7 +141,7 @@ class DetailPageViewModelTest {
                     videoId = "videoId1",
                     publishedAt = "publishedAt1",
                 ),
-                VideoResources.VideoCarouselBlock.VideoSummary(
+                VideoSummary(
                     videoTitle = "title2",
                     channelName = "channel2",
                     description = "description2",
@@ -123,12 +153,12 @@ class DetailPageViewModelTest {
         )
 
         // Act
-        detailPageViewModel.initialLoadIfNeeded(detailPageConfig)
+        videoPageViewModel.initialLoadIfNeeded(videoBlockInfo)
 
         // Assert
         val expected = ParcelableResult.Success(
-            DetailVideoResources(
-                detailPageTitle = "おすすめ",
+            VideoResources(
+                videoPageTitle = "おすすめ",
                 videoSummaries = listOf(
                     VideoSummary(
                         videoTitle = "title1",
@@ -150,7 +180,7 @@ class DetailPageViewModelTest {
             ),
         )
 
-        val actual = detailPageViewModel.detailVideoResources
+        val actual = videoPageViewModel.videoResources
 
         assertTrue(actual is ParcelableResult.Success)
         assertEquals(expected.result, actual!!.result)
@@ -159,22 +189,22 @@ class DetailPageViewModelTest {
     @Test
     fun detailVideoResources_afterInitialLoadFailure_parcelableResultFailure() = runTest {
         // Arrange
-        whenever(videoResourceRepository.getVideoSummariesByKeyword("keyword")).thenThrow(
+        whenever(videoResourceRepository.getVideoSummariesByKeyword("searchKeyword")).thenThrow(
             RuntimeException(),
         )
 
         // Act
-        detailPageViewModel.initialLoadIfNeeded(detailPageConfig)
+        videoPageViewModel.initialLoadIfNeeded(videoBlockInfo)
 
         // Assert
-        val actual = detailPageViewModel.detailVideoResources
+        val actual = videoPageViewModel.videoResources
 
         assertTrue(actual is ParcelableResult.Failure)
     }
 
-    private val detailPageConfig = DetailPageConfig(
-        detailPageTitle = "おすすめ",
-        carouselBlockType = Recommended,
-        keyword = "keyword",
+    private val videoBlockInfo = VideoBlockInfo(
+        videoBlockTitle = "おすすめ",
+        videoCarouselBlockType = Recommended,
+        searchKeyword = "searchKeyword",
     )
 }

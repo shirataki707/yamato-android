@@ -1,22 +1,22 @@
-package jp.shirataki707.yamato.feature.home.main.ui.section
+package jp.shirataki707.yamato.feature.home.ui.section
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import jp.shirataki707.yamato.core.common.utils.VideoUtils.openYoutubeVideo
-import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
-import jp.shirataki707.yamato.core.model.data.video.VideoResources
+import jp.shirataki707.yamato.core.model.data.Video.VideoBlockInfo
+import jp.shirataki707.yamato.feature.home.model.VideoResources
 
 internal data class HomeLoadedSectionState(
     val videoResources: VideoResources,
     val onVideoClick: (videoId: String) -> Unit,
-    val onMoreButtonClick: (DetailPageConfig) -> Unit,
+    val onMoreButtonClick: (VideoBlockInfo) -> Unit,
 ) : HomeContentSectionState
 
 @Composable
 internal fun rememberHomeLoadedSectionState(
     videoResources: VideoResources,
-    navigateToDetailPage: (DetailPageConfig) -> Unit,
+    navigateToDetailPage: (VideoBlockInfo) -> Unit,
 ): HomeLoadedSectionState {
     val context = LocalContext.current
 
@@ -24,8 +24,8 @@ internal fun rememberHomeLoadedSectionState(
         openYoutubeVideo(context = context, videoId = videoId)
     }
 
-    val onMoreButtonClick = { detailPageConfig: DetailPageConfig ->
-        navigateToDetailPage(detailPageConfig)
+    val onMoreButtonClick = { videoBlockInfo: VideoBlockInfo ->
+        navigateToDetailPage(videoBlockInfo)
     }
 
     return remember(

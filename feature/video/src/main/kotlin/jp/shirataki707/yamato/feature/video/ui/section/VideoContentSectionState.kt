@@ -1,3 +1,3 @@
 package jp.shirataki707.yamato.feature.video.ui.section
 
-internal sealed interface DetailContentSectionState
+internal sealed interface VideoContentSectionState

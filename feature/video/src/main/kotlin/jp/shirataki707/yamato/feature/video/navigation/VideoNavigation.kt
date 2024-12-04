@@ -6,34 +6,34 @@ import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import jp.shirataki707.yamato.core.common.navigation.CustomNavType
-import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
-import jp.shirataki707.yamato.feature.video.ui.DetailPageHost
+import jp.shirataki707.yamato.core.model.data.Video.VideoBlockInfo
+import jp.shirataki707.yamato.feature.video.ui.VideoPageHost
 import kotlinx.serialization.Serializable
 import kotlin.reflect.typeOf
 
 @Serializable
-data class DetailRoute(val detailPageConfig: DetailPageConfig)
+data class VideoRoute(val videoBlockInfo: VideoBlockInfo)
 
-fun NavController.navigateToDetail(
-    detailPageConfig: DetailPageConfig,
+fun NavController.navigateToVideo(
+    videoBlockInfo: VideoBlockInfo,
     navOptions: NavOptionsBuilder.() -> Unit = {},
 ) {
-    navigate(route = DetailRoute(detailPageConfig)) {
+    navigate(route = VideoRoute(videoBlockInfo)) {
         navOptions()
     }
 }
 
-fun NavGraphBuilder.detailPage(
+fun NavGraphBuilder.videoPage(
     onBackClick: () -> Unit,
 ) {
-    composable<DetailRoute>(
+    composable<VideoRoute>(
         typeMap = mapOf(
-            typeOf<DetailPageConfig>() to CustomNavType.nonNullableNavType<DetailPageConfig>(),
+            typeOf<VideoBlockInfo>() to CustomNavType.nonNullableNavType<VideoBlockInfo>(),
         ),
     ) { backStackEntry ->
-        val detailPageConfig = backStackEntry.toRoute<DetailRoute>().detailPageConfig
-        DetailPageHost(
-            detailPageConfig = detailPageConfig,
+        val videoPageConfig = backStackEntry.toRoute<VideoRoute>().videoBlockInfo
+        VideoPageHost(
+            videoBlockInfo = videoPageConfig,
             onBackClick = onBackClick,
         )
     }

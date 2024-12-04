@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import jp.shirataki707.yamato.core.ui.video.component.AsyncVideoThumbnail
 
 @Composable
-internal fun DetailVideoGridItem(
+internal fun VideoGridItem(
     imageUrl: String,
     videoTitle: String,
     videoId: String,
@@ -37,7 +37,7 @@ internal fun DetailVideoGridItem(
             AsyncVideoThumbnail(
                 imageUrl = imageUrl,
                 contentDescription = videoTitle,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
 
             Text(
@@ -70,7 +70,7 @@ internal fun DetailVideoGridItem(
 @Preview
 @Composable
 private fun DetailVideoGridItemPreview() {
-    DetailVideoGridItem(
+    VideoGridItem(
         imageUrl = "https://example",
         videoTitle = "富士山登山やってみた",
         videoId = "123456",

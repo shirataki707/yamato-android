@@ -1,20 +1,20 @@
-package jp.shirataki707.yamato.feature.home.main.ui
+package jp.shirataki707.yamato.feature.home.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
-import jp.shirataki707.yamato.feature.home.main.ui.section.HomeInitialSection
-import jp.shirataki707.yamato.feature.home.main.ui.section.HomeInitialSectionState
-import jp.shirataki707.yamato.feature.home.main.ui.section.HomeLoadedSection
-import jp.shirataki707.yamato.feature.home.main.ui.section.HomeLoadedSectionState
-import jp.shirataki707.yamato.feature.home.main.ui.section.HomeLoadingSection
-import jp.shirataki707.yamato.feature.home.main.ui.section.HomeLoadingSectionState
+import jp.shirataki707.yamato.core.model.data.Video.VideoBlockInfo
+import jp.shirataki707.yamato.feature.home.ui.section.HomeInitialSection
+import jp.shirataki707.yamato.feature.home.ui.section.HomeInitialSectionState
+import jp.shirataki707.yamato.feature.home.ui.section.HomeLoadedSection
+import jp.shirataki707.yamato.feature.home.ui.section.HomeLoadedSectionState
+import jp.shirataki707.yamato.feature.home.ui.section.HomeLoadingSection
+import jp.shirataki707.yamato.feature.home.ui.section.HomeLoadingSectionState
 
 @Composable
-fun HomePageHost(
-    onNavigateToDetail: (DetailPageConfig) -> Unit,
+internal fun HomePageHost(
+    onNavigateToDetail: (VideoBlockInfo) -> Unit,
     modifier: Modifier = Modifier,
     homePageViewModel: HomePageViewModel = hiltViewModel(),
 ) {

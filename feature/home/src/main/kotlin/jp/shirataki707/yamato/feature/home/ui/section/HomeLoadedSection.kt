@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.feature.home.main.ui.section
+package jp.shirataki707.yamato.feature.home.ui.section
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,9 +19,9 @@ internal fun HomeLoadedSection(
             .fillMaxSize()
             .padding(start = 8.dp),
     ) {
-        items(sectionState.videoResources.videoCarouselBlocks) { videoCarouselBlock ->
+        items(sectionState.videoResources.videos) { videoCarouselBlock ->
             VideoCarouselBlock(
-                videoCarouselBlock = videoCarouselBlock,
+                video = videoCarouselBlock,
                 onVideoClick = sectionState.onVideoClick,
                 onMoreButtonClick = sectionState.onMoreButtonClick,
             )

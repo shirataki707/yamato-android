@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.feature.home.main.ui
+package jp.shirataki707.yamato.feature.home.ui
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -9,8 +9,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.shirataki707.yamato.core.common.network.Dispatcher
 import jp.shirataki707.yamato.core.common.network.YamatoDispatchers
 import jp.shirataki707.yamato.core.data.repository.VideoResourceRepository
-import jp.shirataki707.yamato.core.model.data.video.VideoResources
 import jp.shirataki707.yamato.core.ui.common.ParcelableResult
+import jp.shirataki707.yamato.feature.home.model.VideoResources
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class HomePageViewModel @Inject constructor(
+internal class HomePageViewModel @Inject constructor(
     @Dispatcher(YamatoDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
     private val videoResourceRepository: VideoResourceRepository,
 ) : ViewModel() {
@@ -47,11 +47,14 @@ class HomePageViewModel @Inject constructor(
             isLoading = true
 
             videoResources = withContext(ioDispatcher) {
-                ParcelableResult.Success(videoResourceRepository.getCarouselBlockVideoResources())
+                ParcelableResult.Success(
+                    VideoResources(
+                        videos = videoResourceRepository.getCarouselBlockVideoResources(),
+                    ),
+                )
             }
 
             isLoading = false
         }
     }
 }
-

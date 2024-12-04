@@ -1,12 +1,12 @@
-package jp.shirataki707.yamato.feature.home.main.navigation
+package jp.shirataki707.yamato.feature.home.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import jp.shirataki707.yamato.core.model.data.video.DetailPageConfig
-import jp.shirataki707.yamato.feature.home.main.ui.HomePageHost
+import jp.shirataki707.yamato.core.model.data.Video.VideoBlockInfo
+import jp.shirataki707.yamato.feature.home.ui.HomePageHost
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -20,7 +20,7 @@ fun NavController.navigateToHome(navOptions: NavOptions) {
 }
 
 fun NavGraphBuilder.homePage(
-    onNavigateToDetail: (DetailPageConfig) -> Unit,
+    onNavigateToDetail: (VideoBlockInfo) -> Unit,
     detailDestination: NavGraphBuilder.() -> Unit,
 ) {
     navigation<HomeBaseRoute>(startDestination = HomeRoute) {

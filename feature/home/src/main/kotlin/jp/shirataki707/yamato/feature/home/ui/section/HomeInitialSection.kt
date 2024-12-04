@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.feature.home.main.ui.section
+package jp.shirataki707.yamato.feature.home.ui.section
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -11,7 +11,6 @@ internal fun HomeInitialSection(
     sectionState: HomeInitialSectionState,
     modifier: Modifier = Modifier,
 ) {
-    // TODO: Implement the initial section include blank and error
     if (sectionState.videoResources is ParcelableResult.Failure) {
         CommonErrorContent(
             onReloadButtonClick = sectionState.initialLoadIfNeeded,
