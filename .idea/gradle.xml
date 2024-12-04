@@ -36,10 +36,9 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/catalog" />
             <option value="$PROJECT_DIR$/feature/home" />
-            <option value="$PROJECT_DIR$/feature/home/detail" />
-            <option value="$PROJECT_DIR$/feature/home/main" />
             <option value="$PROJECT_DIR$/feature/map" />
             <option value="$PROJECT_DIR$/feature/mountain" />
+            <option value="$PROJECT_DIR$/feature/video" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

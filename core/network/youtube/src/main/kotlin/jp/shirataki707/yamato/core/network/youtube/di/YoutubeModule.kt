@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import jp.shirataki707.yamato.core.common.network.ApiKeyInterceptor
-import jp.shirataki707.yamato.core.network.BuildConfig
+import jp.shirataki707.yamato.core.network.youtube.BuildConfig
 import jp.shirataki707.yamato.core.network.youtube.demo.DemoAssetManager
 import kotlinx.serialization.json.Json
 import okhttp3.Call

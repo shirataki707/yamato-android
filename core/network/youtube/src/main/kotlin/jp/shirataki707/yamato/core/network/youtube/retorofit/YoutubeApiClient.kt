@@ -2,7 +2,7 @@ package jp.shirataki707.yamato.core.network.youtube.retorofit
 
 import androidx.tracing.trace
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import jp.shirataki707.yamato.core.network.BuildConfig
+import jp.shirataki707.yamato.core.network.youtube.BuildConfig
 import jp.shirataki707.yamato.core.network.youtube.YoutubeDataSource
 import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest
 import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiResponse
