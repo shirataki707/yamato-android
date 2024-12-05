@@ -23,16 +23,14 @@ import jp.shirataki707.yamato.core.ui.video.component.VideoCarouselBlockItem
 fun VideoCarouselBlock(
     video: Video,
     onVideoClick: (videoId: String) -> Unit,
-    onMoreButtonClick: (VideoBlockInfo) -> Unit,
+    onMoreButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
         VideoCarouselBlockHeader(
             headerTitle = video.videoBlockInfo.videoBlockTitle,
             buttonText = stringResource(R.string.core_ui_more_show),
-            onButtonClick = {
-                onMoreButtonClick(video.videoBlockInfo)
-            },
+            onButtonClick = onMoreButtonClick,
         )
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),

@@ -23,7 +23,9 @@ internal fun HomeLoadedSection(
             VideoCarouselBlock(
                 video = videoCarouselBlock,
                 onVideoClick = sectionState.onVideoClick,
-                onMoreButtonClick = sectionState.onMoreButtonClick,
+                onMoreButtonClick = {
+                    sectionState.onMoreButtonClick(videoCarouselBlock.videoBlockInfo)
+                },
             )
         }
     }
