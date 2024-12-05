@@ -1,6 +1,6 @@
 package jp.shirataki707.yamato.core.data.repository
 
-import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlock.VideoSummary
+import jp.shirataki707.yamato.core.model.data.Video.VideoSummary
 import jp.shirataki707.yamato.core.network.youtube.YoutubeDataSource
 import jp.shirataki707.yamato.core.network.youtube.model.Snippet
 import jp.shirataki707.yamato.core.network.youtube.model.Snippet.Thumbnails
@@ -15,7 +15,7 @@ import org.mockito.Mockito.mock
 import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 
-class VideoResourceRepositoryImplTest {
+class VideoResourceRepositoryTest {
 
     private lateinit var youtubeDataSource: YoutubeDataSource
     private lateinit var videoResourceRepository: VideoResourceRepositoryImpl
