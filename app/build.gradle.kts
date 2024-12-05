@@ -60,13 +60,14 @@ android {
 
 dependencies {
     // Add other module dependencies here
-    implementation(projects.feature.home.main)
-    implementation(projects.feature.home.detail)
+    implementation(projects.feature.home)
+    implementation(projects.feature.video)
     implementation(projects.feature.map)
     implementation(projects.feature.catalog)
     implementation(projects.feature.mountain)
     implementation(projects.feature.mountain)
     implementation(projects.core.designsystem)
+    implementation(projects.core.model)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3.adaptive)

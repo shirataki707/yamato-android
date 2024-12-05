@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "jp.shirataki707.yamato.core.network"
+    namespace = "jp.shirataki707.yamato.core.network.youtube"
 
     buildFeatures {
         buildConfig = true

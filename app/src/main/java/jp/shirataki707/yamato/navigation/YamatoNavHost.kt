@@ -4,11 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import jp.shirataki707.yamato.feature.catalog.navigation.catalogPage
-import jp.shirataki707.yamato.feature.home.detail.navigation.detailPage
-import jp.shirataki707.yamato.feature.home.detail.navigation.navigateToDetail
-import jp.shirataki707.yamato.feature.home.main.navigation.HomeBaseRoute
-import jp.shirataki707.yamato.feature.home.main.navigation.homePage
+import jp.shirataki707.yamato.feature.home.navigation.HomeBaseRoute
+import jp.shirataki707.yamato.feature.home.navigation.homePage
 import jp.shirataki707.yamato.feature.map.navigation.mapPage
+import jp.shirataki707.yamato.feature.video.navigation.navigateToVideo
+import jp.shirataki707.yamato.feature.video.navigation.videoPage
 import jp.shirataki707.yamato.ui.YamatoAppState
 
 @Composable
@@ -22,10 +22,10 @@ fun YamatoNavHost(
         startDestination = HomeBaseRoute,
         modifier = modifier,
     ) {
-        homePage(
-            onNavigateToDetail = navController::navigateToDetail,
-        ) {
-            detailPage()
+        homePage(onNavigateToDetail = navController::navigateToVideo) {
+            videoPage(
+                onBackClick = navController::popBackStack,
+            )
         }
         mapPage()
         catalogPage()

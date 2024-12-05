@@ -13,4 +13,6 @@ dependencies {
     api(projects.core.model)
 
     implementation(libs.coil.kt.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 }

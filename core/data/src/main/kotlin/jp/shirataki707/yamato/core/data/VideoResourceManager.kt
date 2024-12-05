@@ -1,6 +1,6 @@
 package jp.shirataki707.yamato.core.data
 
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType
 
 // TODO: NetworkまたはLocalからHome画面に表示する動画リソースの種類を取得する
 object VideoResourceManager {
