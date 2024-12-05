@@ -3,8 +3,8 @@ package jp.shirataki707.yamato.navigation
 import androidx.compose.ui.graphics.vector.ImageVector
 import jp.shirataki707.yamato.core.designsystem.icon.YamatoIcons
 import jp.shirataki707.yamato.feature.catalog.navigation.CatalogRoute
-import jp.shirataki707.yamato.feature.home.main.navigation.HomeBaseRoute
-import jp.shirataki707.yamato.feature.home.main.navigation.HomeRoute
+import jp.shirataki707.yamato.feature.home.navigation.HomeBaseRoute
+import jp.shirataki707.yamato.feature.home.navigation.HomeRoute
 import jp.shirataki707.yamato.feature.map.navigation.MapRoute
 import kotlin.reflect.KClass
 

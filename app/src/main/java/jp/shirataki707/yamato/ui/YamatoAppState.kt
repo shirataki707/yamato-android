@@ -12,7 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import androidx.tracing.trace
 import jp.shirataki707.yamato.feature.catalog.navigation.navigateToCatalog
-import jp.shirataki707.yamato.feature.home.main.navigation.navigateToHome
+import jp.shirataki707.yamato.feature.home.navigation.navigateToHome
 import jp.shirataki707.yamato.feature.map.navigation.navigateToMap
 import jp.shirataki707.yamato.navigation.TopLevelDestination
 import jp.shirataki707.yamato.navigation.TopLevelDestination.CATALOG

@@ -1,14 +1,15 @@
 package jp.shirataki707.yamato.core.data.repository
 
 import jp.shirataki707.yamato.core.data.VideoResourceManager.getVideoCarouselBlockTypeList
-import jp.shirataki707.yamato.core.model.data.DetailPageConfig
-import jp.shirataki707.yamato.core.model.data.VideoResources
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Channel
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Latest
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Mountain
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Popular
-import jp.shirataki707.yamato.core.model.data.VideoResources.VideoCarouselBlockType.Recommended
+import jp.shirataki707.yamato.core.model.data.Video
+import jp.shirataki707.yamato.core.model.data.Video.VideoBlockInfo
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Channel
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Latest
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Mountain
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Popular
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Recommended
+import jp.shirataki707.yamato.core.model.data.Video.VideoSummary
 import jp.shirataki707.yamato.core.network.youtube.YoutubeDataSource
 import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest
 import kotlinx.coroutines.async
@@ -23,9 +24,9 @@ interface VideoResourceRepository {
         maxResults: Int? = null,
         order: YoutubeSearchApiRequest.Order? = YoutubeSearchApiRequest.Order.RELEVANCE,
         resourceType: YoutubeSearchApiRequest.ResourceType? = YoutubeSearchApiRequest.ResourceType.VIDEO,
-    ): List<VideoResources.VideoCarouselBlock.VideoSummary>
+    ): List<VideoSummary>
 
-    suspend fun getCarouselBlockVideoResources(): VideoResources
+    suspend fun getCarouselBlockVideoResources(): List<Video>
 }
 
 internal class VideoResourceRepositoryImpl @Inject constructor(
@@ -38,7 +39,7 @@ internal class VideoResourceRepositoryImpl @Inject constructor(
         maxResults: Int?,
         order: YoutubeSearchApiRequest.Order?,
         resourceType: YoutubeSearchApiRequest.ResourceType?,
-    ): List<VideoResources.VideoCarouselBlock.VideoSummary> {
+    ): List<VideoSummary> {
         val request = YoutubeSearchApiRequest(
             keyword = keyword,
             channelId = channelId,
@@ -48,7 +49,7 @@ internal class VideoResourceRepositoryImpl @Inject constructor(
         )
         val response = youtubeDataSource.getVideoResources(request)
         return response.items.map { item ->
-            VideoResources.VideoCarouselBlock.VideoSummary(
+            VideoSummary(
                 videoTitle = item.snippet.title,
                 channelName = item.snippet.channelTitle,
                 description = item.snippet.description,
@@ -59,14 +60,14 @@ internal class VideoResourceRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getCarouselBlockVideoResources(): VideoResources = coroutineScope {
-        val videoCarouselBlockTypes = getVideoCarouselBlockTypeList()
-        val deferredCarouselBlocks = videoCarouselBlockTypes.map { blockType ->
-            async { getVideoSummaries(blockType) }
-        }.awaitAll()
+    override suspend fun getCarouselBlockVideoResources(): List<Video> =
+        coroutineScope {
+            val videoCarouselBlockTypes = getVideoCarouselBlockTypeList()
+            val deferredCarouselBlocks = videoCarouselBlockTypes.map { blockType ->
+                async { getVideoSummaries(blockType) }
+            }.awaitAll()
 
-        VideoResources(
-            videoCarouselBlocks = videoCarouselBlockTypes.mapIndexed { index, blockType ->
+            videoCarouselBlockTypes.mapIndexed { index, blockType ->
                 val blockTitle = when (blockType) {
                     Recommended -> {
                         "おすすめ"
@@ -88,22 +89,18 @@ internal class VideoResourceRepositoryImpl @Inject constructor(
                         deferredCarouselBlocks[index].first().channelName
                     }
                 }
-                VideoResources.VideoCarouselBlock(
-                    blockTitle = blockTitle,
-                    blockType = blockType,
+                Video(
                     videoSummaries = deferredCarouselBlocks[index],
-                    detailPageConfig = DetailPageConfig(
-                        detailPageTitle = blockTitle,
-                        carouselBlockType = blockType,
-                        keyword = getSearchKeyword(blockType),
-                        channelId = if (blockType is Channel) blockType.channelId else null,
-                        order = getSearchOrder(blockType),
+                    videoBlockInfo = VideoBlockInfo(
+                        videoBlockTitle = blockTitle,
+                        videoCarouselBlockType = blockType,
+                        searchKeyword = getSearchKeyword(blockType),
+                        searchChannelId = if (blockType is Channel) blockType.channelId else null,
+                        searchOrder = getSearchOrder(blockType),
                     ),
                 )
-            },
-        )
-
-    }
+            }
+        }
 
     private suspend fun getVideoSummaries(blockType: VideoCarouselBlockType) =
         when (blockType) {

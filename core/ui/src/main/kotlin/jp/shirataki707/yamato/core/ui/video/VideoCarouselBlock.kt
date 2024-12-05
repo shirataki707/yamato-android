@@ -12,30 +12,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.shirataki707.core.ui.R
 import jp.shirataki707.yamato.core.designsystem.theme.YamatoTheme
-import jp.shirataki707.yamato.core.model.data.DetailPageConfig
-import jp.shirataki707.yamato.core.model.data.VideoResources
+import jp.shirataki707.yamato.core.model.data.Video
+import jp.shirataki707.yamato.core.model.data.Video.VideoBlockInfo
+import jp.shirataki707.yamato.core.model.data.Video.VideoCarouselBlockType.Recommended
+import jp.shirataki707.yamato.core.model.data.Video.VideoSummary
 import jp.shirataki707.yamato.core.ui.video.component.VideoCarouselBlockHeader
 import jp.shirataki707.yamato.core.ui.video.component.VideoCarouselBlockItem
 
 @Composable
 fun VideoCarouselBlock(
-    videoCarouselBlock: VideoResources.VideoCarouselBlock,
+    video: Video,
     onVideoClick: (videoId: String) -> Unit,
-    onMoreButtonClick: (DetailPageConfig) -> Unit,
+    onMoreButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
         VideoCarouselBlockHeader(
-            headerTitle = videoCarouselBlock.blockTitle,
+            headerTitle = video.videoBlockInfo.videoBlockTitle,
             buttonText = stringResource(R.string.core_ui_more_show),
-            onButtonClick = {
-                onMoreButtonClick(videoCarouselBlock.detailPageConfig)
-            },
+            onButtonClick = onMoreButtonClick,
         )
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            items(videoCarouselBlock.videoSummaries) { videoSummary ->
+            items(video.videoSummaries) { videoSummary ->
                 VideoCarouselBlockItem(
                     imageUrl = videoSummary.thumbnailUrl,
                     videoTitle = videoSummary.videoTitle,
@@ -53,11 +53,9 @@ fun VideoCarouselBlock(
 private fun VideoCarouselBlockPreview() {
     YamatoTheme {
         VideoCarouselBlock(
-            videoCarouselBlock = VideoResources.VideoCarouselBlock(
-                blockTitle = "おすすめ",
-                blockType = VideoResources.VideoCarouselBlockType.Recommended,
+            video = Video(
                 videoSummaries = listOf(
-                    VideoResources.VideoCarouselBlock.VideoSummary(
+                    VideoSummary(
                         videoTitle = "富士山登山やってみた",
                         channelName = "しらたきチャンネル",
                         description = "",
@@ -65,7 +63,7 @@ private fun VideoCarouselBlockPreview() {
                         videoId = "",
                         publishedAt = "",
                     ),
-                    VideoResources.VideoCarouselBlock.VideoSummary(
+                    VideoSummary(
                         videoTitle = "八ヶ岳に行ってみた",
                         channelName = "やっほーチャンネル",
                         description = "",
@@ -74,10 +72,10 @@ private fun VideoCarouselBlockPreview() {
                         publishedAt = "",
                     ),
                 ),
-                detailPageConfig = DetailPageConfig(
-                    detailPageTitle = "おすすめ",
-                    carouselBlockType = VideoResources.VideoCarouselBlockType.Recommended,
-                    keyword = "登山",
+                videoBlockInfo = VideoBlockInfo(
+                    videoBlockTitle = "おすすめ",
+                    videoCarouselBlockType = Recommended,
+                    searchKeyword = "登山",
                 ),
             ),
             onVideoClick = { },
