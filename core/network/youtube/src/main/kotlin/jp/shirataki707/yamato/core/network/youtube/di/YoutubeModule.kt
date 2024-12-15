@@ -22,12 +22,6 @@ internal object YoutubeModule {
 
     @Provides
     @Singleton
-    fun provideNetworkJson(): Json = Json {
-        ignoreUnknownKeys = true
-    }
-
-    @Provides
-    @Singleton
     fun providesDemoAssetManager(
         @ApplicationContext context: Context,
     ): DemoAssetManager = DemoAssetManager(context.assets::open)

@@ -1,33 +1,25 @@
 package jp.shirataki707.yamato.core.data.repository
 
-import jp.shirataki707.yamato.core.database.dao.MountainDao
-import jp.shirataki707.yamato.core.database.model.MountainEntity
-import jp.shirataki707.yamato.core.database.model.asExternalModel
 import jp.shirataki707.yamato.core.model.data.Mountain
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import jp.shirataki707.yamato.core.network.yamato.YamatoNetworkDataSource
+import jp.shirataki707.yamato.core.network.yamato.model.asExternalModel
 import javax.inject.Inject
 
 interface MountainRepository {
-    /*
-     * Gets the available mountains as a stream
-     */
-    fun getMountains(): Flow<List<Mountain>>
+    suspend fun getMountains(): List<Mountain>
 
-    /*
-     * Gets data for a specific mountain
-     */
-    fun getMountain(id: Int): Flow<Mountain>
+    suspend fun getMountain(id: Int): Mountain
 }
 
 internal class MountainRepositoryImpl @Inject constructor(
-    private val mountainDao: MountainDao,
+    private val yamatoNetworkDataSource: YamatoNetworkDataSource,
 ) : MountainRepository {
 
-    override fun getMountains(): Flow<List<Mountain>> =
-        mountainDao.getMountainEntities()
-            .map { it.map(MountainEntity::asExternalModel) }
+    override suspend fun getMountains(): List<Mountain> {
+        return yamatoNetworkDataSource.getMountains().map { it.asExternalModel() }
+    }
 
-    override fun getMountain(id: Int): Flow<Mountain> =
-        mountainDao.getMountainEntity(id).map { it.asExternalModel() }
+    override suspend fun getMountain(id: Int): Mountain {
+        return yamatoNetworkDataSource.getMountain(id).asExternalModel()
+    }
 }

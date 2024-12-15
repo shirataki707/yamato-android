@@ -23,14 +23,14 @@ data class MountainEntity(
     val isClimbed: Boolean,
 )
 
-fun MountainEntity.asExternalModel() = Mountain(
-    id = id,
-    name = name,
-    imageName = imageName,
-    shortDescription = shortDescription,
-    longDescription = longDescription,
-    elevation = elevation,
-    latitude = latitude,
-    longitude = longitude,
-    isClimbed = isClimbed,
-)
+//fun MountainEntity.asExternalModel() = Mountain(
+//    id = id,
+//    name = name,
+//    imageName = imageName,
+//    shortDescription = shortDescription,
+//    longDescription = longDescription,
+//    elevation = elevation,
+//    latitude = latitude,
+//    longitude = longitude,
+//    isClimbed = isClimbed,
+//)
