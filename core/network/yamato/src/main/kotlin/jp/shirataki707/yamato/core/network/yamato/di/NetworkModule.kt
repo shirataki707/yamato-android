@@ -13,6 +13,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -33,6 +34,7 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
+    @Named("Yamato")
     fun okHttpCallFactory(): Call.Factory = trace("YamatoOkHttpClient") {
         OkHttpClient.Builder()
             .addInterceptor(

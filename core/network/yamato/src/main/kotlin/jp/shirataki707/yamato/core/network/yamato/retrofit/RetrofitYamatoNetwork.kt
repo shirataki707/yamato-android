@@ -12,6 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Path
 import javax.inject.Inject
+import javax.inject.Named
 import javax.inject.Singleton
 
 /*
@@ -28,7 +29,7 @@ private interface RetrofitYamatoNetworkApi {
 @Singleton
 internal class RetrofitYamatoNetwork @Inject constructor(
     networkJson: Json,
-    okhttpCallFactory: dagger.Lazy<Call.Factory>,
+    @Named("Yamato") okhttpCallFactory: dagger.Lazy<Call.Factory>,
 ) : YamatoNetworkDataSource {
 
     private val networkApi = trace("RetrofitYamatoNetwork") {

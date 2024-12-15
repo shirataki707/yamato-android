@@ -14,6 +14,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -28,6 +29,7 @@ internal object YoutubeModule {
 
     @Provides
     @Singleton
+    @Named("Youtube")
     fun okHttpCallFactory(): Call.Factory = trace("YoutubeOkHttpClient") {
         OkHttpClient.Builder()
             .addInterceptor(ApiKeyInterceptor(BuildConfig.YoutubeApiKey))
