@@ -36,9 +36,9 @@ data class NetworkMountain(
     @SerialName("schedule")
     val schedule: String,
     @SerialName("physical_strength")
-    val physicalStrength: String,
+    val physicalStrength: Int,
     @SerialName("difficulty")
-    val difficulty: String,
+    val difficulty: Int,
 )
 
 fun NetworkMountain.asExternalModel(): Mountain = Mountain(

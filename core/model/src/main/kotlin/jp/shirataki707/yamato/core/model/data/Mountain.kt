@@ -18,6 +18,6 @@ data class Mountain(
     val prefectures: String,
     val isClimbed: Boolean,
     val schedule: String,
-    val physicalStrength: String,
-    val difficulty: String,
+    val physicalStrength: Int,
+    val difficulty: Int,
 ) : Parcelable

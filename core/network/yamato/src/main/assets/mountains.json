@@ -13,8 +13,8 @@
     "prefectures": "北海道",
     "is_climbed": false,
     "schedule": "日帰り(前泊)",
-    "physical_strength": "3",
-    "difficulty": "3"
+    "physical_strength": 3,
+    "difficulty": 3
   },
   {
     "id": 2,
@@ -30,8 +30,8 @@
     "prefectures": "北海道",
     "is_climbed": false,
     "schedule": "日帰り(前泊)",
-    "physical_strength": "3",
-    "difficulty": "3"
+    "physical_strength": 3,
+    "difficulty": 3
   },
   {
     "id": 3,
@@ -40,9 +40,66 @@
     "image_path": "0003_sharidake.webp",
     "short_description": "斜里コタンの人々に敬われた「オンネ・ヌプリ」（老いた山）。変化に富んだ周回コースを歩き、大展望の山頂へ。次々と現れる滝を眺めながらアスレチックな沢登りを楽しむ。",
     "long_description": "知床半島のつけ根に裾野を広げる斜里岳（標高1,547m）は、利尻岳や鳥海山にも似た美しい姿を見せる成層火山。古くは「オンネ・ヌプリ」（老いた山）と呼ばれ、斜里コタンの人々に敬われていた。山名は斜里川の水源に由来し、斜里（シャリ）はアイヌ語の「サルン・ペッ」（葦原にある川）にちなむ。登山道は西面からの清里コースと北面の三井コースの2本があるが、大半の登山者は滝の連続する沢登りと見通しのよい尾根歩きの周回が楽しめる、清里コースを利用する。コース途中ではエゾイチゲやチシマノキンバイソウなど北海道特有の花々が見られ、広い礫地の山頂からは羅臼岳をはじめとする知床連山やオホーツク海が一望できる。",
+    "elevation": 1547,
+    "latitude": 43.7655555,
+    "longitude": 144.7177777,
+    "region": "北海道",
+    "prefectures": "北海道",
+    "is_climbed": false,
     "schedule": "1泊2日",
-    "physical_strength": "3",
-    "difficulty": "3"
+    "physical_strength": 3,
+    "difficulty": 3
+  },
+  {
+    "id": 4,
+    "name": "阿寒岳",
+    "reading_name": "あかんだけ",
+    "image_path": "0004_akandake.webp",
+    "short_description": "観光地・阿寒湖の南西で今なお噴煙を湧き上げる活火山。山上の砂礫地を山の名を冠する花々が彩る。ダイナミックな火山景観に圧倒される。",
+    "long_description": "雌阿寒岳（標高1,499m）は、マリモで知られる阿寒湖の西にそびえる活火山。湖をはさんで向かい合う雄阿寒岳が「ピンネシリ」（男山）とも呼ばれるのに対し、「マチネシリ」（女山）とも呼ばれる。噴火活動が活発で、山頂部はダイナミックな火山景観が展開する。ただし登山禁止になることもあるので、入山前に確認を。一般的なコースは雌阿寒温泉から山頂を経て北海道三大秘湖のオンネトーへ向かうコースで、アカエゾマツの深い森からハイマツ帯を経て、メアカンキンバイやメアカンフスマなど、山の名を冠する花を愛でながら山頂をめざす。山頂からは噴気越しに青沼や阿寒富士、阿寒湖をはさみ雄阿寒岳などが眺められる。",
+    "elevation": 1499,
+    "latitude": 43.3866666,
+    "longitude": 144.0088888,
+    "region": "北海道",
+    "prefectures": "北海道",
+    "is_climbed": false,
+    "schedule": "日帰り(前泊)",
+    "physical_strength": 2,
+    "difficulty": 2
+  },
+  {
+    "id": 5,
+    "name": "大雪山(旭岳)",
+    "reading_name": "たいせつざん(あさひだけ)",
+    "image_path": "0005_taisetsuzan.webp",
+    "short_description": "圧倒的スケールの空中散歩が満喫できる北海道最高峰。夏には高山植物が咲くお花畑の道をたどる。白い噴煙を上げる活火山。頂上からは360度のパノラマが見渡せる。",
+    "long_description": "旭岳（標高2,291m）は北海道の中心部に位置する大雪山系の主峰で、北海道の最高峰でもある。山の名は、忠別川の源にあるところから、アイヌ語で「チュプ・ベツ」（日の川）を「旭」としたもので、旭川市の名の由来も同じである。山麓の旭岳温泉から標高1,600mの姿見駅まで大雪山旭岳ロープウェイが運行され、利用すれば山頂までは2時間半ほど。山頂からは360度の眺望が楽しめ、目前には表大雪の山々と北大雪の山々、遠く日本百名山の阿寒岳や羅臼岳なども見渡せる。姿見ノ池に広がるお花畑の見ごろは7～8月、日本一早いとされる紅葉は、9月中旬～下旬が見ごろ。往復登山でもいいが、御鉢平を経て黒岳への縦走（約8時間）がよりおすすめ。",
+    "elevation": 2291,
+    "latitude": 43.6636111,
+    "longitude": 142.8541666,
+    "region": "北海道",
+    "prefectures": "北海道",
+    "is_climbed": false,
+    "schedule": "日帰り",
+    "physical_strength": 3,
+    "difficulty": 2
+  },
+  {
+    "id": 6,
+    "name": "トムラウシ山",
+    "reading_name": "とむらうしさん",
+    "image_path": "0006_tomuraushisan.webp",
+    "short_description": "「神々が遊ぶ庭」と称される、自然が造った見事な庭園。山頂からは大雪山や十勝連峰、遠く日高山脈が見渡せる。エゾナキウサギの生息地があり、運がよければ出会えるかも。",
+    "long_description": "大雪山国立公園のほぼ中央にどっしり構える山で、山上には大小の湖沼群、数多くの高山植物、無数に積み重なる岩の造形などが見事に配置され、さながら自然の庭園のようだ。一般的なコースは、登山口にあるトムラウシ温泉に1泊して短縮登山口から正規コース分岐に出てカムイ天上、コマドリ沢出合、前トム平を経て山頂をめざす。コマドリ沢付近の岩礫帯はエゾナキウサギの生息地で、耳をすませば鳴き声が聞こえ、姿が見られることも。10時間以上の行程なので、山頂直下の南沼でのテント泊が望ましい。また、7月下旬頃まで残雪を見る登山道では、視界不良時の道迷いに要注意。2009年の大量遭難は山頂北面のロックガーデンで発生した。",
+    "elevation": 2141,
+    "latitude": 43.5272222,
+    "longitude": 142.8488888,
+    "region": "北海道",
+    "prefectures": "北海道",
+    "is_climbed": false,
+    "schedule": "1泊2日",
+    "physical_strength": 3,
+    "difficulty": 3
   },
   {
     "id": 7,
@@ -58,8 +115,8 @@
     "prefectures": "北海道",
     "is_climbed": false,
     "schedule": "日帰り",
-    "physical_strength": "3",
-    "difficulty": "2"
+    "physical_strength": 3,
+    "difficulty": 2
   },
   {
     "id": 8,
@@ -75,8 +132,8 @@
     "prefectures": "北海道",
     "is_climbed": false,
     "schedule": "1泊2日~2泊3日",
-    "physical_strength": "5",
-    "difficulty": "4"
+    "physical_strength": 5,
+    "difficulty": 4
   },
   {
     "id": 9,
@@ -92,7 +149,7 @@
     "prefectures": "北海道",
     "is_climbed": false,
     "schedule": "日帰り~1泊2日",
-    "physical_strength": "3",
-    "difficulty": "2"
+    "physical_strength": 3,
+    "difficulty": 2
   }
 ]

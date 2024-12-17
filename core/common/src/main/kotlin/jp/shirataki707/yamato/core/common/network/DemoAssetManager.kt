@@ -1,4 +1,4 @@
-package jp.shirataki707.yamato.core.network.youtube.demo
+package jp.shirataki707.yamato.core.common.network
 
 import java.io.InputStream
 

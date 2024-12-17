@@ -1,9 +1,10 @@
-import jp.shirataki707.yamato.core.network.youtube.demo.DemoAssetManager
+package jp.shirataki707.yamato.core.common.network
+
 import java.io.File
 import java.io.InputStream
 import java.util.Properties
 
-internal object JvmUnitTestDemoAssetManager : DemoAssetManager {
+object JvmUnitTestDemoAssetManager : DemoAssetManager {
     private val config =
         requireNotNull(javaClass.getResource("com/android/tools/test_config.properties")) {
             """
