@@ -1,4 +1,4 @@
-ackage jp.shirataki707.yamato.core.network.yamato
+package jp.shirataki707.yamato.core.network.yamato
 
 import dagger.Binds
 import dagger.Module
