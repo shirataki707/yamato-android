@@ -3,7 +3,6 @@ package jp.shirataki707.yamato.core.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import jp.shirataki707.yamato.core.model.data.Mountain
 
 @Entity(tableName = "mountains")
 data class MountainEntity(
@@ -23,7 +22,7 @@ data class MountainEntity(
     val isClimbed: Boolean,
 )
 
-//fun MountainEntity.asExternalModel() = Mountain(
+// fun MountainEntity.asExternalModel() = Mountain(
 //    id = id,
 //    name = name,
 //    imageName = imageName,
@@ -33,4 +32,4 @@ data class MountainEntity(
 //    latitude = latitude,
 //    longitude = longitude,
 //    isClimbed = isClimbed,
-//)
+// )

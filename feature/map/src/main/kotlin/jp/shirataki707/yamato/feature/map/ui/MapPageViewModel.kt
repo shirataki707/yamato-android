@@ -18,7 +18,6 @@ internal class MapPageViewModel @Inject constructor(
         viewModelScope.launch(
             CoroutineExceptionHandler { _, exception ->
                 Log.e("MapPageViewModel", "initialLoadIfNeeded", exception)
-
             },
         ) {
             val mountains = mountainRepository.getMountains()
