@@ -1,7 +1,8 @@
 package jp.shirataki707.yamato.core.network.youtube.demo
 
-import JvmUnitTestDemoAssetManager
+import jp.shirataki707.yamato.core.common.network.DemoAssetManager
 import jp.shirataki707.yamato.core.common.network.Dispatcher
+import jp.shirataki707.yamato.core.common.network.JvmUnitTestDemoAssetManager
 import jp.shirataki707.yamato.core.common.network.YamatoDispatchers.IO
 import jp.shirataki707.yamato.core.network.youtube.YoutubeDataSource
 import jp.shirataki707.yamato.core.network.youtube.model.YoutubeSearchApiRequest

@@ -13,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 import javax.inject.Inject
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -33,7 +34,7 @@ private interface YoutubeApiService {
 @Singleton
 internal class YoutubeApiClient @Inject constructor(
     networkJson: Json,
-    okhttpCallFactory: dagger.Lazy<Call.Factory>,
+    @Named("Youtube") okhttpCallFactory: dagger.Lazy<Call.Factory>,
 ) : YoutubeDataSource {
 
     private val youtubeApi = trace("YoutubeApiClient") {
