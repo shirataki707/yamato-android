@@ -15,6 +15,6 @@ dependencies {
     implementation(projects.core.common)
 
     implementation(libs.androidx.compose.material3)
-//    implementation(libs.mapbox)
-//    implementation(libs.mapbox.compose)
+    implementation(libs.mapbox)
+    implementation(libs.mapbox.compose)
 }

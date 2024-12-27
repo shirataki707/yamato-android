@@ -147,7 +147,7 @@ lint-api = { group = "com.android.tools.lint", name = "lint-api", version.ref = 
 lint-checks = { group = "com.android.tools.lint", name = "lint-checks", version.ref = "androidTools" }
 lint-tests = { group = "com.android.tools.lint", name = "lint-tests", version.ref = "androidTools" }
 mapbox = { group = "com.mapbox.maps", name = "android", version.ref = "mapbox" }
-mapbox-compose = { group = "com.mapbox.maps", name = "maps-compose", version.ref = "mapbox" }
+mapbox-compose = { group = "com.mapbox.extension", name = "maps-compose", version.ref = "mapbox" }
 mockito-core =  { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
