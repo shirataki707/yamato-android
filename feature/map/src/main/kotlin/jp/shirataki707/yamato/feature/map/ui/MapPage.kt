@@ -1,16 +1,17 @@
 package jp.shirataki707.yamato.feature.map.ui
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import jp.shirataki707.yamato.feature.map.ui.section.MapInitialSection
+import jp.shirataki707.yamato.feature.map.ui.section.MapInitialSectionState
+import jp.shirataki707.yamato.feature.map.ui.section.MapLoadedSection
+import jp.shirataki707.yamato.feature.map.ui.section.MapLoadedSectionState
+import jp.shirataki707.yamato.feature.map.ui.section.MapLoadingSection
+import jp.shirataki707.yamato.feature.map.ui.section.MapLoadingSectionState
 
 @Composable
 internal fun MapPageHost(
-    modifier: Modifier = Modifier,
     mapPageViewModel: MapPageViewModel = hiltViewModel(),
 ) {
     val mapPageState = rememberMapPageState(
@@ -29,12 +30,24 @@ internal fun MapPageHost(
 @Composable
 private fun MapPage(
     mapPageState: MapPageState,
-    modifier: Modifier = Modifier,
 ) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center,
-    ) {
-        Text("Map Page")
+    when (val sectionState = mapPageState.contentSectionState) {
+        is MapInitialSectionState -> {
+            MapInitialSection(
+                sectionState = sectionState,
+            )
+        }
+
+        is MapLoadingSectionState -> {
+            MapLoadingSection(
+                sectionState = sectionState,
+            )
+        }
+
+        is MapLoadedSectionState -> {
+            MapLoadedSection(
+                sectionState = sectionState,
+            )
+        }
     }
 }

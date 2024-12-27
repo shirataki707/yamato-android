@@ -9,9 +9,12 @@ android {
 
 dependencies {
     api(projects.core.designsystem)
+    api(projects.core.model)
 
     implementation(projects.core.data)
     implementation(projects.core.common)
 
     implementation(libs.androidx.compose.material3)
+//    implementation(libs.mapbox)
+//    implementation(libs.mapbox.compose)
 }

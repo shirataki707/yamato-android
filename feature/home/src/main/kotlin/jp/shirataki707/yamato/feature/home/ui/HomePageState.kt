@@ -9,7 +9,7 @@ import jp.shirataki707.yamato.feature.home.ui.section.rememberHomeInitialSection
 import jp.shirataki707.yamato.feature.home.ui.section.rememberHomeLoadedSectionState
 import jp.shirataki707.yamato.feature.home.ui.section.rememberHomeLoadingSectionState
 
-internal class HomePageState(
+internal data class HomePageState(
     val contentSectionState: HomeContentSectionState,
 )
 
