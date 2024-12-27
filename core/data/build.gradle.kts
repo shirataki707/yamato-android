@@ -9,6 +9,7 @@ android {
 }
 
 dependencies {
+    api(projects.core.network.yamato)
     api(projects.core.network.youtube)
     api(projects.core.database)
 
