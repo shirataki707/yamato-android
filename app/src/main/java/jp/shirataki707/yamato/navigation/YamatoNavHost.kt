@@ -1,5 +1,7 @@
 package jp.shirataki707.yamato.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -20,6 +22,8 @@ fun YamatoNavHost(
     NavHost(
         navController = navController,
         startDestination = HomeBaseRoute,
+        enterTransition = { EnterTransition.None },
+        exitTransition = { ExitTransition.None },
         modifier = modifier,
     ) {
         homePage(onNavigateToDetail = navController::navigateToVideo) {
