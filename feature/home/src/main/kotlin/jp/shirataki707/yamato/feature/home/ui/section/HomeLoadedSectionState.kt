@@ -30,6 +30,8 @@ internal fun rememberHomeLoadedSectionState(
 
     return remember(
         videoResources,
+        onVideoClick,
+        onMoreButtonClick,
     ) {
         HomeLoadedSectionState(
             videoResources = videoResources,

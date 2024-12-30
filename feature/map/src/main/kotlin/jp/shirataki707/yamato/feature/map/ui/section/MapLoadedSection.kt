@@ -7,5 +7,9 @@ import jp.shirataki707.yamato.feature.map.ui.component.JapanMap
 internal fun MapLoadedSection(
     sectionState: MapLoadedSectionState,
 ) {
-    JapanMap(mapViewportState = sectionState.mapViewportState)
+    JapanMap(
+        mountains = sectionState.mapResources.mountains,
+        mapState = sectionState.mapState,
+        mapViewportState = sectionState.mapViewportState,
+    )
 }
