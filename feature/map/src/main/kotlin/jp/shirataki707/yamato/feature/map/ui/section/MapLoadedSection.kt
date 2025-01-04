@@ -1,15 +1,16 @@
 package jp.shirataki707.yamato.feature.map.ui.section
 
 import androidx.compose.runtime.Composable
-import jp.shirataki707.yamato.feature.map.ui.component.JapanMap
+import jp.shirataki707.yamato.feature.map.ui.component.JapanMountainMap
 
 @Composable
 internal fun MapLoadedSection(
     sectionState: MapLoadedSectionState,
 ) {
-    JapanMap(
-        mountains = sectionState.mapResources.mountains,
+    JapanMountainMap(
         mapState = sectionState.mapState,
         mapViewportState = sectionState.mapViewportState,
+        mountains = sectionState.mapResources.mountains,
+        mountainIcon = sectionState.mountainIcon,
     )
 }
