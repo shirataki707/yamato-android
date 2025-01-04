@@ -46,6 +46,9 @@ internal fun JapanMountainMap(
                         ),
                     )
                     .withIconImage(mountainIcon)
+                    .withTextField(mountain.name)
+                    .withTextOffset(listOf(0.0, 1.5))
+                    .withTextSize(15.0)
             },
         )
     }
